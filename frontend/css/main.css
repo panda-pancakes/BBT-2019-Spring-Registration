@@ -1,7 +1,18 @@
 h1{
     text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    padding-left: 200px;
+    padding-right: 202px;
+    margin: auto;
+    font-family: Microsoft YaHei;
+    font-weight: lighter;
+    color: dimgrey;
+}
+#box1{
+    margin:auto;
 }
 .button{
     text-align: center;
+    padding-left: 200px;
+    padding-right: 200px;
 }
