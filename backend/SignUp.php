@@ -62,4 +62,5 @@ else{
         'errmsg' => '报名成功！',
     ];
 }
+echo json_encode($result);
 ?>
