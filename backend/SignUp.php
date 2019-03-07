@@ -52,7 +52,7 @@ else if($name == $FormerName && $phone == $FormerPhone){
     mysqli_stmt_close($stmt);
 }
 else{
-    $sql1 = "insert into Atendee (name, phone, college, ChoiceOne, ChoiceTwo, adjust, introduction) values (?, ?, ?, ?, ?, ?, ?)";
+    $sql1 = "insert into Attendee (name, phone, college, ChoiceOne, ChoiceTwo, adjust, introduction) values (?, ?, ?, ?, ?, ?, ?)";
     $stmt1 = mysqli_prepare($con, $sql1);
     mysqli_stmt_bind_param($stmt1, "sssssss", $name, $phone, $college, $ChoiceOne, $ChoiceTwo, $adjust, $introduction);
     mysqli_stmt_execute($stmt1);
