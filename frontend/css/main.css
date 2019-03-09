@@ -1,8 +1,11 @@
+*{
+    background-color: white;
+}
 h1{
     text-align: center;
     position: relative;
-    padding-left: 200px;
-    padding-right: 202px;
+    padding-left: 11%;
+    padding-right: 11%;
     margin: auto;
     font-family: Microsoft YaHei;
     font-weight: lighter;
