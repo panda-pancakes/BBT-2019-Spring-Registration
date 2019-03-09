@@ -43,7 +43,7 @@ if($IsNum == false || $phone[0] != 1 || $NumPhone != 11){
 //检测个人简介是否超过50字
 else if($IntroLength >=50){
     $result = [
-        'errcode' => 1
+        'errcode' => 1,
         'errmsg' => '个人简介不可超过50字哦',
     ];
 }
