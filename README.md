@@ -3,11 +3,17 @@
 
 ## Structure
 `./index.html` - 主页
+
 `./signup.html` - 报名页
+
 `./introduction.html` - 部门介绍页
+
 `./css/` - 存放样式表
+
 `./js/` - 存放JavaScript
+
 `./img/` - 存放图片
+
 `./api/` - 存放后端程序
 
 ## Deployment
