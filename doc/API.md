@@ -13,6 +13,7 @@ Encoding:
 * `JSON`
 
 Parameters: 
+
 | Parameter    | Type    | Required | Description   |
 | ------------ | ------- | -------- | ------------- |
 | name         | String  | Yes      | 姓名          |
@@ -27,12 +28,14 @@ Parameters:
 | cover        | Boolean | Optional | 是否覆盖记录    |
 
 Response:
+
 | Parameter    | Type    | Description                  |
 | ------------ | ------- | ---------------------------- |
 | status       | Boolean | 成功返回ok，否则返回failed.    |
 | errmsg       | String  | API调用失败时返回的错误信息.    |
 
 errmsg值为 `existed` 时表明该用户信息已存在(若姓名和手机号相同则认为是相同用户).
+
 当cover值为 `True` 时将会覆盖已存在的信息而不会返回错误信息.
 
 ## Query
@@ -49,12 +52,14 @@ Encoding:
 * `JSON`
 
 Parameters: 
+
 | Parameter    | Type    | Required | Description   |
 | ------------ | ------- | -------- | ------------- |
 | name         | String  | Yes      | 姓名          |
 | phone        | String  | Yes      | 电话          |
 
 Response:
+
 | Parameter    | Type    | Description                  |
 | ------------ | ------- | ---------------------------- |
 | status       | Boolean | 成功返回ok，否则返回failed.    |
