@@ -1,0 +1,47 @@
+*{margin:0;padding:0;}
+.header{
+    text-shadow: 2px 2px cornflowerblue;
+    text-align: center;
+}
+.login_board{
+    border-style: dotted;
+    border-radius: 2ex;
+    padding: 2%;
+    margin: auto;
+    width: 40%;
+    margin-top: 3em;
+    overflow: auto;
+}
+.input_box{
+    padding: 2ex;
+    margin-bottom: 2ex;
+    font-size: 1em;
+}
+.text_area{
+    font-size: 1em;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+.button{
+    float: right;
+    border: none;
+    background-color: transparent;
+    font-size: 2em;
+}
+.errorshow{
+    display: none;
+    background-color: rgba(196, 171, 124, 0.596);
+    text-align: center;
+    width: 50%;
+    position: relative;
+    top: 3em;
+    left: 25%;
+}
+.table,tr,th{
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin: auto;
+}
+
