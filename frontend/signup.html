@@ -1,0 +1,66 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>报名表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, 
+    minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" /> 
+    <meta name="description" content="百步梯2019春季招新">
+    <meta name="revised" content="PandaPancakes">
+    <meta http-equiv="refresh" content="300">
+    <link rel="stylesheet" type="text/css" media="screen" href="frontend/css/sign.css">
+    <script src="frontend/js/main.js"></script>
+</head>
+<body>
+    <h1>信息填写</h1>
+    <div id="input">
+    <label for="name">姓名：</label>
+    <br><br>
+    <input type="text" name="name" id="name" value="填名字">
+    <br><br>
+    <label for="gender">性别：</label>
+    <input type="radio" name="gender" value="M" checked>男
+    <input type="radio" name="gender" value="F" checked>女
+    <br><br>
+    <label for="major">学院：</label>
+    <br><br>
+    <select>
+        <option value="1m">xxxx学院</option>
+        <option value="2m">xxxx学院</option>
+    </select>
+    <br><br>
+    <label for="tel">联系电话：</label>
+    <br><br>
+    <input type="text" name="tel" id="tel" value="用于接收面试短信（别填错了">
+    <br><br>
+    <label>第一志愿：</label>
+    <select>
+        <option value="1-1b">xxxx部门</option>
+        <option value="1-2b">xxxx部门</option>
+        <option value="1-3b">xxxx部门</option>
+        <option value="1-4b">xxxx部门</option>
+    </select>
+    <br><br>
+    <label>第二志愿：</label>
+    <select>
+        <option value="2-1b">xxxx部门</option>
+        <option value="2-2b">xxxx部门</option>
+        <option value="2-3b">xxxx部门</option>
+        <option value="2-4b">xxxx部门</option>
+    </select>
+    <br><br>
+    <label for="adjustment">是否服从调配：</label>
+    <input type="radio" name="adjustment" value="Y" checked>是
+    <input type="radio" name="adjustment" value="N" checked>否
+    <br><br>
+    <label for="intro">自我介绍（选填）</label>
+    <br>
+    <textarea rows="10" cols="15" id="selfintro">
+        简单介绍一下你自己
+    </textarea>
+    <br><br>
+    <input type="image" src="frontend/img/button/6.png" alt="提交">
+    </div>
+</body>
+</html>
