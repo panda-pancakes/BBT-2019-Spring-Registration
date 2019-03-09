@@ -1,0 +1,32 @@
+*{
+    background-color: white;
+}
+h1{
+    text-align: center;
+    position: relative;
+    padding-left: 6%;
+    padding-right: 11%;
+    font-family: Microsoft YaHei;
+    font-weight: lighter;
+    color: dimgrey;
+}
+textarea{
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    border-color: white;
+    vertical-align: -webkit-baseline-middle;
+}
+#left_btn{
+    position: relative;
+    margin: 10px;
+    left: 100px;
+    right: 15px;
+    vertical-align: -webkit-baseline-middle;
+}
+#right_btn{
+    position: relative;
+    left: 15px;
+    top: -10%;
+    vertical-align: -webkit-baseline-middle;
+}

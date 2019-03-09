@@ -1,0 +1,17 @@
+*{
+    background-color: white;
+}
+h1{
+    text-align: center;
+    position: relative;
+    padding-left: 6%;
+    padding-right: 11%;
+    font-family: Microsoft YaHei;
+    font-weight: lighter;
+    color: dimgrey;
+}
+#input{
+    margin-left: 5%;
+    padding-left: 200px;
+    padding-right: 200px;
+}
