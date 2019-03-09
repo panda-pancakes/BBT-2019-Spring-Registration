@@ -1,19 +1,18 @@
 # API Document
 ## Signup
-Description:
+### Description
 * 提交报名信息.
 
-URL:
+### URL
 * `/api/action.php?method=signup`
 
-Method:
+### Method
 * `POST`
 
-Encoding:
+### Encoding
 * `JSON`
 
-Parameters: 
-
+### Parameters
 | Parameter    | Type    | Required | Description   |
 | ------------ | ------- | -------- | ------------- |
 | name         | String  | Yes      | 姓名          |
@@ -27,8 +26,7 @@ Parameters:
 | introduction | String  | Yes      | 自我介绍       |
 | cover        | Boolean | Optional | 是否覆盖记录    |
 
-Response:
-
+### Response
 | Parameter    | Type    | Description                  |
 | ------------ | ------- | ---------------------------- |
 | status       | Boolean | 成功返回ok，否则返回failed.    |
@@ -39,26 +37,26 @@ errmsg值为 `existed` 时表明该用户信息已存在(若姓名和手机号�
 当cover值为 `True` 时将会覆盖已存在的信息而不会返回错误信息.
 
 ## Query
-Description:
+### Description
 * 查询报名信息.
 
-URL:
+### URL
 * `/api/action.php?method=query`
 
-Method:
+### Method
 * `POST`
 
-Encoding:
+### Encoding
 * `JSON`
 
-Parameters: 
+### Parameters
 
 | Parameter    | Type    | Required | Description   |
 | ------------ | ------- | -------- | ------------- |
 | name         | String  | Yes      | 姓名          |
 | phone        | String  | Yes      | 电话          |
 
-Response:
+### Response
 
 | Parameter    | Type    | Description                  |
 | ------------ | ------- | ---------------------------- |
