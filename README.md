@@ -6,7 +6,7 @@
 * 确定学院和部门列表并赋编号
 * 后端(action.php)对传入数据的验证
 * 测试API(现在五点半了我决定去躺一会这个晚上再说)
-* 管理页面
+* 管理页面及内部人员查询页面
 
 ## Structure
 `./index.html` - 主页
@@ -14,6 +14,10 @@
 `./signup.html` - 报名页
 
 `./introduction.html` - 部门介绍页
+
+`./check_login.html` - 内部人员登录页
+
+`./check_show.html` - 内部人员查询页 
 
 `./css/` - 存放样式表
 
