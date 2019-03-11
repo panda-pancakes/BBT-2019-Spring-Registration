@@ -16,19 +16,21 @@ if (!isset($_GET["method"])) {
 		$ret->errmsg = "Missing parameter: phone";
 		// check 
 
-	} elseif (!isset($_POST["grade"])) {
+	}
+	/* elseif (!isset($_POST["grade"])) {
 		$ret->errmsg = "Missing parameter: grade";
 		// check 
 
-	} elseif (!isset($_POST["college"])) {
+	} */elseif (!isset($_POST["college"])) {
 		$ret->errmsg = "Missing parameter: college";
 		// check 
 
-	} elseif (!isset($_POST["dorm"])) {
-		$ret->errmsg = "Missing parameter: dorm";
+	} //elseif (!isset($_POST["dorm"])) {
+		//ret->errmsg = "Missing parameter: dorm";
 		// check 
 
-	} elseif (!isset($_POST["ChoiceOne"])) {
+	//}
+	 elseif (!isset($_POST["ChoiceOne"])) {
 		$ret->errmsg = "Missing parameter: ChoiceOne";
 		// check 
 
@@ -47,9 +49,9 @@ if (!isset($_GET["method"])) {
 		$info = array(
 			"name" => $_POST["name"],
 			"phone" => $_POST["phone"],
-			"grade" => $_POST["grade"],
+			//"grade" => $_POST["grade"],
 			"college" => $_POST["college"],
-			"dorm" => $_POST["dorm"],
+			//"dorm" => $_POST["dorm"],
 			"ChoiceOne" => $_POST["ChoiceOne"],
 			"ChoiceTwo" => $_POST["ChoiceTwo"],
 			"adjust" => $_POST["adjust"],
