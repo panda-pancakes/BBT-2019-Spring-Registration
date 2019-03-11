@@ -14,11 +14,21 @@ $dorm = htmlspecialchars($_POST['dorm'],ENT_QUOTES);
 //接收第一志愿
 $ChoiceOne = htmlspecialchars($_POST['ChoiceOne'],ENT_QUOTES);
 //接收第二志愿
-$ChoiceTwo = htmlspecialchars($_POST['ChoiceTwo'],ENT_QUOTES);
+if (isset($_POST['ChoiceTwo'])){
+    $ChoiceTwo = htmlspecialchars($_POST['ChoiceTwo'],ENT_QUOTES);
+}
+else{
+    $ChoiceTwo = 'null';
+}
 //接收是否服从调剂
 $adjust = htmlspecialchars($_POST['adjust'],ENT_QUOTES);
 //接收个人简介
-$introduction = htmlspecialchars($_POST['introduction'],ENT_QUOTES);
+if (isset($_POST['introduction'])){
+    $introduction = htmlspecialchars($_POST['introduction'],ENT_QUOTES);
+}
+else{
+    $introduction = 'null';
+}
 
 $sql = "update Attendee set grade = ?, college = ?, dorm = ?, ChoiceOne = ?, ChoiceTwo = ?, adjust = ?, introduction = ? where name = ? && phone = ?";
     $stmt = mysqli_prepare($con, $sql);
