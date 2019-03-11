@@ -10,23 +10,23 @@ h1{
     font-weight: lighter;
     color: dimgrey;
 }
+#left_btn{
+    float: left;
+    margin-top: 100px;
+    vertical-align: -webkit-baseline-middle;
+}
+
+#right_btn{
+    float: right;
+    vertical-align: -webkit-baseline-middle;
+}
 textarea{
     text-align: center;
-    margin: 5px;
     padding: 5px;
     border-color: white;
     vertical-align: -webkit-baseline-middle;
 }
-#left_btn{
-    position: relative;
-    margin: 10px;
-    left: 100px;
-    right: 15px;
-    vertical-align: -webkit-baseline-middle;
-}
-#right_btn{
-    position: relative;
-    left: 15px;
-    top: -10%;
-    vertical-align: -webkit-baseline-middle;
+#btn10{
+    margin: 100px;
+    text-align: center;
 }
