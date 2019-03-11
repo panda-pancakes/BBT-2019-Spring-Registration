@@ -6,10 +6,11 @@ if ($con->connect_error) {
 	echo("<b>Failed to access database: </b>" . $con->connect_error);
 
 } else {
-	/* 这里要改一下 */
-	$con->query("CREATE TABLE `" . DB_NAME . "`.`Attendee` ( `name` TEXT NOT NULL , `phone` TEXT NOT NULL , `grade` INT NOT NULL , `college` INT NOT NULL , `dorm` TEXT NOT NULL , `ChoiceOne` INT NOT NULL , `ChoiceTwo` INT NOT NULL , `adjust` BOOLEAN NOT NULL , `introduction` TEXT NOT NULL , `info` TEXT NOT NULL , `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ) ENGINE = InnoDB;");
+	$con->query("CREATE TABLE `" . DB_NAME . "`.`application` ( `name` TEXT NOT NULL , `sex` CHAR NOT NULL , `tel` TEXT NOT NULL , `grade` INT NOT NULL , `college` INT NOT NULL , `dorm` TEXT NULL , `department` INT NOT NULL , `alternative` INT NULL , `adjustment` BOOLEAN NOT NULL , `introduction` TEXT NULL , `timestamp` TIMESTAMP NOT NULL , `information` TEXT NULL , `note` TEXT NULL ) ENGINE = InnoDB;");
 
-	$con->close();
+	$con->query("CREATE TABLE `" . DB_NAME . "`.`admin` ( `username` TEXT NOT NULL , `password` TEXT NOT NULL , `permission` INT NOT NULL ) ENGINE = InnoDB;");
+
+	/* TO-DO: 建立默认的管理员账号 */
 
 	echo("<b>done.</b>");
 }

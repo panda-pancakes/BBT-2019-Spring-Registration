@@ -3,26 +3,23 @@
 | Column       | Type    | Description   |
 | ------------ | ------- | ------------- |
 | name         | String  | 姓名          |
-| sex          | Boolean | 性别          |
-| phone        | String  | 电话          |
+| sex          | Char    | 性别(F/M)     |
+| tel          | String  | 电话          |
 | grade        | Integer | 年级          |
 | college      | Integer | 学院(编号)     |
 | dorm         | String  | 宿舍号         |
-| choiceOne    | Integer | 第一志愿(编号)  |
-| choiceTwo    | Integer | 第二志愿(编号)  |
-| adjust       | Boolean | 是否接受调剂    |
-| introduction | String  | 自我介绍       |
-
-### [Column] sex
-* 1表示男，0表示女
-
-### [Column] grade
-* 四位数表示年级
+| department   | Integer | 第一志愿(编号)  |
+| alternative  | Integer | 第二志愿(编号)  |
+| adjustment   | Boolean | 是否接受调剂    |
+| introduction | String  | 自我介绍        | 
+| timestamp    | Time    | 报名时间        |
+| information  | String  | 返回给用户的信息 |
+| note         | String  | 后台备注的信息   |
 
 ### [Column] college
 * 确定好对应关系后请写在下面
 
-### [Column] choiceOne / choiceTwo
+### [Column] department / alternative
 * 确定好对应关系后请写在下面
 
 ## [Table] Admin
@@ -33,4 +30,4 @@
 | permission   | Integer | 所属部门       |
 
 ### [Column] permission
-同上的ChoiceOne / ChoiceTwo的对应关系，0表示管理员账号。
+同上的对应关系，0表示管理员账号。

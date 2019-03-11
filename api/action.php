@@ -14,8 +14,8 @@ if (!isset($_GET["method"])) {
 	if (!isset($_POST["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
-	} elseif (!isset($_POST["phone"])) {
-		$ret->errmsg = "Missing parameter: phone";
+	} elseif (!isset($_POST["tel"])) {
+		$ret->errmsg = "Missing parameter: tel";
 		// check 
 
 	}
@@ -32,16 +32,16 @@ if (!isset($_GET["method"])) {
 		// check 
 
 	//}
-	 elseif (!isset($_POST["choiceOne"])) {
-		$ret->errmsg = "Missing parameter: choiceOne";
+	 elseif (!isset($_POST["department"])) {
+		$ret->errmsg = "Missing parameter: department";
 		// check 
 
-	} elseif (!isset($_POST["choiceTwo"])) {
-		$ret->errmsg = "Missing parameter: choiceTwo";
+	} elseif (!isset($_POST["alternative"])) {
+		$ret->errmsg = "Missing parameter: alternative";
 		// check 
 
-	} elseif (!isset($_POST["adjust"])) {
-		$ret->errmsg = "Missing parameter: adjust";
+	} elseif (!isset($_POST["adjustment"])) {
+		$ret->errmsg = "Missing parameter: adjustment";
 		// check 
 
 	} elseif (!isset($_POST["introduction"])) {
@@ -50,13 +50,13 @@ if (!isset($_GET["method"])) {
 	} else {
 		$info = array(
 			"name" => $_POST["name"],
-			"phone" => $_POST["phone"],
+			"tel" => $_POST["tel"],
 			//"grade" => $_POST["grade"],
 			"college" => $_POST["college"],
 			//"dorm" => $_POST["dorm"],
-			"choiceOne" => $_POST["choiceOne"],
-			"choiceTwo" => $_POST["choiceTwo"],
-			"adjust" => $_POST["adjust"],
+			"department" => $_POST["department"],
+			"alternative" => $_POST["alternative"],
+			"adjustment" => $_POST["adjustment"],
 			"introduction" => $_POST["introduction"],
 		);
 
@@ -73,8 +73,8 @@ if (!isset($_GET["method"])) {
 	if (!isset($_POST["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
-	} elseif (!isset($_POST["phone"])) {
-		$ret->errmsg = "Missing parameter: phone";
+	} elseif (!isset($_POST["tel"])) {
+		$ret->errmsg = "Missing parameter: tel";
 		// check 
 	} else {
 		$sta = query($info);
@@ -89,8 +89,26 @@ if (!isset($_GET["method"])) {
 	}
 	
 } elseif ($_GET["method"] == "admin_login") {
+	if (!isset($_POST["username"])) {
+		$ret->errmsg = "Missing parameter: username";
+	} elseif (!isset($_POST["password"])) {
+		$ret->errmsg = "Missing parameter: password";
+	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $username)) {
+		$ret->errmsg = "It's not allowed to use special characters in username.";
+	} else {
+		$status = admin_login($_POST["username"], $_POST["password"]);
+		if ($status >= 0) {
+			$_SESSION["username"] = $_POST["username"];
+			$_SESSION["permission"] = $status;
+		} elseif ($status == -2) {
+			$ret->errmsg = "database issue";
+		} elseif ($status == -3) {
+			$ret->errmsg = "Either this account doesn't exist or the password is incorrect.";
+		}
+	}
 
 } elseif ($_GET["method"] == "admin_query") {
+	
 
 } else {
 	$ret->errmsg = "Unspecified Method";
