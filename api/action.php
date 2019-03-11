@@ -91,3 +91,4 @@ if (!isset($_GET["method"])) {
 $ret->status = isset($ret->errmsg) ? "failed" : "ok";
 
 echo json_encode($ret);
+?>

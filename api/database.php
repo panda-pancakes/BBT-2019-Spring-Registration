@@ -56,3 +56,4 @@ function signup($info, $cover) {
 
 	return 0;
 }
+?>
