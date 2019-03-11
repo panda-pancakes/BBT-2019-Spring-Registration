@@ -18,7 +18,7 @@
     <form action="php/signup.php" method="POST">
     <label for="name">姓名：</label>
     <br><br>
-    <input type="text" name="name" id="name" value="填名字">
+    <input type="text" name="name" id="name" value="填名字" required>
     <br><br>
     <label for="gender">性别：</label>
     <input type="radio" name="gender" value="M" checked>男
@@ -26,17 +26,17 @@
     <br><br>
     <label for="major">学院：</label>
     <br><br>
-    <select>
+    <select required>
         <option value="1m">xxxx学院</option>
         <option value="2m">xxxx学院</option>
     </select>
     <br><br>
     <label for="tel">联系电话：</label>
     <br><br>
-    <input type="text" name="tel" id="tel" value="用于接收面试短信（别填错了">
+    <input type="text" name="tel" id="tel" value="用于接收面试短信（别填错了" required>
     <br><br>
     <label>第一志愿：</label>
-    <select>
+    <select required>
         <option value="1-1b">技术部-代码组</option>
         <option value="1-2b">技术部-设计组</option>
         <option value="1-3b">技术部（北校专业）</option>
