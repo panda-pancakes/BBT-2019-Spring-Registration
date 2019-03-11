@@ -3,6 +3,8 @@ header("Content-Type: application/json");
 
 include("database.php");
 
+session_start();
+
 $ret = new StdClass();
 
 if (!isset($_GET["method"])) {
@@ -30,12 +32,12 @@ if (!isset($_GET["method"])) {
 		// check 
 
 	//}
-	 elseif (!isset($_POST["ChoiceOne"])) {
-		$ret->errmsg = "Missing parameter: ChoiceOne";
+	 elseif (!isset($_POST["choiceOne"])) {
+		$ret->errmsg = "Missing parameter: choiceOne";
 		// check 
 
-	} elseif (!isset($_POST["ChoiceTwo"])) {
-		$ret->errmsg = "Missing parameter: ChoiceTwo";
+	} elseif (!isset($_POST["choiceTwo"])) {
+		$ret->errmsg = "Missing parameter: choiceTwo";
 		// check 
 
 	} elseif (!isset($_POST["adjust"])) {
@@ -52,8 +54,8 @@ if (!isset($_GET["method"])) {
 			//"grade" => $_POST["grade"],
 			"college" => $_POST["college"],
 			//"dorm" => $_POST["dorm"],
-			"ChoiceOne" => $_POST["ChoiceOne"],
-			"ChoiceTwo" => $_POST["ChoiceTwo"],
+			"choiceOne" => $_POST["choiceOne"],
+			"choiceTwo" => $_POST["choiceTwo"],
 			"adjust" => $_POST["adjust"],
 			"introduction" => $_POST["introduction"],
 		);
@@ -86,6 +88,10 @@ if (!isset($_GET["method"])) {
 		}
 	}
 	
+} elseif ($_GET["method"] == "admin_login") {
+
+} elseif ($_GET["method"] == "admin_query") {
+
 } else {
 	$ret->errmsg = "Unspecified Method";
 }
@@ -93,4 +99,3 @@ if (!isset($_GET["method"])) {
 $ret->status = isset($ret->errmsg) ? "failed" : "ok";
 
 echo json_encode($ret);
-?>
