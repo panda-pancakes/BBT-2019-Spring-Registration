@@ -11,49 +11,60 @@ if (!isset($_GET["method"])) {
 	$ret->errmsg = "Missing parameter: method";
 
 } elseif ($_GET["method"] == "signup") {
+
+	$NumTel = strlen($tel);
+	$IsNum = is_numeric($tel)?true:false;
+	$IntroLength = mb_strlen($introduction);
+
 	if (!isset($_POST["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
-	} elseif (!isset($_POST["tel"])) {
+	} elseif (!isset($_POST["sex"])) {
+		$ret->errmsg = "Missing parameter: sex";
+		// check 
+
+	}elseif (!isset($_POST["tel"])) {
 		$ret->errmsg = "Missing parameter: tel";
 		// check 
 
-	}
-	/* elseif (!isset($_POST["grade"])) {
+	}elseif (!isset($_POST["grade"])) {
 		$ret->errmsg = "Missing parameter: grade";
 		// check 
 
-	} */elseif (!isset($_POST["college"])) {
+	}elseif (!isset($_POST["college"])) {
 		$ret->errmsg = "Missing parameter: college";
 		// check 
 
-	} //elseif (!isset($_POST["dorm"])) {
-		//ret->errmsg = "Missing parameter: dorm";
+	}elseif (!isset($_POST["dorm"])) {
+		$ret->errmsg = "Missing parameter: dorm";
 		// check 
 
-	//}
+	}
 	 elseif (!isset($_POST["department"])) {
 		$ret->errmsg = "Missing parameter: department";
-		// check 
-
-	} elseif (!isset($_POST["alternative"])) {
-		$ret->errmsg = "Missing parameter: alternative";
 		// check 
 
 	} elseif (!isset($_POST["adjustment"])) {
 		$ret->errmsg = "Missing parameter: adjustment";
 		// check 
 
-	} elseif (!isset($_POST["introduction"])) {
-		$ret->errmsg = "Missing parameter: introduction";
+	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $name)) {
+		$ret->errmsg = "It's not allowed to use special characters in name.";
 
-	} else {
+	} elseif ($IsNum == false || $tel[0] != 1 || $NumTel != 11){
+		$ret->errmsg = "Wrong teliphone information";
+
+	} elseif ($IntroLength >=50){
+		$ret->errmsg = "Length of introduction limit exceeded";
+
+	}else {
 		$info = array(
 			"name" => $_POST["name"],
+			"sex" => $_POST["sex"],
 			"tel" => $_POST["tel"],
-			//"grade" => $_POST["grade"],
+			"grade" => $_POST["grade"],
 			"college" => $_POST["college"],
-			//"dorm" => $_POST["dorm"],
+			"dorm" => $_POST["dorm"],
 			"department" => $_POST["department"],
 			"alternative" => $_POST["alternative"],
 			"adjustment" => $_POST["adjustment"],
@@ -87,7 +98,7 @@ if (!isset($_GET["method"])) {
 			}
 		}
 	}
-	
+	 
 } elseif ($_GET["method"] == "admin_login") {
 	if (!isset($_POST["username"])) {
 		$ret->errmsg = "Missing parameter: username";

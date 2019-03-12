@@ -16,14 +16,15 @@
 | Parameter    | Type    | Required | Description   |
 | ------------ | ------- | -------- | ------------- |
 | name         | String  | Yes      | 姓名          |
-| phone        | String  | Yes      | 电话          |
+| sex          | String  | Yes      | 性别          |
+| tel          | String  | Yes      | 电话          |
 | grade        | Integer | Yes      | 年级          |
 | college      | Integer | Yes      | 学院(编号)     |
 | dorm         | String  | Yes      | 宿舍号         |
-| ChoiceOne    | Integer | Yes      | 第一志愿(编号)  |
-| ChoiceTwo    | Integer | Yes      | 第二志愿(编号)  |
-| adjust       | Boolean | Yes      | 是否接受调剂    |
-| introduction | String  | Yes      | 自我介绍       |
+| department   | Integer | Yes      | 第一志愿(编号)  |
+| alternative  | Integer | Optional | 第二志愿(编号)  |
+| adjustment   | Boolean | Yes      | 是否接受调剂    |
+| introduction | String  | Optional | 自我介绍       |
 | cover        | Boolean | Optional | 是否覆盖记录    |
 
 ### Response

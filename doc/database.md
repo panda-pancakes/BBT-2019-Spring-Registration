@@ -11,19 +11,12 @@
 | department   | Integer | 第一志愿(编号)  |
 | alternative  | Integer | 第二志愿(编号)  |
 | adjustment   | Boolean | 是否接受调剂    |
-| introduction | String  | 自我介绍        |
+| introduction | String  | 自我介绍        | 
 | timestamp    | Time    | 报名时间        |
 | information  | String  | 返回给用户的信息 |
 | note         | String  | 后台备注的信息   |
 
-   前端顺序及命名({
-
-​        name,sex,grade,dorm,phone,college,ChoiceOne,ChoiceTwo,adjust,introduction
-
-​    });
-
 ### [Column] college
-
 * 确定好对应关系后请写在下面
 
 ### [Column] department / alternative
