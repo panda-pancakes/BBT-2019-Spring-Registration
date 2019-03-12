@@ -1,7 +1,5 @@
 $(function(){
-    //打包给php 
-    function sign()
-    {
+    //先定义
     var name = $('#name').text();
     var sex = $('#gender').val();
     var college = $('#major option:selected').val();
@@ -12,6 +10,26 @@ $(function(){
     var ChoiceTwo = $('#depa2 option:selected').val();
     var adjust =$('#adjust').val();
     var introduction =$('#selfintro').text();
+    var patt_num =new RegExp("0123456789");
+    var patt_illegal=new RegExp("[^a-zA-Z0-9\_\u4e00-\u9fa5]");
+
+    function check_num(e){
+        var result=patt_num.test(e);
+        return result;
+    }
+    function check_uni(a){
+        var result=patt_illegal.test(a);
+        return result;
+    }
+
+
+    function speakloud(){
+        var msg =String;
+        $("attention").innerhtml = msg;
+    }
+    function sign()
+    {
+   //打包给php 
     var info = JSON.stringify({
         name,sex,grade,dorm,phone,college,ChoiceOne,ChoiceTwo,adjust,introduction
     });
@@ -33,13 +51,13 @@ $(function(){
             }else if(existed.test(errmsg)){
                 $("attention").innerhtml = "哎呀出现小故障，不要慌，稍候重试";
             }else{
-                $("#attention").innerhtml = "提交成功,后续以短信形式通知，敬请查收"
+                $("#attention").innerhtml = "提交成功,后续以短信形式通知，敬请查收";
             }
         },
       })
     }//至此 sign()
 
-    $("#sign_btn").click(sign());
+    $("#sign_btn").click(sign(),speakloud());
 
     //所有部门 数组
     var department = new Array(20);
