@@ -20,12 +20,6 @@ h1{
     float: right;
     vertical-align: -webkit-baseline-middle;
 }
-textarea{
-    text-align: center;
-    padding: 5px;
-    border-color: white;
-    vertical-align: -webkit-baseline-middle;
-}
 #btn10{
     margin: 100px;
     text-align: center;
