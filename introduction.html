@@ -9,14 +9,16 @@
     <meta name="revised" content="PandaPancakes">
     <meta http-equiv="refresh" content="300">
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/swiper.animate1.0.3.min.js"></script>
+    <!-- <script src="js/swiper.animate1.0.3.min.js"></script> -->
+    <script src="https://cdnjs.loli.net/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
     <title>部门简介</title>
     <link rel="stylesheet" type="text/css" media="screen" href="css/intro.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 </head>
 <body>
     <!-- <h1>部门</h1> -->
     <!-- <button id="right_btn"> &gt;</button> -->
+    <div id="showbox">
     <div class="swiper-container">
         <div id="depa">部门</div>
         <div class="swiper-wrapper">
@@ -24,15 +26,34 @@
             <div class="swiper-slide" >部门简介2</div>
         </div>
         <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"></div>
     </div>
     <input type="image" src="img/button/10.png" alt="马上报名" id="btn10" onclick="location.href='signup.html'">
-
+</div>
 </body>
+<script>
+      var showSwiper = new Swiper('.swiper-container',{
+        // initialSlide : 21,
+        direction: 'horizontal',
+        grabCursor : true,
+        // autoheight: true,
+        loop: true,
+        eventTarget : 'container',
+        releaseFormElements : false,
+        watchActiveIndex : true,
+        visibilityFullFit : true,
+        keyboardControl : true,
+        mousewheelControl : true,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+</script>
 <script src="js/main.js"></script>
-<!-- <script src="js/vconsole.js"></script> -->
-<!-- <script>
+<script src="js/vconsole.js"></script>
+ <script>
     // init vConsole
     var vConsole = new VConsole();
-  </script> -->
+  </script>
 </html>
