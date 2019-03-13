@@ -9,6 +9,7 @@
     <meta name="description" content="百步梯2019春季招新">
     <meta name="revised" content="PandaPancakes">
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/page2.js"></script>
     <meta http-equiv="refresh" content="300">
     <link rel="stylesheet" type="text/css" media="screen" href="css/sign.css">
 </head>
@@ -20,69 +21,35 @@
     <br><br>
     <input type="text" name="name" id="name" value="填名字" required>
     <br><br>
-    <label for="sex">性别：</label>
-    <input type="radio" name="sex" value="M" checked>男
-    <input type="radio" name="sex" value="F" checked>女
+    <label for="gender">性别：</label>
+    <input type="radio" name="gender" value="M" checked>男
+    <input type="radio" name="gender" value="F" checked>女
     <br><br>
-    <label for="college">学院：</label>
+    <label for="major">学院：</label>
     <br><br>
-    <select required id="college">
-        <option value="1c">xxxx学院</option>
-        <option value="2c">xxxx学院</option>
+    <select required id="major">
+        <option value="1m">xxxx学院</option>
+        <option value="2m">xxxx学院</option>
     </select>
+    <br><br>
+    <label for="grade">年级：</label>
+    <br><br>
+    <input type="text" name="grade" id="grade" value="大一" required>
+    <br><br>
+    <label for="dorm">宿舍：</label>
+    <br><br>
+    <input type="text" name="dorm" id="dorm" value="例：C1-211" required>
     <br><br>
     <label for="tel">联系电话：</label>
     <br><br>
-    <input type="text" name="tel" id="tel" placeholder="用于接收面试短信（别填错了" required>
+    <input type="text" name="tel" id="tel" value="用于接收面试短信（别填错了" required>
     <br><br>
     <label>第一志愿：</label>
-    <select required id="department">
-        <option value="1-1b">技术部-代码组</option>
-        <option value="1-2b">技术部-设计组</option>
-        <option value="1-3b">技术部（北校专业）</option>
-        <option value="1-4b">策划推广部</option>
-        <option value="1-5b">编辑部-原创写手</option>
-        <option value="1-6b">编辑部-摄影</option>
-        <option value="1-7b">编辑部-可视化设计</option>
-        <option value="1-8b">视觉设计部</option>
-        <option value="1-9b">视频部-策划导演</option>
-        <option value="1-10b">视频部-摄影摄像</option>
-        <option value="1-11b">视频部-剪辑特效</option>
-        <option value="1-12b">外联部</option>
-        <option value="1-13b">节目部-国语组</option>
-        <option value="1-14b">节目部-英语组</option>
-        <option value="1-15b">节目部-粤语组</option>
-        <option value="1-16b">人力资源部</option>
-        <option value="1-17b">综合管理部-行政管理</option>
-        <option value="1-18b">综合管理部-物资财物</option>
-        <option value="1-19b">综合管理部-撰文记者</option>
-        <option value="1-20b">综合管理部-摄影记者</option>
-        <option value="1-21b">产品运营部（北校专业）</option>
+    <select required id="depa1">
     </select>
     <br><br>
     <label>第二志愿：</label>
-    <select id="alternative">
-        <option value="1-1a">技术部-代码组</option>
-        <option value="1-2a">技术部-设计组</option>
-        <option value="1-3a">技术部（北校专业）</option>
-        <option value="1-4a">策划推广部</option>
-        <option value="1-5a">编辑部-原创写手</option>
-        <option value="1-6a">编辑部-摄影</option>
-        <option value="1-7a">编辑部-可视化设计</option>
-        <option value="1-8a">视觉设计部</option>
-        <option value="1-9a">视频部-策划导演</option>
-        <option value="1-10a">视频部-摄影摄像</option>
-        <option value="1-11a">视频部-剪辑特效</option>
-        <option value="1-12a">外联部</option>
-        <option value="1-13a">节目部-国语组</option>
-        <option value="1-14a">节目部-英语组</option>
-        <option value="1-15a">节目部-粤语组</option>
-        <option value="1-16a">人力资源部</option>
-        <option value="1-17a">综合管理部-行政管理</option>
-        <option value="1-18a">综合管理部-物资财物</option>
-        <option value="1-19a">综合管理部-撰文记者</option>
-        <option value="1-20a">综合管理部-摄影记者</option>
-        <option value="1-21a">产品运营部（北校专业）</option>
+    <select id="depa2">
     </select>
     <br><br>
     <label for="adjustment">是否服从调配：</label>
@@ -91,19 +58,18 @@
     <br><br>
     <label for="intro">个人简介（选填）</label>
     <br>
-    <textarea rows="10" cols="15" id="introduction" placeholder="不要超过50字哦">
-    </textarea>
+    <textarea rows="10" cols="15" id="selfintro" placeholder="不要超过50字哦"></textarea>
     <br><br>
-    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交" onsubmit=sign()>
+    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交" onsubmit=sign() value="signup">
 <!-- </form> -->
     </div>
     <div class="slide" id="attention">
     </div>
 </body>
-<script src="js/page2.js"></script>
-<!-- <script src="js/vconsole.js"></script> -->
-<!-- <script>
+<script src="js/vconsole.js"></script>
+ <script>
     // init vConsole
     var vConsole = new VConsole();
-  </script> -->
+  </script>
+
 </html>

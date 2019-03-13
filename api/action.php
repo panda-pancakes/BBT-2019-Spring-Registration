@@ -49,13 +49,13 @@ if (!isset($_GET["method"])) {
 		// check 
 
 	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $name)) {
-		$ret->errmsg = "It's not allowed to use special characters in name.";
+		$ret->errmsg = "special characters in name";
 
 	} elseif ($IsNum == false || $tel[0] != 1 || $NumTel != 11){
-		$ret->errmsg = "Wrong teliphone information";
+		$ret->errmsg = "wrong teliphone information";
 
 	} elseif ($IntroLength >=50){
-		$ret->errmsg = "Length of introduction limit exceeded";
+		$ret->errmsg = "length of introduction limit exceeded";
 
 	}else {
 		$info = array(
