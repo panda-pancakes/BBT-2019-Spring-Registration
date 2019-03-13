@@ -8,10 +8,16 @@ $(function(){
     // for(var i =1;i<depa.length;i++){
     // }
     var showSwiper = new Swiper('.swiper-container',{
-        initialSlide : 21,
-        direction: 'horizontal',
+        // initialSlide : 21,
+        // direction: 'horizontal',
         grabCursor : true,
-        autoheight: true
-        })
-    showbox = showSwiper;
+        // autoheight: true,
+        loop: true,
+        eventTarget : 'container',
+        releaseFormElements : false,
+        watchActiveIndex : true,
+        visibilityFullFit : true,
+        keyboardControl : true,
+        mousewheelControl : true,
+        });
 }) 

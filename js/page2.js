@@ -21,7 +21,9 @@ $(function () {
         return result;
     }
 
-
+    if($("#check_user").click()){
+        
+    }
     function speakloud() {
         var msg = String;
         $("attention").innerhtml = msg;

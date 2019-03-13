@@ -1,7 +1,9 @@
 *{
     background-color: white;
+    margin: 0;
+    padding: 0;
 }
-h1{
+#depa{
     text-align: center;
     position: relative;
     padding-left: 6%;
@@ -10,7 +12,7 @@ h1{
     font-weight: lighter;
     color: dimgrey;
 }
-#left_btn{
+/* #left_btn{
     float: left;
     margin-top: 100px;
     vertical-align: -webkit-baseline-middle;
@@ -19,6 +21,18 @@ h1{
 #right_btn{
     float: right;
     vertical-align: -webkit-baseline-middle;
+} */
+/* .swiper-container{
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 5px;
+    max-width: 668px;
+    max-height: 400px;
+} */
+.swiper-slide{
+    line-height: 400px;
+    font-size: 36px;
+	text-align: center;
 }
 #btn10{
     margin: 100px;
