@@ -17,3 +17,8 @@ h1{
 .button{
     text-align: center;
 }
+.input{
+    display: none;
+    position: relative;
+    left: 47%;
+}
