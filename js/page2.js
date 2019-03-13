@@ -2,7 +2,9 @@ $(function () {
     //先定义
     var name = $('#name').text();
     var sex = $('#sex').val();
+    var grade = $("#garde").text();
     var college = $('#college option:selected').val();
+    var dorm = $("#dorm").text();
     var tel = $('#tel').text();
     var department = $('#department option:selected').val();
     var alternative = $('#alternative option:selected').val();
@@ -29,17 +31,36 @@ $(function () {
         $("attention").innerhtml = msg;
     }
 
-    function sign() {
+    function get_method() {
+        $("#sign_btn").click(function () {
+            var method = $(this).attr("value");
+            sign(method);
+        })
+        $("#cover_btn").click(function () {
+            var method = $(this).attr("value");
+            sign(method);
+        })
+        $("#query_btn").click(function () {
+            var method = $(this).attr("value");
+            sign(method);
+        })
+    }
+
+    function sign(method) {
+        //var method = get_method(method);
         //打包给php 
         var info = JSON.stringify({
             name,
             sex,
+            grade,
             college,
+            dorm,
             tel,
             department,
             alternative,
             adjustment,
-            introduction
+            introduction,
+            method,
         });
         $.ajax({
             type: 'POST',
@@ -55,10 +76,16 @@ $(function () {
                 var missing = new RegExp("Missing");
                 var existed = new RegExp('existed');
                 if (missing.test(errmsg)) {
-                    $("attention").innerhtml = "你漏填了什么，检查一下再提交";
+                    $("#attention").innerhtml = "你漏填了什么，检查一下再提交";
                 } else if (existed.test(errmsg)) {
-                    $("attention").innerhtml = "哎呀出现小故障，不要慌，稍候重试";
-                } else {
+                    $("#attention").innerhtml = "哎呀出现小故障，不要慌，稍候重试";
+                } else if (special.test(errmsg)) {
+                    $("#attention").innerhtml = "哎呀姓名不能有特殊符号哦";
+                } else if (teliphone.test(errmsg)) {
+                    $("#attention").innerhtml = "哎呀手机号填写不正确哦";
+                } else if (introduction.test(errmsg)) {
+                    $("#attention").innerhtml = "哎呀个人简介不能超过50字哦";
+                }else {
                     $("#attention").innerhtml = "提交成功,后续以短信形式通知，敬请查收";
                 }
             },
