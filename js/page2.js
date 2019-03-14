@@ -11,25 +11,42 @@ $(function () {
     var adjustment = $('#adjustment').val();
     var introduction = $('#introduction').text();
     var patt_num = new RegExp("0123456789");
-    var patt_illegal = new RegExp("[^a-zA-Z0-9\_\u4e00-\u9fa5]");
+    var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
 
     function check_num(e) {
         var result = patt_num.test(e);
+        if(result){
+            result = 0;
+        }else{
+            result = 1;
+        }
         return result;
     }
 
     function check_uni(a) {
-        var result = patt_illegal.test(a);
+        var result = patt_illegal.match(a);
+        if(result){
+            result = 0;
+        }else{
+            result = 1;
+        }
+
         return result;
     }
 
     if($("#check_user").click()){
         
     }
-    function speakloud() {
-        var msg = String;
-        $("attention").innerhtml = msg;
+    function prevent(){
+        var a = check_num(name)+check_num(grade);
+        var b = check_uni(name);
+        if(a>=1/b==1){
+            return "不要输些奇奇怪怪的东西";
+        }else{
+            return "填完啦！正在帮你提交信息";
+        }
     }
+
 
     function get_method() {
         $("#sign_btn").click(function () {
@@ -91,8 +108,14 @@ $(function () {
             },
         })
     } //至此 sign()
+    function speakloud() {
+        var msg = String;
+        msg = prevent();
+        $("attention").innerhtml = msg;
+        get_method();
+    }
 
-    $("#sign_btn").click(sign(), speakloud());
+    $("#sign_btn").click(speakloud());
 
     //所有部门 数组
     var depa = new Array(20);
