@@ -33,9 +33,26 @@ $(function () {
         return result;
     }
 
+    //查询进度
     $("#check_user").click(function(){
         $("#bbt").hide();
-        $("#check_box").show();
+        // $("#check_box").show();
+        $("#check_box").css({
+        "display": "table",
+        "vertical-align":" middle",
+        "text-align": "center",
+        "padding-left": "25px",
+        "padding-top": "115px "   
+        });
+        $("#prev").css({
+            "vertical-align": "middle"  
+        });
+        $("#check_btn").css({
+            "vertical-align": "middle"  
+        })
+        $("#check_btn").click(function(){
+            //查询进度专用调用 点击
+        })
     })
     function prevent(){
         var a = check_num(name)+check_num(grade);
@@ -46,8 +63,6 @@ $(function () {
             return "填完啦！正在帮你提交信息";
         }
     }
-
-
 
     function sign() {
         //打包给php 
@@ -97,11 +112,13 @@ $(function () {
             },
         })
     } //至此 sign()
+
     function speakloud() {
         var msg = String;
         msg = prevent();
         $("attention").innerhtml = msg;
     }
+    //前端提示 msg （但是现在并不能innnerhtml?  
 
     $("#sign_btn").click(function(){
         speakloud();

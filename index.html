@@ -27,10 +27,16 @@
     </div>
     </div>
     <div id="check_box">
+        <div style="display:table-cell;vertical-align: middle;text-align: center">
         <label for="name">姓名:</label>
-        <input type="text" class="input" id="name">
+        <input class="text" type="text" name="name" id="name" placeholder="填名字" required = "required">
         <label for="tel">手机号：</label>
-        <input type="tel" class="input" id="tel">
+        <input class="text" type="text" name="tel" maxlength="11" id="tel" placeholder="用于接收面试短信（别填错了" required = "required">
+        <div style="text-align: center">
+        <input type="image" src="img/button/9.png" id="prev" alt="返回"  onclick="location.href='index.html'">
+        <input type="image" src="img/button/3.png" id="check_btn"  alt="查看进度">
+        </div>
+        </div>
     </div>
 </body>
 <script src="js/page2.js"></script>
