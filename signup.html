@@ -14,56 +14,61 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/sign.css">
 </head>
 <body>
-    <h1>信息填写</h1>
+    <div id="signbox">
+    <input type="image" src="img/navigation/1.png" id="prev" alt="回到主页" onclick="location.href='index.html'">
     <div id="input">
     <!-- <form action="api/database.php" method="POST"> -->
-    <label for="name">姓名：</label>
-    <br><br>
-    <input type="text" name="name" id="name" placeholder="填名字" required = "required">
-    <br><br>
-    <label for="sex">性别：</label>
-    <input type="radio" name="sex" value="M" checked>男
-    <input type="radio" name="sex" value="F" checked>女
-    <br><br>
+    <div>
+        <label for="name">姓名：</label>
+        <input class="text" type="text" name="name" id="name" placeholder="填名字" required = "required">
+    </div>
+    <div>
+        <label for="sex">性别：</label>
+        <input type="radio" name="sex" value="M" checked>男
+        <input type="radio" name="sex" value="F" checked>女
+    </div>
+    <div>
     <label for="college">学院：</label>
-    <br><br>
     <select required = "required" id="college">
         <option value="1m">xxxx学院</option>
         <option value="2m">xxxx学院</option>
     </select>
-    <br><br>
-    <label for="grade">年级：</label>
-    <br><br>
-    <input type="text" name="grade" id="grade" placeholder="大一" required = "required">
-    <br><br>
-    <label for="dorm">宿舍：</label>
-    <br><br>
-    <input type="text" name="dorm" id="dorm" placeholder="例：C1-211" required = "required">
-    <br><br>
-    <label for="tel">联系电话：</label>
-    <br><br>
-    <input type="text" name="tel" id="tel" placeholder="用于接收面试短信（别填错了" required = "required">
-    <br><br>
-    <label>第一志愿：</label>
-    <select required = "required" id="department">
-    </select>
-    <br><br>
-    <label>第二志愿：</label>
-    <select id="alternative">
-    </select>
-    <br><br>
-    <label for="adjustment">是否服从调配：</label>
-    <input type="radio" name="adjustment" value="Y" checked>是
-    <input type="radio" name="adjustment" value="N" checked>否
-    <br><br>
-    <label for="intro">个人简介（选填）</label>
-    <br>
-    <textarea rows="10" cols="15" id="introduction" placeholder="不要超过50字哦"></textarea>
-    <br><br>
-    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交" onsubmit=sign() >
+    </div>
+    <div>
+        <label for="grade">年级：</label>
+        <input class="text" type="text" name="grade" id="grade" placeholder="大一" required = "required">
+    </div>
+    <div>
+        <label for="dorm">宿舍：</label>
+        <input class="text" type="text" name="dorm" maxlength="7" id="dorm" placeholder="例：C1-211" required = "required">
+    </div>
+    <div>    
+        <label for="tel">联系电话：</label>
+        <input class="text" type="text" name="tel" maxlength="11" id="tel" placeholder="用于接收面试短信（别填错了" required = "required">
+    </div>
+    <div>
+        <label>第一志愿：</label>
+        <select required = "required" id="department">
+        </select>
+        <label>第二志愿：</label>
+        <select id="alternative">
+        </select>        
+    </div>
+    <div>
+        <label for="adjustment">是否服从调配：</label>
+        <input type="radio" name="adjustment" value="Y" checked>是
+        <input type="radio" name="adjustment" value="N" checked>否
+    </div>
+    <div>
+        <label for="intro">个人简介（选填）</label>
+        <textarea rows="10" cols="25" id="introduction" placeholder="不要超过50字哦">
+        </textarea>
+    </div>
+    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交">
 <!-- </form> -->
     </div>
     <div class="slide" id="attention">
+    </div>
     </div>
 </body>
 <script src="js/vconsole.js"></script>

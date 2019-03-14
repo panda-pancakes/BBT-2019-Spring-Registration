@@ -1,23 +1,29 @@
 *{
     background-image: url("../img/pictures/background.png");
     background-repeat: repeat;
+    margin: 0%;
+    padding: 0%;
 }
 /* #background{
     background-size: auto 100%;
     background-repeat: no-repeat;
 } */
-h1{
+#box1{
+    max-height: 300px;
+    display: table;
+}
+#bbt{
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
     position: relative;
-    padding-left: 11%;
-    padding-right: 11%;
+    /* padding-left: 11%;
+    padding-right: 11%; */
     margin: auto;
-    font-family: Microsoft YaHei;
-    font-weight: lighter;
-    color: dimgrey;
+    /* color: dimgrey; */
 }
-#box1{
-    margin:auto;
+#check_box{
+    display: none;
 }
 .button{
     text-align: center;

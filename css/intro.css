@@ -1,34 +1,29 @@
 *{
-    background-color: white;
-    margin: 0;
-    padding: 0;
+    background-image: url("../img/pictures/background.png");
+    background-repeat: repeat;
+    margin: 0%;
+    padding: 0%;
+}
+#prev{
+    z-index: 9;
+    display: block;
+    max-block-size: 300%;
+    max-width: 400px;
+    margin-top: 0px;
+}
+#showbox{
+    margin-top: 125px;
 }
 #depa{
     text-align: center;
     position: relative;
+    margin-top: 125px;
     padding-left: 6%;
     padding-right: 11%;
     font-family: Microsoft YaHei;
     font-weight: lighter;
     color: dimgrey;
 }
-/* #left_btn{
-    float: left;
-    margin-top: 100px;
-    vertical-align: -webkit-baseline-middle;
-}
-
-#right_btn{
-    float: right;
-    vertical-align: -webkit-baseline-middle;
-} */
-/* .swiper-container{
-    margin-left: 5%;
-    margin-right: 5%;
-    padding: 5px;
-    max-width: 668px;
-    max-height: 400px;
-} */
 .swiper-container {
     width: 100%;
     height: 100%;

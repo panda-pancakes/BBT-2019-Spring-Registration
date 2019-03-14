@@ -24,19 +24,19 @@ $(function () {
     }
 
     function check_uni(a) {
-        var result = patt_illegal.match(a);
+        var result = patt_illegal.test(a);
         if(result){
             result = 0;
         }else{
             result = 1;
         }
-
         return result;
     }
 
-    if($("#check_user").click()){
-        
-    }
+    $("#check_user").click(function(){
+        $("#bbt").hide();
+        $("#check_box").show();
+    })
     function prevent(){
         var a = check_num(name)+check_num(grade);
         var b = check_uni(name);
@@ -50,8 +50,8 @@ $(function () {
 
 
     function sign() {
-       
         //打包给php 
+        console.log("正在执行sign");
         var info = JSON.stringify({
             name,
             sex,
@@ -69,6 +69,7 @@ $(function () {
             url: "/BBT-2019-Spring-Registration/api/action.php?method=signup",
             data: info,
             success: function (status, errmsg) {
+                console.log("进入success：");
                 if (status != "ok") {
                     console.log("failed");
                 }
@@ -102,11 +103,10 @@ $(function () {
         $("attention").innerhtml = msg;
     }
 
-<<<<<<< HEAD
-    $("#sign_btn").click(speakloud(),get_method());
-=======
-    $("#sign_btn").click(sign(),speakloud());
->>>>>>> 043819cdcde8aa43d0f53c1b2d0c28efb2012e1c
+    $("#sign_btn").click(function(){
+        speakloud();
+        sign();
+    });
 
     //所有部门 数组
     var depa = new Array(20);
