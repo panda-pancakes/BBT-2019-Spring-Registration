@@ -6,72 +6,73 @@ include("database.php");
 session_start();
 
 $ret = new StdClass(); 
+$data = file_get_contents('php://input');
+$data = json_decode($data, true); 
 
 if (!isset($_GET["method"])) {
 	$ret->errmsg = "Missing parameter: method";
 
 } elseif ($_GET["method"] == "signup") {
-	if(isset($_POST["tel"])){
-		$NumTel = strlen($tel);
-		$IsNum = is_numeric($tel)?true:false;
+	if(isset($data["tel"])){
+		$NumTel = strlen($data["tel"]);
+		$IsNum = is_numeric($data["tel"])?true:false;
 	}
 	
-	
-	if (!isset($_POST["name"])) {
+	if (!isset($data["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
-	} elseif (!isset($_POST["sex"])) {
+	} elseif (!isset($data["sex"])) {
 		$ret->errmsg = "Missing parameter: sex";
 		// check 
 
-	}elseif (!isset($_POST["tel"])) {
+	}elseif (!isset($data["tel"])) {
 		$ret->errmsg = "Missing parameter: tel";
 		// check 
 
-	}elseif (!isset($_POST["grade"])) {
+	}elseif (!isset($data["grade"])) {
 		$ret->errmsg = "Missing parameter: grade";
 		// check 
 
-	}elseif (!isset($_POST["college"])) {
+	}elseif (!isset($data["college"])) {
 		$ret->errmsg = "Missing parameter: college";
 		// check 
 
-	}elseif (!isset($_POST["dorm"])) {
+	}elseif (!isset($data["dorm"])) {
 		$ret->errmsg = "Missing parameter: dorm";
 		// check 
 
 	}
-	 elseif (!isset($_POST["department"])) {
+	 elseif (!isset($data["department"])) {
 		$ret->errmsg = "Missing parameter: department";
 		// check 
 
-	} elseif (!isset($_POST["adjustment"])) {
+	} elseif (!isset($data["adjustment"])) {
 		$ret->errmsg = "Missing parameter: adjustment";
 		// check 
 
-	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $name)) {
+	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $data["name"])) {
 		$ret->errmsg = "special characters in name";
 
-	} elseif ($IsNum == false || $tel[0] != 1 || $NumTel != 11){
+	}elseif ($IsNum == false || $data["tel"][0] != 1 || $NumTel != 11){
 		$ret->errmsg = "wrong teliphone information";
 
-	} elseif (isset($_POST["introduction"])){
-		$IntroLength = mb_strlen($introduction);
+	} elseif (isset($data["introduction"])){
+		$IntroLength = mb_strlen($data["introduction"]);
 		if($IntroLength >=50){
 			$ret->errmsg = "length of introduction limit exceeded";
 		}
 	}else {
 		$info = array(
-			"name" => $_POST["name"],
-			"sex" => $_POST["sex"],
-			"tel" => $_POST["tel"],
-			"grade" => $_POST["grade"],
-			"college" => $_POST["college"],
-			"dorm" => $_POST["dorm"],
-			"department" => $_POST["department"],
-			"alternative" => $_POST["alternative"],
-			"adjustment" => $_POST["adjustment"],
-			"introduction" => $_POST["introduction"],
+			"name" => $data["name"],
+			"sex" => $data["sex"],
+			"tel" => $data["tel"],
+			"grade" => $data["grade"],
+			"college" => $data["college"],
+			"dorm" => $data["dorm"],
+			"department" => $data["department"],
+			"alternative" => $data["alternative"],
+			"adjustment" => $data["adjustment"],
+			"introduction" => $data["introduction"],
 		);
 
 		$sta = signup($info, $_POST["cover"]);
@@ -84,10 +85,10 @@ if (!isset($_GET["method"])) {
 	}
 
 } elseif ($_GET["method"] == "query") {
-	if (!isset($_POST["name"])) {
+	if (!isset($data["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
-	} elseif (!isset($_POST["tel"])) {
+	} elseif (!isset($data["tel"])) {
 		$ret->errmsg = "Missing parameter: tel";
 		// check 
 	} else {
@@ -102,7 +103,8 @@ if (!isset($_GET["method"])) {
 		}
 	}
 	 
-} elseif ($_GET["method"] == "admin_login") {
+} 
+elseif ($_GET["method"] == "admin_login") {
 	if (!isset($_POST["username"])) {
 		$ret->errmsg = "Missing parameter: username";
 	} elseif (!isset($_POST["password"])) {
@@ -124,7 +126,8 @@ if (!isset($_GET["method"])) {
 } elseif ($_GET["method"] == "admin_query") {
 	
 
-} else {
+}
+ else {
 	$ret->errmsg = "Unspecified Method";
 }
 
