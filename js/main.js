@@ -5,25 +5,4 @@ $(function(){
     var showbox = document.getElementsByClassName("swiper-wrapper");
     depa[0]="部门名";
     article[0]="部门简介一长串";
-    // for(var i =1;i<depa.length;i++){
-    // }
-    // window.onload=function(){
-      // var showSwiper = new Swiper('.swiper-container',{
-      //   // initialSlide : 21,
-      //   // direction: 'horizontal',
-      //   grabCursor : true,
-      //   // autoheight: true,
-      //   loop: true,
-      //   eventTarget : 'container',
-      //   releaseFormElements : false,
-      //   watchActiveIndex : true,
-      //   visibilityFullFit : true,
-      //   keyboardControl : true,
-      //   mousewheelControl : true,
-      //   navigation: {
-      //       nextEl: '.swiper-button-next',
-      //       prevEl: '.swiper-button-prev',
-      //     },
-      //   });
-      // }
 }) 

@@ -112,10 +112,9 @@ $(function () {
         var msg = String;
         msg = prevent();
         $("attention").innerhtml = msg;
-        get_method();
     }
 
-    $("#sign_btn").click(speakloud());
+    $("#sign_btn").click(speakloud(),get_method());
 
     //所有部门 数组
     var depa = new Array(20);
