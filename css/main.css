@@ -28,8 +28,15 @@
 .button{
     text-align: center;
 }
-.input{
-    display: none;
-    position: relative;
-    left: 47%;
+label{
+    display: table-row;
+}
+.text{
+    width: 188px;
+    padding: 4px;
+}
+#prev{
+    position: fixed;
+    margin-top: 0px;
+    margin-left: 0;
 }
