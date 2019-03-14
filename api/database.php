@@ -1,5 +1,5 @@
 <?php
-require_once("../config.php");
+require_once("../config-sample.php");
 
 function query($info) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -83,43 +83,64 @@ function admin_login($username, $passwd) {
 }
 
 function admin_query($username) {
-	/* 还没改不能用 */
+	/*3.14 初步按照要求改成合格形式 还没有跑过 不知道会出什么bug (我好困)
 	/* 这个文件里只负责数据库的操作 至于怎么处理数据 判断传入的数据合不合法在action.php里做 */
+	$conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	if($conn->connect_error){
+		return -2;
+	}
+	
+	$stmt1 = $conn->prepare("select * from applicants where ChoiceOne = ?");
+	$stmt1->bind_param("s",$username);
+	$stmt2 = $conn->prepare("select * from applicants where ChoiceOne =? and sex = ?");
+	$stmt2->bind_param("ss",$username,"女");
+	$stmt3 = $conn->prepare("select * from applicants where ChoiceOne =? and sex = ?");
+	$stmt3->bind_param("ss",$username,"男");
+
 
 	if($username !== "南校技术部"){
-	    $showdata = mysqli_query($conn,"SELECT * FROM `attendee` WHERE `ChoiceOne` = '".$username."'");
-	    $showdata = mysqli_fetch_all($showdata,MYSQLI_ASSOC);
-	    $count = count($showdata);                              //计算所有报名人员
-	    if($count == 0){
+		$stmt1->execute();
+		$showdata = $stmt1->fetch();
+		$stmt1->num_rows;
+	    if($stmt1 == 0){
 	        $errmsg = "暂无数据";
 	        $BoyNum = null;
 	        $GirlNum = null;
 	    }else{
-	    $GirlNum = mysqli_query($conn,"SELECT * FROM `attendee` WHERE `ChoiceOne` = '".$username."' AND `sex` = '女'");
-	    $GirlNum = mysqli_fetch_all($GirlNum);
-	    $GirlNum = count($GirlNum);
-	    $BoyNum = mysqli_query($conn,"SELECT * FROM `attendee` WHERE `ChoiceOne` = '".$username."' AND `sex` = '男'");
-	    $BoyNum = mysqli_fetch_all($BoyNum);
-	    $BoyNum = count($BoyNum);
+		$stmt2->execute();
+		$showdata = $stmt2->fetch();
+	    $GirlNum = $stmt2->num_rows;
+		$stmt3->execute();
+		$showdata = $stmt3->fetch();
+		$BoyNum = $stmt3->num_rows;
+		$stmt2->close();
+		$stmt3->close();
 	    }
 	}else{
-	    $showdata = mysqli_query($conn,"SELECT * FROM `attendee`");
-	    $showdata = mysqli_fetch_all($showdata,MYSQLI_ASSOC);
-	    $count = count($showdata);
+		$stmt4 = $conn->prepare("select * from applicants");
+		$stmt4->execute();
+		$showdata = $stmt4->fetch();
+	    $count = $stmt4->num_rows;
 	    if($count == 0){
 	        $errmsg = "暂无数据";
 	        $BoyNum = null;
 	        $GirlNum = null;
 	    }else{
-	    $GirlNum = mysqli_query($conn,"SELECT * FROM `attendee` WHERE  `sex` = '女'");
-	    $GirlNum = mysqli_fetch_all($GirlNum);
-	    $GirlNum = count($GirlNum);
-	    $BoyNum = mysqli_query($conn,"SELECT * FROM `attendee` WHERE  `sex` = '男'");
-	    $BoyNum = mysqli_fetch_all($BoyNum);
-	    $BoyNum = count($BoyNum);
+		$stmt5 = $conn->prepare("select * from applicants where sex = ?");
+		$stmt5->bind_param("s","女");
+		$stmt5->execute();
+		$showdata = $stmt5->fetch();
+		$GirlNum = $stmt5->num_rows;
+		$stmt6 = $conn->prepare("select * from applicants where sex = ?");
+		$stmt6->bind_param("s","男");
+		$stmt6->execute();
+		$showdata = $stmt6->fetch();
+		$BoyNum = $stmt6->num_rows;
+		$stmt5->close();
+		$stmt6->close();
 	    }
 	}
-	$errmsg = "暂无数据";
+
 	$result = [
 	    "errmsg" => "$errmsg",
 	    "showdata" => $showdata,
@@ -127,4 +148,8 @@ function admin_query($username) {
 	    "GirlNum" => $GirlNum,
 	    "BoyNum" => $BoyNum,
 	];
+
+
+    $conn->close();
+	return $result;
 }
