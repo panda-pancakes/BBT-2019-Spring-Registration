@@ -5,17 +5,18 @@ include("database.php");
 
 session_start();
 
-$ret = new StdClass();
+$ret = new StdClass(); 
 
 if (!isset($_GET["method"])) {
 	$ret->errmsg = "Missing parameter: method";
 
 } elseif ($_GET["method"] == "signup") {
-
-	$NumTel = strlen($tel);
-	$IsNum = is_numeric($tel)?true:false;
-	$IntroLength = mb_strlen($introduction);
-
+	if(isset($_POST["tel"])){
+		$NumTel = strlen($tel);
+		$IsNum = is_numeric($tel)?true:false;
+	}
+	
+	
 	if (!isset($_POST["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
@@ -54,9 +55,11 @@ if (!isset($_GET["method"])) {
 	} elseif ($IsNum == false || $tel[0] != 1 || $NumTel != 11){
 		$ret->errmsg = "wrong teliphone information";
 
-	} elseif ($IntroLength >=50){
-		$ret->errmsg = "length of introduction limit exceeded";
-
+	} elseif (isset($_POST["introduction"])){
+		$IntroLength = mb_strlen($introduction);
+		if($IntroLength >=50){
+			$ret->errmsg = "length of introduction limit exceeded";
+		}
 	}else {
 		$info = array(
 			"name" => $_POST["name"],

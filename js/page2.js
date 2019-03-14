@@ -48,23 +48,9 @@ $(function () {
     }
 
 
-    function get_method() {
-        $("#sign_btn").click(function () {
-            var method = $(this).attr("value");
-            sign(method);
-        })
-        $("#cover_btn").click(function () {
-            var method = $(this).attr("value");
-            sign(method);
-        })
-        $("#query_btn").click(function () {
-            var method = $(this).attr("value");
-            sign(method);
-        })
-    }
 
-    function sign(method) {
-        //var method = get_method(method);
+    function sign() {
+       
         //打包给php 
         var info = JSON.stringify({
             name,
@@ -77,11 +63,10 @@ $(function () {
             alternative,
             adjustment,
             introduction,
-            method,
         });
         $.ajax({
             type: 'POST',
-            url: "/BBT-2019-Spring-Registration/api/action.php",
+            url: "/BBT-2019-Spring-Registration/api/action.php?method=signup",
             data: info,
             success: function (status, errmsg) {
                 if (status != "ok") {
@@ -92,6 +77,9 @@ $(function () {
                 }
                 var missing = new RegExp("Missing");
                 var existed = new RegExp('existed');
+                var special = new RegExp('special');
+                var teliphone = new RegExp('teliphone');
+                var introduction = new RegExp('introduction');
                 if (missing.test(errmsg)) {
                     $("#attention").innerhtml = "你漏填了什么，检查一下再提交";
                 } else if (existed.test(errmsg)) {
@@ -114,7 +102,11 @@ $(function () {
         $("attention").innerhtml = msg;
     }
 
+<<<<<<< HEAD
     $("#sign_btn").click(speakloud(),get_method());
+=======
+    $("#sign_btn").click(sign(),speakloud());
+>>>>>>> 043819cdcde8aa43d0f53c1b2d0c28efb2012e1c
 
     //所有部门 数组
     var depa = new Array(20);
@@ -125,7 +117,7 @@ $(function () {
     depa[4] = "编辑部-原创写手";
     depa[5] = "编辑部-摄影";
     depa[6] = "编辑部-可视化设计";
-    depar[7] = "视觉设计部";
+    depa[7] = "视觉设计部";
     depa[8] = "视频部-策划导演";
     depa[9] = "视频部-摄影摄像";
     depa[10] = "视频部-剪辑特效";
