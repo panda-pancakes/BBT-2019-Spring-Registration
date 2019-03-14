@@ -82,40 +82,33 @@ $(function () {
             adjustment,
             introduction,
         });
-        $.post("/BBT-2019-Spring-Registration/api/action.php?method=signup", info, function(data, status) {
+        $.post("./api/action.php?method=signup", info, function(data, status) {
             if (status == "success") {
-                var ret = JSON.parse(this.data); 
-                if (ret.status == "failed") {
+                if (data.status == "failed") {
                     var missing = new RegExp('Missing');
                     var existed = new RegExp('existed');
                     var special = new RegExp('special');
-                    var teliphone = new RegExp('teliphone');
+                    var telephone = new RegExp('telephone');
                     var introduction = new RegExp('introduction');
-                    if (missing.test(errmsg)) {
+                    if (missing.test(data.errmsg)) {
                         $("#attention").text ("你漏填了什么，请检查一下再提交哦");
-                    } else if (existed.test(errmsg)) {
+                    } else if (existed.test(data.errmsg)) {
                         $("#attention").text ("您已经报名过，是否选择覆盖上次报名信息") ;
-                    } else if (special.test(errmsg)) {
+                    } else if (special.test(data.errmsg)) {
                         $("#attention").text ("哎呀姓名不能有特殊符号哦");
-                    } else if (teliphone.test(errmsg)) {
+                    } else if (telephone.test(data.errmsg)) {
                         $("#attention").text  ("哎呀手机号填写不正确哦");
-                    } else if (introduction.test(errmsg)) {
-                        $("#attention").text  ("哎呀个人简介不能超过50字哦");
+                    } else if (introduction.test(data.errmsg)) {
+                        $("#attention").text  ("哎呀个人简介不能超过50字哦");   
                     }
                  } else {
-                    $("#attention").innerhtml = "提交成功,后续以短信形式通知，敬请查收";
+                    $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
                 }
-<<<<<<< HEAD
             } else {
-                $("#attention").innerhtml = "系统繁忙，请稍后再试";
+                $("#attention").text("系统繁忙，请稍后再试");
             }
         });
     } 
-=======
-            },
-        })
-    } //至此 sign()
->>>>>>> origin/master
 
     function speakloud() {
         var msg = String;
