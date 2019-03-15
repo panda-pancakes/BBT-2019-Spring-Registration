@@ -4,6 +4,10 @@
     margin: 0%;
     padding: 0%;
 }
+::-moz-placeholder，span{
+    color: #707070;
+    font-size: 0.9em;
+}
 #signbox{
     display: table;
     vertical-align: middle;
@@ -11,26 +15,70 @@
 #prev{
     position:fixed;
     display: table-caption;
-    margin-top: 0px;
-    margin-left: 0;
+    margin-top: 0%;
+    margin-left: 0%;
+    max-width: 100%;
 }
 #input{
-    padding-left: 25px;
-    padding-top: 115px;
+    padding-top: 45%;
+    padding-left: 25%;
     display: table-cell;
     vertical-align: middle;
 }
 label{
     display: table-row;
+    margin-bottom: 1.8%;
+    padding: 2%;
 }
 .text{
-    width: 188px;
-    padding: 4px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    width: 110%;
+    margin-bottom: 3%;
+    background-color: #dee6a8;
+    font-size: 0.8em;
+    height: 2.2em;
+    border-radius:4px;
+    border:1px solid #c8cccf;
+    
 }
-#selfintro{
-    padding-right: 15px;
-    padding-bottom: 45px;
+#introduction{
+    padding-right: 25%;
+    padding-bottom: 15%;
+    background-color: #dee6a8;
+    font-size: 0.8em;
+    /* height: 2.2em; */
+    border-radius:4px;
+    border:1px solid #c8cccf;
 }
 #sign_btn{
-    padding: 25px;
+    padding: 10%;
+}
+label,.grade,.sex{
+    color: #707070;
+}
+div{
+    padding-bottom: 2%;
+}
+select{
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    width: 110%;
+    margin-bottom: 3%;
+    padding: 2.3%;
+    background-color: #dee6a8;
+    border-radius:4px;
+    border:1px solid #c8cccf;
+    font-size: 0.8em;
+}
+#attention{
+    visibility: hidden;
+    background-color: #dee6a8;
+    border-radius:4px;
+    border:1px solid #c8cccf;
+    font-size: 0.8em;
+    margin-top: 10%;
+    padding: 3%;
+    font-size: 1.1em;
 }

@@ -76,7 +76,7 @@ function admin_login($username, $passwd) {
 			return 0;                       //只可查询本部门名单
 		}
 	}else{
-		var_dump(123456);
+		var_dump("false");
 	}
 }
 	$stmt->close();

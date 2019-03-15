@@ -10,7 +10,7 @@
     background-repeat: no-repeat;
 } */
 #box1{
-    max-height: 300px;
+    max-height: 180%;
     display: table;
 }
 #bbt{
@@ -22,6 +22,10 @@
     padding-right: 11%; */
     margin: auto;
     /* color: dimgrey; */
+    max-width: 100%;
+}
+img{
+    max-width: 100%;
 }
 #check_box{
     display: none;
@@ -33,8 +37,8 @@ label{
     display: table-row;
 }
 .text{
-    width: 188px;
-    padding: 4px;
+    width: 120%;
+    padding: 1%;
 }
 input[type="text"]{
     -webkit-appearance: none;
@@ -44,10 +48,9 @@ input[type="text"]{
     text-decoration:none;
     width:100%;
 }
-#prev{
+.prev{
     position: fixed;
-    left: 2em;
-    margin-top: 0px;
-    margin-left: 0;
-    padding-top: 3ex;
+    margin-top: 0%;
+    margin-left: 0%;
+    padding: 0%;
 }
