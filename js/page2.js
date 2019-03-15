@@ -51,7 +51,7 @@ $(function () {
             "-moz-appearance":"none",
             '-webkit-appearance':"none",
            " width": "110%",
-            "margin-bottom":" 3%",
+            "margin-bottom":" 1%",
             "padding": "2.3%",
             "background-color":" #dee6a8",
             "border-radius":"2em",
