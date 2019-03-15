@@ -1,5 +1,6 @@
 $(function () {
     //先定义
+    $("#attention").hide();
     var name = $('#name').val();
     var msg = String;
     //用来前端提示 信息
@@ -61,6 +62,7 @@ $(function () {
     })
 
     function prevent(){
+        $("#attention").show();
         var a = check_num(name);
         if(a=1){
             return "不要输些奇奇怪怪的东西";
@@ -105,31 +107,31 @@ $(function () {
                     var telephone = new RegExp('telephone');
                     var introduction = new RegExp('introduction');
                     if (missing.test(data.errmsg)) {
-                        $("attention").show();
+                        $("#attention").show();
                         $(".text").focus();
                         $("#attention").text ("你漏填了什么，请检查一下再提交哦");
                     } else if (existed.test(data.errmsg)) {
-                        $("attention").show();
+                        $("#attention").show();
                         $("#attention").text ("您已经报名过，是否选择覆盖上次报名信息") ;
                     } else if (special.test(data.errmsg)) {
-                        $("attention").show();
+                        $("#attention").show();
                         $("#name").focus();
                         $("#attention").text ("哎呀姓名不能有特殊符号哦");
                     } else if (telephone.test(data.errmsg)) {
-                        $("attention").show();
+                        $("#attention").show();
                         $("#tel").focus();
-                        $("#attention").text  ("哎呀手机号填写不正确哦");
+                        $("#attention").text("哎呀手机号填写不正确哦");
                     } else if (introduction.test(data.errmsg)) {
-                        $("attention").show();
+                        $("#attention").show();
                         $("#introduction").focus();
                         $("#attention").text  ("哎呀个人简介不能超过50字哦");   
                     }
                  } else {
-                    $("attention").show();
+                    $("#attention").show();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
                 }
             } else {
-                $("attention").show();
+                $("#attention").show();
                 $("#attention").text("系统繁忙，请稍后再试");
             }
         });
@@ -137,17 +139,26 @@ $(function () {
 
     function speakloud() {
         msg = prevent();
-        if(msg == ""){
+        if(msg == " "){
             msg="呃发生了什么";
         }
-        $("attention").show();
-        $("attention").text(msg);
+        console.log(msg);
+        $("#attention").css({
+            "background-color": "#dee6a8",
+            "border-radius":"3em",
+            "border":"0.8em solid #c8cccf",
+            "font-size": "1em",
+            "max-width":"100% "       
+        });
+        $("#attention").show();
+        $("#attention").text(msg);
     }
 
     
     $("#sign_btn").click(function(){
         speakloud();
         $("#sign_btn").attr("disabled",true);
+        console.log(msg);
         //禁用按钮    
     })
 
