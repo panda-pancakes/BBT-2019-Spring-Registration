@@ -1,7 +1,9 @@
 $(function () {
     //先定义
     var name = $('#name').val();
-    var patt_num = new RegExp("0123456789");
+    var tel = $("#tel").val();
+    var intro = $("#intro").val();
+    var patt_num = new RegExp([0-9]);
     var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
 
 
@@ -49,8 +51,10 @@ $(function () {
     function prevent(){
         
         var a = check_num(name);
-        
-        if(a=1){
+        var b = check_uni(intro);
+        var c = check_uni(tel);
+
+        if(false == a || false == b || false == c){
             return "不要输些奇奇怪怪的东西";
         }else{
             return "填完啦！正在帮你提交信息";

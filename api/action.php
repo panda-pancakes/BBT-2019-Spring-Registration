@@ -104,42 +104,35 @@ if (!isset($_GET["method"])) {
 	 
 } 
 elseif ($_GET["method"] == "admin_login") {
-	if (!isset($_POST["username"])) {
+	if (empty($_POST["department"])) {
 		$ret->errmsg = "Missing parameter: username";
-	} elseif (!isset($_POST["password"])) {
+	} elseif (empty($_POST["password"])) {
 		$ret->errmsg = "Missing parameter: password";
-	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $username)) {
+	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $_POST['department'])) {
 		$ret->errmsg = "It's not allowed to use special characters in username.";
 	} else {
-		$status = admin_login($_POST["username"], $_POST["password"]);
+		$status = admin_login($_POST["department"], $_POST["password"]);
 		if ($status >= 0) {
-			$_SESSION["username"] = $_POST["username"];
+			$ret->errmsg = "Successfully login.";
+			$_SESSION["department"] = $_POST["department"];
 			$_SESSION["permission"] = $status;
 		} elseif ($status == -2) {
 			$ret->errmsg = "database issue";
-		} elseif ($status == -3) {
+		} elseif ($status == -1) {
 			$ret->errmsg = "Either this account doesn't exist or the password is incorrect.";
 		}
 	}
 
 } elseif ($_GET["method"] == "admin_query") {
-	if(empty($_POST["department"])){
-		$ret->errmsg = "请输入部门名称";
-	}elseif(empty($_POST["password"])){
-		$ret->errmsg = "请输入密码";
-	}else{
-		$check = admin_query($_POST["department"]);
-		if($check == 1){
-			$ret->errmsg = "用户名或密码错误";
-		}elseif($check == 2){
-			$ret->errmsg = "用户名或密码错误";
-		}elseif($check == -2){
-			$ret->errmsg = "数据库繁忙，请稍后再试";
-		}elseif($check == 0){
-			$ret->errmsg = "登录成功";
+	if($_SESSION["permission"] == 1){
+		$ret = admin_query($_SESSION["permission"]);
+		while($ret == -1){
+			$ret->errmsg = "You have not the access.";
 		}
+	}elseif($_SESSION["permission"] == 0){
+		$ret = user_query($_SESSION["department"]);
+		$ret->errmsg = "lllll";
 	}
-	
 
 } else {
 	$ret->errmsg = "Unspecified Method";

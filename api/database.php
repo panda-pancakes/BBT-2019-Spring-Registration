@@ -58,64 +58,71 @@ function signup($info, $cover) {
 }
 
 function admin_login($username, $passwd) {
+	$enc_user = md5($username);
 	$enc_pwd = md5($passwd);
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 	if ($con->connect_error) {
 		return -2;
-	}
-
-	$stmt = $con->prepare("select * from user_info where username=? and password=?");
-	$stmt->bind_param("ss", $username, $enc_pwd);
-
+	}else{
+	$stmt = $con->prepare("select * from admin where department=? and password=?");
+	$stmt->bind_param("ss",$enc_user,$enc_pwd);	
 	if ($stmt->execute()) {
-		if (!$stmt->fetch()) {
-			return -3;
+		if (false == $stmt->get_result() or null == $stmt->get_result()) {
+			return -1;
+		}elseif($enc_user == "南校技术部"){
+			return 1;                       //可查询所有报名名单
+		}else{
+			return 0;                       //只可查询本部门名单
 		}
+	}else{
+		var_dump(123456);
 	}
-
+}
 	$stmt->close();
 	$con->close();
-
-	/* To-do: 返回值改成permission */
-
-	return 0;
 }
 
 
-function admin_query($department) {
+function admin_query($permission) {
 
- 	$ret = new StdClass();
-	$conn = new mysqli('localhost', 'root', '', 'registration');
-	if($conn->connect_error){
+	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	if($con->connect_error){
 		return -2;
 		exit();
 	}else{	
-	$stmt = $conn->prepare("select password from admin where department = ?");
-	$stmt->bind_param("s",$department);
-	if($stmt->execute()){
-	  if($result = $stmt->get_result()){
-		  while($result->fetch_array(MYSQLI_NUM) = 0){
-			  return 1;
-		  }
-    }else{
-		return 2;
-		printf("无法获取结果");
+		if($permission != 1){
+			return -1;
+		}else{
+			$stmt = $con->prepare("select * from applicants");
+			 $ret = new StdClass();
+			 $stmt->execute();
+			 $stmt->bind_result($ret->name,$ret->sex,$ret->college,$ret->grade,$ret->tel,$ret->dorm,$ret->Choiceone,$ret->Choicetwo,$ret->adjust,$ret->info);
+			 $stmt->fetch();
+			 $stmt->close();
+			 $con->close();		
+			 return $ret;		 
+
+		}
 	}
+
+function user_query($department){
+	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	if($con->connect_error){
+		return -2;
+		exit();
 	}else{
-		printf("无法正确执行语句");
-	}
-
-	$stmt->close();
-	/*if($res == false){
-		return 1;
-	}
-*/
-	return 0;
-	}
-
-
-
+		$stmt = $con->prepare("select * from applicants where ChoiceOne = ? or ChoiceTwo = ?");
+		$stmt->bind_param("ss",$department,$department);
+		$ret = new stdClass();
+		$stmt->execute();
+		$stmt->bind_result($ret->name,$ret->sex,$ret->college,$ret->grade,$ret->tel,$ret->dorm,$ret->Choiceone,$ret->Choicetwo,$ret->adjust,$ret->info);
+		$stmt->fetch();
+		$stmt->close();
+		$con->close();		
+		return $ret;		 
+}
+}
 
 
 
@@ -132,6 +139,8 @@ function admin_query($department) {
 
 
 
-    $conn->close();
+
+
+    $con->close();
 	return $ret;
 }
