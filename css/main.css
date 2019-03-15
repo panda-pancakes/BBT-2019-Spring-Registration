@@ -50,7 +50,7 @@ input[type="text"]{
 }
 .prev{
     position: fixed;
-    margin-top: 0%;
-    margin-left: 0%;
+    margin-top: -36%;
+    margin-left: -11.5%;
     padding: 0%;
 }
