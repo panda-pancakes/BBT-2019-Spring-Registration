@@ -2,15 +2,9 @@ $(function () {
     //先定义
     $("#attention").hide();
     var name = $('#name').val();
-<<<<<<< HEAD
-    var tel = $("#tel").val();
-    var intro = $("#intro").val();
-    var patt_num = new RegExp([0-9]);
-=======
     var msg = String;
     //用来前端提示 信息
     var patt_num = new RegExp("0123456789");
->>>>>>> efd546614d4a7788d6c9df444755d0ec344c0eaf
     var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
     msg="你绝对没填完信息";
     function check_num(e) {
@@ -70,14 +64,7 @@ $(function () {
     function prevent(){
         $("#attention").show();
         var a = check_num(name);
-<<<<<<< HEAD
-        var b = check_uni(intro);
-        var c = check_uni(tel);
-
-        if(false == a || false == b || false == c){
-=======
         if(a=1){
->>>>>>> efd546614d4a7788d6c9df444755d0ec344c0eaf
             return "不要输些奇奇怪怪的东西";
         }else{
             $("#sign_btn").removeAttr("disabled");
