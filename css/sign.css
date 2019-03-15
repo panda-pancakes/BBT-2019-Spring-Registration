@@ -72,3 +72,13 @@ select{
     border:1px solid #c8cccf;
     font-size: 0.8em;
 }
+#attention{
+    visibility: hidden;
+    background-color: #dee6a8;
+    border-radius:4px;
+    border:1px solid #c8cccf;
+    font-size: 0.8em;
+    margin-top: 10%;
+    padding: 3%;
+    font-size: 1.1em;
+}

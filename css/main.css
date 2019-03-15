@@ -48,8 +48,9 @@ input[type="text"]{
     text-decoration:none;
     width:100%;
 }
-#prev{
+.prev{
     position: fixed;
     margin-top: 0%;
-    margin-left: 0;
+    margin-left: 0%;
+    padding: 0%;
 }

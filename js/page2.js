@@ -1,10 +1,11 @@
 $(function () {
     //先定义
     var name = $('#name').val();
+    var msg = String;
+    //用来前端提示 信息
     var patt_num = new RegExp("0123456789");
     var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
-
-
+    msg="你绝对没填完信息";
     function check_num(e) {
         var result = patt_num.test(e);
         if(result){
@@ -24,17 +25,19 @@ $(function () {
         }
         return result;
     }
+    //当前端检查通过时   启用按钮 $("#sign_btn").removeAttr("disabled");
 
     //查询进度
     $("#check_user").click(function(){
         $("#bbt").hide();
         // $("#check_box").show();
         $("#check_box").css({
+        "margin-top":"3%",
         "display": "table",
         "vertical-align":" middle",
         "text-align": "center",
-        "padding-left": "25px",
-        "padding-top": "115px "   
+        "padding-left": "10%",
+        "padding-top": "35%"   
         });
         $("#prev").css({
             "vertical-align": "middle"  
@@ -42,17 +45,28 @@ $(function () {
         $("#check_btn").css({
             "vertical-align": "middle"  
         })
-        $("#check_btn").click(function(){
-            //查询进度专用调用 点击
+        $(".text").css({
+            "appearance":"none",
+            "-moz-appearance":"none",
+            '-webkit-appearance':"none",
+           " width": "110%",
+            "margin-bottom":" 3%",
+            "padding": "2.3%",
+            "background-color":" #dee6a8",
+            "border-radius":"2em",
+            "border:1px solid":" #c8cccf",
+            "font-size":" 0.8em",
+        
         })
     })
+
     function prevent(){
-        
         var a = check_num(name);
-        
         if(a=1){
             return "不要输些奇奇怪怪的东西";
         }else{
+            $("#sign_btn").removeAttr("disabled");
+            sign();
             return "填完啦！正在帮你提交信息";
         }
     }
@@ -91,37 +105,53 @@ $(function () {
                     var telephone = new RegExp('telephone');
                     var introduction = new RegExp('introduction');
                     if (missing.test(data.errmsg)) {
+                        $("attention").show();
+                        $(".text").focus();
                         $("#attention").text ("你漏填了什么，请检查一下再提交哦");
                     } else if (existed.test(data.errmsg)) {
+                        $("attention").show();
                         $("#attention").text ("您已经报名过，是否选择覆盖上次报名信息") ;
                     } else if (special.test(data.errmsg)) {
+                        $("attention").show();
+                        $("#name").focus();
                         $("#attention").text ("哎呀姓名不能有特殊符号哦");
                     } else if (telephone.test(data.errmsg)) {
+                        $("attention").show();
+                        $("#tel").focus();
                         $("#attention").text  ("哎呀手机号填写不正确哦");
                     } else if (introduction.test(data.errmsg)) {
+                        $("attention").show();
+                        $("#introduction").focus();
                         $("#attention").text  ("哎呀个人简介不能超过50字哦");   
                     }
                  } else {
+                    $("attention").show();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
                 }
             } else {
+                $("attention").show();
                 $("#attention").text("系统繁忙，请稍后再试");
             }
         });
     } 
 
     function speakloud() {
-        var msg = String;
         msg = prevent();
-        $("attention").innerhtml = msg;
+        if(msg == ""){
+            msg="呃发生了什么";
+        }
+        $("attention").show();
+        $("attention").text(msg);
     }
-    //前端提示 msg （但是现在并不能innnerhtml?  
 
+    
     $("#sign_btn").click(function(){
         speakloud();
-        sign();
-    });
+        $("#sign_btn").attr("disabled",true);
+        //禁用按钮    
+    })
 
+    //前端提示 msg 
     //所有部门 数组
     var depa = new Array(20);
     depa[0] = "技术部-代码组";
