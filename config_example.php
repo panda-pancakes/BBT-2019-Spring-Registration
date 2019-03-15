@@ -7,13 +7,13 @@
  */
 
 /** The name of the database */
-define('DB_NAME', 'database');
+define('DB_NAME', DB_NAME);
 
 /** MySQL database username */
-define('DB_USER', 'username');
+define('DB_USER', DB_USER);
 
 /** MySQL database password */
-define('DB_PASSWORD', 'password');
+define('DB_PASSWORD', DB_PASSWORD);
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', DB_HOST);
