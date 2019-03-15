@@ -2,6 +2,7 @@ $(function () {
     //先定义
     $("#attention").hide();
     var name = $('#name').val();
+    var tel = $("#tel").val();
     var msg = String;
     //用来前端提示 信息
     var patt_num = new RegExp("0123456789");
@@ -28,7 +29,7 @@ $(function () {
     }
     //当前端检查通过时   启用按钮 $("#sign_btn").removeAttr("disabled");
 
-    //查询进度
+    //查询进度 页面 输入手机号和姓名 
     $("#check_user").click(function(){
         $("#bbt").hide();
         // $("#check_box").show();
@@ -59,7 +60,26 @@ $(function () {
             "font-size":" 0.8em",
         
         })
-    })
+    })//显示查询页面
+
+    $("#check_btn").click(function(){
+        console.log("你点了这个按钮");
+        var pack=JSON.stringify({
+            name,
+            tel
+        });
+        $.post("./api/database.php?method=signup", pack, function(data, status) {
+            if (status == "success") {
+                if (data.status == "failed") {
+                } else {
+                    $("#attention").show();
+                    $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
+                }
+            } else {
+                $("#attention").show();
+                $("#attention").text("系统繁忙，请稍后再试");
+            }
+        });
 
     function prevent(){
         $("#attention").show();
@@ -152,10 +172,12 @@ $(function () {
         });
         $("#attention").show();
         $("#attention").text(msg);
+        $("#sign_btn").removeAttr("disabled");
     }
 
     
     $("#sign_btn").click(function(){
+        console.log("你点了这个按钮");
         speakloud();
         $("#sign_btn").attr("disabled",true);
         console.log(msg);
@@ -200,4 +222,4 @@ $(function () {
     $("#alternative").change(selector());
 
     // 工厂函数结束↓
-})
+})})
