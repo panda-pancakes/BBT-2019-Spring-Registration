@@ -46,7 +46,7 @@ input[type="text"]{
     display:block;
     outline:0;
     text-decoration:none;
-    width:100%;
+    width:65%;
 }
 .prev{
     position: fixed;
