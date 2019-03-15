@@ -9,7 +9,7 @@
     vertical-align: middle;
 }
 #prev{
-    position: fixed;
+    position:fixed;
     display: table-caption;
     margin-top: 0px;
     margin-left: 0;

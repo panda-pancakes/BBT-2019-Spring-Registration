@@ -1,8 +1,5 @@
 *{
-<<<<<<< HEAD
     /* background-image: url("../img/pictures/background.png"); */
-=======
->>>>>>> 690173d51c0243fadac18ea758c95a13f0fdb22d
     background-color: #B1C436;
     background-repeat: repeat;
     margin: 0%;
@@ -49,6 +46,7 @@ input[type="text"]{
 }
 #prev{
     position: fixed;
+    left: 2em;
     margin-top: 0px;
     margin-left: 0;
 }
