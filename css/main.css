@@ -35,6 +35,14 @@ label{
     width: 188px;
     padding: 4px;
 }
+input[type="text"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display:block;
+    outline:0;
+    text-decoration:none;
+    width:100%;
+}
 #prev{
     position: fixed;
     margin-top: 0px;
