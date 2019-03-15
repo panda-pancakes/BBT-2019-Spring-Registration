@@ -1,5 +1,8 @@
 *{
+<<<<<<< HEAD
     /* background-image: url("../img/pictures/background.png"); */
+=======
+>>>>>>> 690173d51c0243fadac18ea758c95a13f0fdb22d
     background-color: #B1C436;
     background-repeat: repeat;
     margin: 0%;
@@ -35,6 +38,14 @@ label{
 .text{
     width: 188px;
     padding: 4px;
+}
+input[type="text"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display:block;
+    outline:0;
+    text-decoration:none;
+    width:100%;
 }
 #prev{
     position: fixed;

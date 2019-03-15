@@ -1,5 +1,5 @@
 # Database Document
-## [Table] Attendee
+## [Table] application
 | Column       | Type    | Description   |
 | ------------ | ------- | ------------- |
 | name         | String  | 姓名          |
@@ -22,7 +22,7 @@
 ### [Column] department / alternative
 * 确定好对应关系后请写在下面
 
-## [Table] Admin
+## [Table] admin
 | Column       | Type    | Description   |
 | ------------ | ------- | ------------- |
 | userid       | String  | 管理账号名称   |

@@ -15,7 +15,7 @@ if (!isset($_GET["method"])) {
 } elseif ($_GET["method"] == "signup") {
 	if(isset($data["tel"])){
 		$NumTel = strlen($data["tel"]);
-		$IsNum = is_numeric($data["tel"])?true:false;
+		$IsNum = is_numeric($data["tel"]);
 	}
 	
 	if (!isset($data["name"])) {
@@ -53,12 +53,11 @@ if (!isset($_GET["method"])) {
 	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $data["name"])) {
 		$ret->errmsg = "special characters in name";
 
-	}elseif ($IsNum == false || $data["tel"][0] != 1 || $NumTel != 11){
-		$ret->errmsg = "wrong teliphone information";
+	} elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || $NumTel != 11) {
+		$ret->errmsg = "wrong telephone information";
 
-	} elseif (isset($data["introduction"])){
-		$IntroLength = mb_strlen($data["introduction"]);
-		if($IntroLength >=50){
+	} elseif (isset($data["introduction"])) {
+		if(mb_strlen($data["introduction"]) >= 50){
 			$ret->errmsg = "length of introduction limit exceeded";
 		}
 	}else {
@@ -142,8 +141,7 @@ elseif ($_GET["method"] == "admin_login") {
 	}
 	
 
-}
- else {
+} else {
 	$ret->errmsg = "Unspecified Method";
 }
 

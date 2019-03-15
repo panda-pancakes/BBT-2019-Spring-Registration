@@ -1,5 +1,5 @@
 *{
-    background-image: url("../img/pictures/background.png");
+    background-color: #B1C436;
     background-repeat: repeat;
     margin: 0%;
     padding: 0%;
@@ -12,21 +12,15 @@
     margin-top: 0px;
 }
 #showbox{
-    margin-top: 125px;
+    margin-top: 10px;
 }
 #depa{
     text-align: center;
     position: relative;
-    margin-top: 125px;
-    padding-left: 6%;
-    padding-right: 11%;
-    font-family: Microsoft YaHei;
-    font-weight: lighter;
-    color: dimgrey;
 }
 .swiper-container {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
   }
   .swiper-slide {
     text-align: center;
@@ -45,6 +39,16 @@
     align-items: center;
   }
 #btn10{
-    margin: 100px;
+    margin: 10px;
+    margin-left: 88px;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
     text-align: center;
 }
