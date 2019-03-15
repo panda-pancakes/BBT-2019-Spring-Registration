@@ -40,13 +40,13 @@ label{
     width: 120%;
     padding: 1%;
 }
-input[type="text"]{
+input[type="text"],input[type="tel"]{
     -webkit-appearance: none;
     -moz-appearance: none;
     display:block;
     outline:0;
     text-decoration:none;
-    width:65%;
+    max-width:65%;
 }
 .prev{
     position: fixed;
