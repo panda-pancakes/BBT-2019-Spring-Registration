@@ -28,6 +28,7 @@ function checkintro_login()
     $("#introduction").css("display","none")
     document.getElementById("name").innerText="姓名：";
     document.getElementById("tel").innerText="电话：";
+    $("#check_btn").css("display","block")
     $("#name_input").css("display","block")
     $("#tel_input").css("display","block")
     $.ajax({

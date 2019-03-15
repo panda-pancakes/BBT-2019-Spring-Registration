@@ -1,4 +1,4 @@
-$.get("../backend/showdata.php", function(result){
+$.get("/BBT-2019-Spring-Registration/api/database.php", function(result){
     var Eachdata = "";
     if(result.sum == 0){
         $("#Statistics").text(result.errmsg)

@@ -82,74 +82,56 @@ function admin_login($username, $passwd) {
 	return 0;
 }
 
-function admin_query($username) {
-	/*3.14 初步按照要求改成合格形式 还没有跑过 不知道会出什么bug (我好困)
-	/* 这个文件里只负责数据库的操作 至于怎么处理数据 判断传入的数据合不合法在action.php里做 */
-	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+function admin_query($department) {
+
+ 	$ret = new StdClass();
+	$conn = new mysqli('localhost', 'root', '', 'registration');
 	if($conn->connect_error){
 		return -2;
+		exit();
+	}else{	
+	$stmt = $conn->prepare("select password from admin where department = ?");
+	$stmt->bind_param("s",$department);
+	if($stmt->execute()){
+	  if($result = $stmt->get_result()){
+		  while($result->fetch_array(MYSQLI_NUM) = 0){
+			  return 1;
+		  }
+    }else{
+		return 2;
+		printf("无法获取结果");
 	}
-	
-	$stmt1 = $conn->prepare("select * from applicants where ChoiceOne = ?");
-	$stmt1->bind_param("s",$username);
-	$stmt2 = $conn->prepare("select * from applicants where ChoiceOne =? and sex = ?");
-	$stmt2->bind_param("ss",$username,"女");
-	$stmt3 = $conn->prepare("select * from applicants where ChoiceOne =? and sex = ?");
-	$stmt3->bind_param("ss",$username,"男");
-
-
-	if($username !== "南校技术部"){
-		$stmt1->execute();
-		$showdata = $stmt1->fetch();
-		$stmt1->num_rows;
-	    if($stmt1 == 0){
-	        $errmsg = "暂无数据";
-	        $BoyNum = null;
-	        $GirlNum = null;
-	    }else{
-		$stmt2->execute();
-		$showdata = $stmt2->fetch();
-	    $GirlNum = $stmt2->num_rows;
-		$stmt3->execute();
-		$showdata = $stmt3->fetch();
-		$BoyNum = $stmt3->num_rows;
-		$stmt2->close();
-		$stmt3->close();
-	    }
 	}else{
-		$stmt4 = $conn->prepare("select * from applicants");
-		$stmt4->execute();
-		$showdata = $stmt4->fetch();
-	    $count = $stmt4->num_rows;
-	    if($count == 0){
-	        $errmsg = "暂无数据";
-	        $BoyNum = null;
-	        $GirlNum = null;
-	    }else{
-		$stmt5 = $conn->prepare("select * from applicants where sex = ?");
-		$stmt5->bind_param("s","女");
-		$stmt5->execute();
-		$showdata = $stmt5->fetch();
-		$GirlNum = $stmt5->num_rows;
-		$stmt6 = $conn->prepare("select * from applicants where sex = ?");
-		$stmt6->bind_param("s","男");
-		$stmt6->execute();
-		$showdata = $stmt6->fetch();
-		$BoyNum = $stmt6->num_rows;
-		$stmt5->close();
-		$stmt6->close();
-	    }
+		printf("无法正确执行语句");
 	}
 
-	$result = [
-	    "errmsg" => "$errmsg",
-	    "showdata" => $showdata,
-	    "sum" => $count,
-	    "GirlNum" => $GirlNum,
-	    "BoyNum" => $BoyNum,
-	];
+	$stmt->close();
+	/*if($res == false){
+		return 1;
+	}
+*/
+	return 0;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     $conn->close();
-	return $result;
+	return $ret;
 }

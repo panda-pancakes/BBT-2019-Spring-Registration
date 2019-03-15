@@ -124,6 +124,22 @@ elseif ($_GET["method"] == "admin_login") {
 	}
 
 } elseif ($_GET["method"] == "admin_query") {
+	if(empty($_POST["department"])){
+		$ret->errmsg = "请输入部门名称";
+	}elseif(empty($_POST["password"])){
+		$ret->errmsg = "请输入密码";
+	}else{
+		$check = admin_query($_POST["department"]);
+		if($check == 1){
+			$ret->errmsg = "用户名或密码错误";
+		}elseif($check == 2){
+			$ret->errmsg = "用户名或密码错误";
+		}elseif($check == -2){
+			$ret->errmsg = "数据库繁忙，请稍后再试";
+		}elseif($check == 0){
+			$ret->errmsg = "登录成功";
+		}
+	}
 	
 
 }

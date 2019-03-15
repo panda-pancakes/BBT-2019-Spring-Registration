@@ -1,17 +1,17 @@
 $(document).ready(function(){
     $("button").click(function(){
-      $.post("../backend/check_login.php",
+      $.post("/BBT-2019-Spring-Registration/BBT-2019-Spring-Registration/api/action.php?method=admin_query",
       {
          department: $("#department").val(),
          password: $("#password").val()
       },
       function(result){
         if(result.errcode == 0){
-          document.getElementById('errmsg').style.display = "block"
+          $("#errmsg").css("display","block")
           document.getElementById('errmsg').innerHTML = result.errmsg,"json"
-          window.location.href='../frontend/check_show.html';
+          window.location.href='/BBT-2019-Spring-Registration/BBT-2019-Spring-Registration/admin/index.html';
         }else{
-          document.getElementById('errmsg').style.display = "block"
+          $("#errmsg").css("display","block")
           document.getElementById('errmsg').innerHTML = result.errmsg,"json"
         }
       }    
