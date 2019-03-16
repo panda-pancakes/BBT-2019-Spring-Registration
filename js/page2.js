@@ -175,9 +175,12 @@ $(function () {
             "visibility": "visible",
             "z-index":"10",
             "background-color": "#dee6a8",
-            "border-radius":"3em",
-            "border":"0.8em solid #c8cccf",
-            "max-width":"100% "       
+            "padding":"1%",
+            "border-radius":"0.3em",
+            "border":"0.1em solid #c8cccf",
+            "max-width":"100% ",
+            "color":" #707070",
+           " font-size": "1em",         
         });
         }
     $("#sign_btn").click(function(){
