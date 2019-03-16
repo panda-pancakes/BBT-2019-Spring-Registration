@@ -54,7 +54,12 @@
 }
 .swiper-button-prev{
     background-image: url("../img/swiper/button/1.png");
+    /* margin-left: -37px; */
 }
 .swiper-button-next{
     background-image: url("../img/swiper/button/2.png");
+}
+p{
+    max-width: 70%;
+    text-align: left;
 }
