@@ -30,28 +30,28 @@ function signup($info, $cover) {
 		return -2;
 	}
 
-	$q = query($info);
+	$data = query($info);
 
-	if (isset($q->name) && isset($q->tel)) {
+	if ($data->name) {
 		if ($cover) {
-			$sql1 = "update application set sex = ?, grade = ?, college = ?, dorm = ?, department = ?, alternative = ?, adjustment = ?, introduction = ? where name = ? && tel = ?";
-			$stmt1 = $con->prepare();
-			$stmt1->bind_param("ssssssssss", $info->sex, $info->grade, $info->college, $info->dorm, $info->department, $info->alternative, $info->adjustment, $info->introduction, $info->name, $info->tel);
-			$stmt1->execute();
-			$stmt1->close();
+			$sql = "update application set sex = ?, grade = ?, college = ?, dorm = ?, department = ?, alternative = ?, adjustment = ?, introduction = ? where name = ? && tel = ?";
+			$stmt = $con->prepare($sql);
+			$stmt->bind_param("ssssssssss", $info["sex"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"], $info["introduction"]);
+			$stmt->execute();
+			$stmt->close();
 		} else {
 			$con->close();
 			return -1;
 		}
 	} else {
-		$sql1 = "insert into application (name, sex, tel, grade, college, dorm, department, alternative, adjustment, introduction) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		$stmt1 = $con->prepare($sql1);
-		$stmt1->bind_param("ssssssssss", $info->name, $info->sex, $info->tel, $info->grade, $info->college, $info->dorm, $info->department, $info->alternative, $info->adjustment, $info->introduction);
-		$stmt1->execute();
-		$stmt1->close();
+		$sql = "insert into application (name, sex, tel, grade, college, dorm, department, alternative, adjustment, introduction) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$stmt = $con->prepare($sql);
+		$stmt->bind_param("ssssssssss", $info["name"], $info["sex"], $info["tel"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"], $info["introduction"]);
+		$stmt->execute();
+		$stmt->close();
 	}
-	$con->close();
 
+	$con->close();
 	// TODO: check if success
 
 	return 0;

@@ -12,12 +12,7 @@ $data = json_decode($data, true);
 if (!isset($_GET["method"])) {
 	$ret->errmsg = "Missing parameter: method";
 
-} elseif ($_GET["method"] == "signup") {
-	if(isset($data["tel"])){
-		$NumTel = strlen($data["tel"]);
-		$IsNum = is_numeric($data["tel"]);
-	}
-	
+} elseif ($_GET["method"] == "signup") {	
 	if (!isset($data["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
@@ -53,12 +48,12 @@ if (!isset($_GET["method"])) {
 	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $data["name"])) {
 		$ret->errmsg = "special characters in name";
 
-	} elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || $NumTel != 11) {
+	} elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || strlen($data["tel"]) != 11) {
 		$ret->errmsg = "wrong telephone information";
 
 	} elseif (!empty($data["introduction"]) && mb_strlen($data["introduction"]) >= 50) {
 		$ret->errmsg = "length of introduction limit exceeded";
-		
+	
 	}else {
 		$info = array(
 			"name" => $data["name"],
@@ -73,7 +68,7 @@ if (!isset($_GET["method"])) {
 			"introduction" => $data["introduction"],
 		);
 
-		$sta = signup($info, $_POST["cover"]);
+		$sta = signup($info, isset($_POST["cover"]) ? $_POST["cover"] : false);
 
 		if ($sta == -1) {
 			$ret->errmsg = "existed";
@@ -123,7 +118,7 @@ if (!isset($_GET["method"])) {
 
 	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $_POST['department'])) {
 		$ret->errmsg = "It's not allowed to use special characters in username.";
-		
+
 	} else {
 		$status = admin_login($_POST["department"], $_POST["password"]);
 		if ($status >= 0) {
