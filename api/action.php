@@ -83,12 +83,15 @@ if (!isset($_GET["method"])) {
 	}
 
 } elseif ($_GET["method"] == "query") {
-	if (!isset($data["name"])) {
+	if (empty($data["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
-	} elseif (!isset($data["tel"])) {
+	} elseif (empty($data["tel"])) {
 		$ret->errmsg = "Missing parameter: tel";
 		// check 
+	}elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || $NumTel != 11) {
+		$ret->errmsg = "wrong telephone information";
+
 	} else {
 		$sta = query($info);
 		if ($sta == -2) {
@@ -96,7 +99,11 @@ if (!isset($_GET["method"])) {
 		} else {
 			$ret->exist = isset($sta->name);
 			if ($ret->exist) {
+
 				$ret->info = $sta->info;
+			}
+			else{
+				$ret->errmsg = "no infomation of this user";
 			}
 		}
 	}
