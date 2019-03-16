@@ -8,26 +8,6 @@ $(function () {
     var patt_num = new RegExp("0123456789");
     var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
     msg="你绝对没填完信息";
-    function check_num(e) {
-        var result = patt_num.test(e);
-        if(result){
-            result = 0;
-        }else{
-            result = 1;
-        }
-        return result;
-    }
-
-    function check_uni(a) {
-        var result = patt_illegal.test(a);
-        if(result){
-            result = 0;
-        }else{
-            result = 1;
-        }
-        return result;
-    }
-    //当前端检查通过时   启用按钮 $("#sign_btn").removeAttr("disabled");
 
     //查询进度 页面 输入手机号和姓名 
     $("#check_user").click(function(){
@@ -61,6 +41,7 @@ $(function () {
         
         })
     })//显示查询页面
+    console.log("到达checkbtn函数上空");
 
     $("#check_btn").click(function(){
         console.log("你点了这个按钮");
@@ -79,21 +60,21 @@ $(function () {
                 $("#attention").show();
                 $("#attention").text("系统繁忙，请稍后再试");
             }
-        });
-
-    function prevent(){
-        $("#attention").show();
-        var a = check_num(name);
-        if(a=1){
-            return "不要输些奇奇怪怪的东西";
-        }else{
-            // $("#sign_btn").removeAttr("disabled");
-            check();
-            return "填完啦！正在帮你提交信息";
-        }
-    }
-
-    function sign() {
+        })})
+    
+    // console.log("到达prevent函数上空")
+    // function prevent(){
+    //     $("#attention").show();
+    //     var a = check_num(name);
+    //     if(a=1){
+    //         return "不要输些奇奇怪怪的东西";
+    //     }else{
+    //         // $("#sign_btn").removeAttr("disabled");
+    //         check();
+    //         return "填完啦！正在帮你提交信息";
+    //     }
+    // }
+    function check(){
         var name = $('#name').val();
         var sex = $('.sex').val();
         var college = $('#college option:selected').val();
@@ -126,6 +107,7 @@ $(function () {
                     var special = new RegExp('special');
                     var telephone = new RegExp('telephone');
                     var introduction = new RegExp('introduction');
+                    attention();
                     if (missing.test(data.errmsg)) {
                         $("#attention").show();
                         $(".text").focus();
@@ -156,13 +138,8 @@ $(function () {
             }
         });
     } 
-
-    function speakloud() {
-        msg = prevent();
-        if(msg == " "){
-            msg="呃发生了什么";
-        }
-        console.log(msg);
+    console.log("到达attention函数上空");
+    function attention() {
         $("#attention").css({
             "background-color": "#dee6a8",
             "border-radius":"3em",
@@ -171,19 +148,22 @@ $(function () {
             "max-width":"100% "       
         });
         $("#attention").show();
-        $("#attention").text(msg);
+        $("#attention").html(msg);
     }
-    $(".signbtn").on('click','#sign_btn',function(){
-        alert("你点了这个按钮");
-        sign();
-    })
-    // $("#sign_btn").click(function(){
-    //     console.log("你点了这个按钮");
+    // $(".sign").on('click','#sign_btn',function(){
+    //     alert("你点了这个按钮");
     //     sign();
-    // });
+    // })
+    console.log("到达click函数上空");
+    $("#sign_btn").click(function(){
+        alert("hey")
+        console.log("你点了这个按钮");
+        check();
+    });
 
     //前端提示 msg 
     //所有部门 数组
+    console.log("到达selector函数上空");
     var depa = new Array(20);
     depa[0] = "技术部-代码组";
     depa[1] = "技术部-设计组";
@@ -220,4 +200,4 @@ $(function () {
     $("#alternative").change(selector());
 
     // 工厂函数结束↓
-})})
+})
