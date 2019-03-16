@@ -116,11 +116,14 @@ if (!isset($_GET["method"])) {
 	 
 } elseif ($_GET["method"] == "admin_login") {
 	if (empty($_POST["department"])) {
-		$ret->errmsg = "Missing parameter: username";
+		$ret->errmsg = "Missing parameter: department";
+
 	} elseif (empty($_POST["password"])) {
 		$ret->errmsg = "Missing parameter: password";
+
 	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $_POST['department'])) {
 		$ret->errmsg = "It's not allowed to use special characters in username.";
+		
 	} else {
 		$status = admin_login($_POST["department"], $_POST["password"]);
 		if ($status >= 0) {
@@ -134,14 +137,11 @@ if (!isset($_GET["method"])) {
 	}
 
 } elseif ($_GET["method"] == "admin_query") {
-	if($_SESSION["permission"] == 1){
-		$ret = admin_query($_SESSION["permission"]);
-		while($ret == -1){
-			$ret->errmsg = "You have not the access.";
-		}
-	}elseif($_SESSION["permission"] === 0) { // Root
-		$ret = user_query($_SESSION["department"]);
+	if (isset($_SESSION["permission"])) {
+		$ret->$data = admin_query($_SESSION["permission"]);
 
+	} else {
+		$ret->errmsg = "Please login first";
 	}
 
 } else {

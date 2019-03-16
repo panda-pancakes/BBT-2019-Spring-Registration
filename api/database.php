@@ -8,14 +8,14 @@ function query($info) {
 		return -2;
 	}
 
-	$sql = "select name, tel from application where name = ? && tel = ?";
+	$sql = "select name, sex, tel, grade, college, dorm, department, alternative, adjustment, introduction, information from application where name = ? && tel = ?";
 
 	$ret = new StdClass();
 
 	$stmt = $con->prepare($sql);
 	$stmt->bind_param("ss", $info["name"], $info["tel"]);
 	$stmt->execute();
-	$stmt->bind_result($ret->name, $ret->tel);
+	$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction, $ret->information);
 	$stmt->fetch();
 	$stmt->close();
 	$con->close();
@@ -57,90 +57,47 @@ function signup($info, $cover) {
 	return 0;
 }
 
-function admin_login($username, $passwd) {
-	$enc_user = md5($username);
-	$enc_pwd = md5($passwd);
+function admin_login($username, $passwd) {	
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 	if ($con->connect_error) {
 		return -2;
-	}else{
-	$stmt = $con->prepare("select * from admin where department=? and password=?");
-	$stmt->bind_param("ss",$enc_user,$enc_pwd);	
-	if ($stmt->execute()) {
-		if (false == $stmt->get_result() or null == $stmt->get_result()) {
-			return -1;
-		}elseif($enc_user == "南校技术部"){
-			return 1;                       //可查询所有报名名单
-		}else{
-			return 0;                       //只可查询本部门名单
-		}
-	}else{
-		var_dump("false");
-	}}
 
-	$stmt->close();
-	$con->close();
+	} else {
+		$enc_pwd = md5($passwd);
+		$stmt = $con->prepare("select permission from admin where department=? and password=?");
+		$stmt->bind_param("ss", $username, $enc_pwd);
+		$stmt->execute();
+		$stmt->bind_result($ret);
+		$stmt->fetch();
+		$stmt->close();
+		$con->close();
+
+		return $ret;
+	}
 }
 
 
 function admin_query($permission) {
 
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
 	if($con->connect_error){
 		return -2;
-		
-	}else{	
-		if($permission != 1){
-			return -1;
-		}else{
-			$stmt = $con->prepare("select * from applicants");
-			 $ret = new StdClass();
-			 $stmt->execute();
-			 $stmt->bind_result($ret->name,$ret->sex,$ret->college,$ret->grade,$ret->tel,$ret->dorm,$ret->Choiceone,$ret->Choicetwo,$ret->adjust,$ret->info);
-			 $stmt->fetch();
-			 $stmt->close();
-			 $con->close();		
-			 return $ret;		 
 
+	} else {	
+		if ($permission === 0) {
+			$stmt = $con->prepare("select * from application");
+		} else {
+			$stmt = $con->prepare("select * from application where department = ?");
+			$stmt->bind_param("s", $permission);
 		}
+		$stmt->execute();
+		// 这里还没处理
+		$stmt->fetch();
+		$stmt->close();	 
+    	$con->close();
 	}
 
-function user_query($department){
-	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-	if($con->connect_error){
-		return -2;
-		exit();
-	}else{
-		$stmt = $con->prepare("select * from applicants where ChoiceOne = ? or ChoiceTwo = ?");
-		$stmt->bind_param("ss",$department,$department);
-		$ret = new stdClass();
-		$stmt->execute();
-		$stmt->bind_result($ret->name,$ret->sex,$ret->college,$ret->grade,$ret->tel,$ret->dorm,$ret->Choiceone,$ret->Choicetwo,$ret->adjust,$ret->info);
-		$stmt->fetch();
-		$stmt->close();
-		$con->close();		
-		return $ret;		 
-}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $con->close();
 	return $ret;
 }
