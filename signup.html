@@ -14,11 +14,11 @@
 <body>
     <div id="signbox">
     <input type="image" src="img/navigation/1.png" id="prev" alt="回到主页" onclick="location.href='index.html'">
-    <div id="input">
+    <div id="input" class="sign">
     <!-- <form action="api/database.php" method="POST"> -->
     <div>
         <label for="name">姓名：</label>
-        <input class="text" type="text" name="name" id="name" placeholder="填名字" required = "required">
+        <input class="text" type="text" name="name" id="name" placeholder="填名字" required = "required" >
     </div>
     <div>
         <label for="sex">性别：</label>
@@ -27,7 +27,7 @@
     </div>
     <div>
         <label for="grade">年级：</label>
-        <input type="radio" name="grade" class="grade" value="O" checked><span style="color: #707070">大一</span>
+        <input type="radio" name="grade" class="grade" value="o" checked><span style="color: #707070">大一</span>
         <input type="radio" name="grade" class="grade" value="T" checked><span style="color: #707070">大二</span>
     </div>
     <div>
@@ -63,11 +63,11 @@
         <textarea rows="10" cols="25" id="introduction" placeholder="不要超过50字哦">
         </textarea>
     </div>
-    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交">
+    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交" onsubmit="check()">
 <!-- </form> -->
 <div class="slide" id="attention">
 </div>
-    </div>
+</div>
     
     </div>
 </body>

@@ -16,7 +16,6 @@ function query($info) {
 	$stmt->execute();
 	$stmt->bind_result($ret->name, $ret->tel, $ret->info);
 	$stmt->fetch();
-	var_dump($ret->name);
 	$stmt->close();
 	$con->close();
 
