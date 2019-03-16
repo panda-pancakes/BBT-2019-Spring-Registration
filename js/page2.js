@@ -68,7 +68,7 @@ $(function () {
             name,
             tel
         });
-        $.post("./api/database.php?method=signup", pack, function(data, status) {
+        $.post("./api/action.php?method=query", pack, function(data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
                 } else {
@@ -174,7 +174,7 @@ $(function () {
         $("#attention").text(msg);
     }
     $(".signbtn").on('click','#sign_btn',function(){
-        console.log("你点了这个按钮");
+        alert("你点了这个按钮");
         sign();
     })
     // $("#sign_btn").click(function(){
