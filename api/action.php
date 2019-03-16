@@ -56,10 +56,9 @@ if (!isset($_GET["method"])) {
 	} elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || $NumTel != 11) {
 		$ret->errmsg = "wrong telephone information";
 
-	} elseif (isset($data["introduction"])) {
-		if(mb_strlen($data["introduction"]) >= 50){
-			$ret->errmsg = "length of introduction limit exceeded";
-		}
+	} elseif (!empty($data["introduction"]) && mb_strlen($data["introduction"]) >= 50) {
+		$ret->errmsg = "length of introduction limit exceeded";
+		
 	}else {
 		$info = array(
 			"name" => $data["name"],
