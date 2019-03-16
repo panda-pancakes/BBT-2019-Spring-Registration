@@ -78,7 +78,7 @@ $(function () {
         var name = $('#name').val();
         var sex = $('.sex').val();
         var college = $('#college option:selected').val();
-        var grade = $(".garde").text();
+        var grade = $(".grade").val();
         var dorm = $("#dorm").val();
         var tel = $('#tel').val();
         var department = $('#department option:selected').val();
@@ -86,7 +86,7 @@ $(function () {
         var adjustment = $('.adjustment').val();
         var introduction = $('#introduction').val();
         //打包给php 
-        console.log("正在执行check");
+        console.log("正在执行check：");
         var info = JSON.stringify({
             name,
             sex,
@@ -99,6 +99,7 @@ $(function () {
             adjustment,
             introduction,
         });
+        console.log(info);
         $.post("./api/action.php?method=signup", info, function(data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
