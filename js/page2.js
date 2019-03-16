@@ -45,10 +45,13 @@ $(function () {
 
     $("#check_btn").click(function () {
         console.log("你点了这个按钮");
+        var name = $('#name').val();
+        var tel = $('#tel').val();
         var info = JSON.stringify({
             name,
-            tel
+            tel,
         });
+        console.log(info);
         $.post("./api/action.php?method=query", info, function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {

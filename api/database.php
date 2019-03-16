@@ -7,14 +7,14 @@ function query($info) {
 	if ($con->connect_error) {
 		return -2;
 	}
-	$sql = "select name, tel, information from application where name = ? && tel = ?";
+	$sql = "select name, tel from application where name = ? && tel = ?";
 
 	$ret = new StdClass();
 
 	$stmt = $con->prepare($sql);
 	$stmt->bind_param("ss", $info["name"], $info["tel"]);
 	$stmt->execute();
-	$stmt->bind_result($ret->name, $ret->tel, $ret->info);
+	$stmt->bind_result($ret->name, $ret->tel);
 	$stmt->fetch();
 	$stmt->close();
 	$con->close();
@@ -44,7 +44,7 @@ function signup($info, $cover) {
 		}
 	} else {
 		$sql1 = "insert into application (name, sex, tel, grade, college, dorm, department, alternative, adjustment, introduction) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		$stmt1 = $con->prepare();
+		$stmt1 = $con->prepare($sql1);
 		$stmt1->bind_param("ssssssssss", $info->name, $info->sex, $info->tel, $info->grade, $info->college, $info->dorm, $info->department, $info->alternative, $info->adjustment, $info->introduction);
 		$stmt1->execute();
 		$stmt1->close();
