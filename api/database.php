@@ -77,8 +77,8 @@ function admin_login($username, $passwd) {
 		}
 	}else{
 		var_dump("false");
-	}
-}
+	}}
+
 	$stmt->close();
 	$con->close();
 }
@@ -89,7 +89,7 @@ function admin_query($permission) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	if($con->connect_error){
 		return -2;
-		exit();
+		
 	}else{	
 		if($permission != 1){
 			return -1;
