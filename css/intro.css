@@ -1,9 +1,15 @@
 *{
     background-color: #B1C436;
-    background-repeat: repeat;
     margin: 0%;
     padding: 0%;
 }
+/* #bgimg1{
+    position:fixed;
+    bottom: 0%;
+    max-width: 108%;
+    z-index: 8;
+    opacity: 0.3;
+} */
 #prev{
     z-index: 9;
     display: block;
@@ -11,8 +17,17 @@
     max-width: 356%;
     margin-top: 0%;
 }
+body{
+    background-image: url("../img/pictures/3.png");
+    background-repeat: no-repeat;
+    background-position-x: left;
+    background-position-y: bottom;
+    background-size: 108%;
+
+}
 #showbox{
     margin-top: 2%;
+    background:none;
 }
 #depa{
     text-align: center;
@@ -21,8 +36,11 @@
 .swiper-container {
     width: 80%;
     height: 80%;
+    background:none;
+
   }
   .swiper-slide {
+    background:none;
     text-align: center;
     font-size: 18px;
     display: -webkit-box;
@@ -37,8 +55,10 @@
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+
   }
 #btn10{
+    background:none;
     margin-left: 25%;
     max-width: 135%;
     display: flex;
@@ -52,14 +72,29 @@
     align-items: center;
     text-align: center;
 }
+.swiper-container{
+    padding: 2%;
+    max-width: 100%;
+}
 .swiper-button-prev{
     background-image: url("../img/swiper/button/1.png");
+    position: fixed;
+    left: 2%;
     /* margin-left: -37px; */
 }
 .swiper-button-next{
     background-image: url("../img/swiper/button/2.png");
+    position: fixed;
+    right: 2%;
+}
+#depa{
+    background:none;
+    padding: 2%;
 }
 p{
-    max-width: 73%;
+    background:none;
+    max-width: 100%;
     text-align: left;
+    max-height: 75%;
+    margin-top: -30%;
 }

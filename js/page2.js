@@ -3,6 +3,7 @@ $(function () {
     // $("#attention").hide();
     $("#233").hide();
     $("#cover_user").hide();
+    $("#bgimg1").hide();
     var name = $('#name').val();
     var tel = $("#tel").val();
     var dorm = $("#dorm").val();
@@ -44,6 +45,7 @@ $(function () {
             "font-size": " 0.8em",
 
         })
+        $("#bgimg1").show();
     }) //显示查询页面
     console.log("到达checkbtn函数上空");
 
@@ -173,14 +175,12 @@ $(function () {
     function attention() {
         $("#attention").css({
             "visibility": "visible",
+            "display":"table-cell",
             "z-index":"10",
-            "background-color": "#dee6a8",
-            "padding":"1%",
-            "border-radius":"0.3em",
             "border":"0.1em solid #c8cccf",
             "max-width":"100% ",
             "color":" #707070",
-           " font-size": "1em",         
+            "font-size": "1em",         
         });
         }
     $("#sign_btn").click(function(){

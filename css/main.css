@@ -25,10 +25,15 @@
     max-width: 100%;
 }
 img{
-    max-width: 100%;
+    max-width: 108%;
 }
 #check_box{
     display: none;
+
+    /* background-image: url("../img/pictures/3.png");
+    background-repeat: no-repeat;
+    background-position-x:left;
+    background-position-y:bottom;  */
 }
 .button{
     text-align: center;
@@ -54,4 +59,10 @@ input[type="text"],input[type="tel"]{
     margin-left: -11.5%;
     max-width: 100%;
     padding: 0%;
+}
+#bgimg1{
+    position:fixed;
+    bottom: 0%;
+    max-width: 108%;
+    z-index: -1;
 }

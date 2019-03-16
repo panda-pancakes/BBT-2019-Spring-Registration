@@ -20,9 +20,11 @@
     max-width: 100%;
 }
 #input{
-    padding-top: 45%;
-    padding-left: 25%;
     display: table-cell;
+    margin-left: 50%;
+    padding-top: 45%;
+    margin-right: 50%;
+    padding-left: 29%;
     vertical-align: middle;
 }
 label{
@@ -81,4 +83,6 @@ select{
     margin-top: 3%;
     padding: 3%;
     font-size: 1.1em;
+    background-color: #dee6a8;
+    border-radius:0.3em；
 }
