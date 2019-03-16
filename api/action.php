@@ -83,17 +83,13 @@ if (!isset($_GET["method"])) {
 	}
 
 } elseif ($_GET["method"] == "query") {
-	if(isset($data["tel"])){
-		$NumTel = strlen($data["tel"]);
-		$IsNum = is_numeric($data["tel"]);
-	}
 	if (empty($data["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
 	} elseif (empty($data["tel"])) {
 		$ret->errmsg = "Missing parameter: tel";
 		// check 
-	}elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || $NumTel != 11) {
+	}elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || strlen($data["tel"]) != 11) {
 		$ret->errmsg = "wrong telephone information";
 
 	} else {
@@ -101,24 +97,24 @@ if (!isset($_GET["method"])) {
 			"name" => $data["name"],
 			"tel" => $data["tel"],
 		);
+
 		$sta = query($info);
-		//注释掉是因为can't convert into int
-		// if ($sta == -2) {
-		// 	$ret->errmsg = "database issue";
-		// } else {
+
+		if ($sta === -2) {
+			$ret->errmsg = "database issue";
+			
+		} else {
 			$ret->exist = isset($sta->name);
 			if ($ret->exist) {
-
 				$ret->info = $sta->info;
-			}
-			else{
+
+			} else {
 				$ret->errcode = "233";
 			}
-		//}
+		}
 	}
 	 
-} 
-elseif ($_GET["method"] == "admin_login") {
+} elseif ($_GET["method"] == "admin_login") {
 	if (empty($_POST["department"])) {
 		$ret->errmsg = "Missing parameter: username";
 	} elseif (empty($_POST["password"])) {
@@ -128,7 +124,6 @@ elseif ($_GET["method"] == "admin_login") {
 	} else {
 		$status = admin_login($_POST["department"], $_POST["password"]);
 		if ($status >= 0) {
-			$ret->errmsg = "Successfully login.";
 			$_SESSION["department"] = $_POST["department"];
 			$_SESSION["permission"] = $status;
 		} elseif ($status == -2) {
@@ -144,9 +139,9 @@ elseif ($_GET["method"] == "admin_login") {
 		while($ret == -1){
 			$ret->errmsg = "You have not the access.";
 		}
-	}elseif($_SESSION["permission"] == 0){
+	}elseif($_SESSION["permission"] === 0) { // Root
 		$ret = user_query($_SESSION["department"]);
-		$ret->errmsg = "lllll";
+
 	}
 
 } else {
