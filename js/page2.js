@@ -22,7 +22,7 @@ $(function () {
         "vertical-align":" middle",
         "text-align": "center",
         "padding-left": "10%",
-        "padding-top": "15%" ,
+        "padding-top": "25%" ,
         "max-width":"200%",
         });
         $("#prev").css({
