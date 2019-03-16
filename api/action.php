@@ -83,6 +83,10 @@ if (!isset($_GET["method"])) {
 	}
 
 } elseif ($_GET["method"] == "query") {
+	if(isset($data["tel"])){
+		$NumTel = strlen($data["tel"]);
+		$IsNum = is_numeric($data["tel"]);
+	}
 	if (empty($data["name"])) {
 		$ret->errmsg = "Missing parameter: name";
 
@@ -93,19 +97,24 @@ if (!isset($_GET["method"])) {
 		$ret->errmsg = "wrong telephone information";
 
 	} else {
+		$info = array(
+			"name" => $data["name"],
+			"tel" => $data["tel"],
+		);
 		$sta = query($info);
-		if ($sta == -2) {
-			$ret->errmsg = "database issue";
-		} else {
+		//注释掉是因为can't convert into int
+		// if ($sta == -2) {
+		// 	$ret->errmsg = "database issue";
+		// } else {
 			$ret->exist = isset($sta->name);
 			if ($ret->exist) {
 
 				$ret->info = $sta->info;
 			}
 			else{
-				$ret->errmsg = "no infomation of this user";
+				$ret->errcode = "233";
 			}
-		}
+		//}
 	}
 	 
 } 

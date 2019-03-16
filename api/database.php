@@ -7,16 +7,16 @@ function query($info) {
 	if ($con->connect_error) {
 		return -2;
 	}
-
-	$sql = "select name, tel, info from application where name = ? && tel = ?";
+	$sql = "select name, tel, information from application where name = ? && tel = ?";
 
 	$ret = new StdClass();
 
-	$con->prepare($sql);
-	$stmt->bind_param("ss", $info->name, $info->tel);
+	$stmt = $con->prepare($sql);
+	$stmt->bind_param("ss", $info["name"], $info["tel"]);
 	$stmt->execute();
 	$stmt->bind_result($ret->name, $ret->tel, $ret->info);
 	$stmt->fetch();
+	var_dump($ret->name);
 	$stmt->close();
 	$con->close();
 
