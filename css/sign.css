@@ -8,19 +8,29 @@
     color: #707070;
     font-size: 0.9em;
 }
+body{
+    background-image: url("../img/pictures/1.png");
+    background-repeat: no-repeat;
+    background-position-x: -25px;
+    background-position-y: bottom;
+    background-size: 108%;
+}
 #signbox{
     display: table;
+    background: none;
     vertical-align: middle;
 }
 #prev{
     position:fixed;
     display: table-caption;
+    z-index: 10;
     margin-top: 0%;
     margin-left: 0%;
     max-width: 100%;
 }
 #input{
     display: table-cell;
+    background: none;
     margin-left: 50%;
     padding-top: 45%;
     margin-right: 50%;
@@ -38,6 +48,7 @@ label{
     width: 110%;
     margin-bottom: 3%;
     background-color: #dee6a8;
+    opacity: 0.8;
     font-size: 0.8em;
     height: 2.2em;
     border-radius:4px;
@@ -48,6 +59,7 @@ label{
     padding-right: 25%;
     padding-bottom: 15%;
     background-color: #dee6a8;
+    opacity: 0.8;
     font-size: 0.8em;
     /* height: 2.2em; */
     border-radius:4px;
@@ -55,12 +67,16 @@ label{
 }
 #sign_btn{
     padding: 10%;
+    background: none;
 }
 label,.grade,.sex{
     color: #707070;
+    background: none;
+
 }
 div{
     padding-bottom: 2%;
+    background: none;
 }
 select{
     appearance:none;
@@ -70,6 +86,7 @@ select{
     margin-bottom: 3%;
     padding: 2.3%;
     background-color: #dee6a8;
+    opacity: 0.8;
     border-radius:4px;
     border:1px solid #c8cccf;
     font-size: 0.8em;
