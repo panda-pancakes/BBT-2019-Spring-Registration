@@ -17,12 +17,12 @@ $(function () {
         $("#bbt").hide();
         // $("#check_box").show();
         $("#check_box").css({
-        "margin-top":"3%",
+        "margin-top":"1%",
         "display": "table",
         "vertical-align":" middle",
         "text-align": "center",
         "padding-left": "10%",
-        "padding-top": "35%" ,
+        "padding-top": "15%" ,
         "max-width":"200%",
         });
         $("#prev").css({
@@ -59,8 +59,8 @@ $(function () {
         $.post("./api/action.php?method=query", info, function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
-                    $("#233").show();
-                    $("#cover_user").show();
+                    $("#233").show(); //直接报名按钮
+                    $("#cover_user").show(); //修改按钮
                     var missing = new RegExp('Missing');
                     var telephone = new RegExp('telephone');
                     if (missing.test(data.errmsg)) {
@@ -172,6 +172,8 @@ $(function () {
     } 
     function attention() {
         $("#attention").css({
+            "visibility": "visible",
+            "z-index":"10",
             "background-color": "#dee6a8",
             "border-radius":"3em",
             "border":"0.8em solid #c8cccf",

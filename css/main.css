@@ -50,7 +50,7 @@ input[type="text"],input[type="tel"]{
 }
 .prev{
     position: fixed;
-    margin-top: -36%;
+    top:0%;
     margin-left: -11.5%;
     padding: 0%;
 }
