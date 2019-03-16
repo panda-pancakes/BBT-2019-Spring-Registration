@@ -101,17 +101,18 @@ if (!isset($_GET["method"])) {
 			"name" => $data["name"],
 			"tel" => $data["tel"],
 		);
+
 		$sta = query($info);
-		//注释掉是因为can't convert into int
-		// if ($sta == -2) {
-		// 	$ret->errmsg = "database issue";
-		// } else {
+
+		if ($sta === -2) {
+			$ret->errmsg = "database issue";
+			
+		} else {
 			$ret->exist = isset($sta->name);
 			if ($ret->exist) {
-
 				$ret->info = $sta->info;
-			}
-			else{
+
+			} else {
 				$ret->errcode = "233";
 			}
 		//}

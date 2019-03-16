@@ -15,21 +15,12 @@ $(function () {
         $("#bbt").hide();
         // $("#check_box").show();
         $("#check_box").css({
-<<<<<<< HEAD
-        "margin-top":"3%",
-        "display": "table",
-        "vertical-align":" middle",
-        "text-align": "center",
-        "padding-left": "10%",
-        "padding-top": "25%"   
-=======
             "margin-top": "3%",
             "display": "table",
-            "vertical-align": " middle",
+            "vertical-align": "middle",
             "text-align": "center",
             "padding-left": "10%",
-            "padding-top": "35%"
->>>>>>> f7f9da07bf38236c10b82a918ee2fab307f704aa
+            "padding-top": "25%"
         });
         $("#prev").css({
             "vertical-align": "middle"

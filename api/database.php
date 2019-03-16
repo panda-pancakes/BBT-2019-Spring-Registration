@@ -7,6 +7,7 @@ function query($info) {
 	if ($con->connect_error) {
 		return -2;
 	}
+
 	$sql = "select name, tel from application where name = ? && tel = ?";
 
 	$ret = new StdClass();
