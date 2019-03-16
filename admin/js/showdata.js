@@ -8,7 +8,7 @@ $.get("/BBT-2019-Spring-Registration/api/database.php?method = admin_query", fun
             result.showdata[i].college + "</td><td>" + result.showdata[i].grade + "</td><td>" + result.showdata[i].phone + "</td><td>" + result.showdata[i].dorm + "</td><td>" + result.showdata[i].ChoiceOne + "</td><td>"
              + result.showdata[i].ChoiceTwo + "</td><td>" + result.showdata[i].adjust + "</td><td>" + result.showdata[i].introduction + "</td></tr>" 
         $("#table").append(Eachdata),
-        $("#Statistics").text("共有" + result.sum + "人,其中女生" + result.GirlNum + "人，男生" + result.BoyNum + "人。" ),"json"
+        $("#Statistics").text("共有" + result.sum + "人" ),"json"
     }
 };
 })
