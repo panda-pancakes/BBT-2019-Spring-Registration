@@ -62,7 +62,7 @@ errmsg值为 `existed` 时表明该用户信息已存在(若姓名和手机号�
 | status       | Boolean | 成功返回ok，否则返回failed.	|
 | errmsg       | String  | API调用失败时返回的错误信息.	|
 | exist        | Boolean | 是否查询到对应记录.			|
-| info         | String  | 查询到对应记录时返回的信息.		|
+| data         | Array   | 查询到的对应记录.				|
 
 * 注意: 即便没有查询到对应记录，只要API调用成功就会返回ok.
 
