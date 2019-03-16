@@ -30,7 +30,8 @@ $(function () {
             "vertical-align": "middle"
         });
         $("#check_btn").css({
-            "vertical-align": "middle"
+            "vertical-align": "middle",
+            "background": "none",
         })
         $(".text").css({
             "appearance": "none",
