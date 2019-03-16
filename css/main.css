@@ -52,5 +52,6 @@ input[type="text"],input[type="tel"]{
     position: fixed;
     top:0%;
     margin-left: -11.5%;
+    max-width: 100%;
     padding: 0%;
 }
