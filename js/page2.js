@@ -3,6 +3,7 @@ $(function () {
     $("#attention").hide();
     var name = $('#name').val();
     var tel = $("#tel").val();
+    var dorm = $("#dorm").val();
     var msg = String;
     //用来前端提示 信息
     var patt_num = new RegExp("0123456789");
@@ -19,7 +20,7 @@ $(function () {
         "vertical-align":" middle",
         "text-align": "center",
         "padding-left": "10%",
-        "padding-top": "35%"   
+        "padding-top": "25%"   
         });
         $("#prev").css({
             "vertical-align": "middle"  
@@ -62,17 +63,23 @@ $(function () {
             }
         })})
     
-    // console.log("到达prevent函数上空")
+    //前端检查字符
     // function prevent(){
-    //     $("#attention").show();
-    //     var a = check_num(name);
-    //     if(a=1){
-    //         return "不要输些奇奇怪怪的东西";
-    //     }else{
-    //         // $("#sign_btn").removeAttr("disabled");
-    //         check();
-    //         return "填完啦！正在帮你提交信息";
+    //     function isBlank(str) {
+    //         return (!str || /^\s*$/.test(str));
+    //         }
+    //     function check_uni(str){
+    //         return (!str || !patt_illegal.test(str));
     //     }
+    //     var test_str1 = "*";
+    //     var test_str2 = "你";
+    //     console.log("isBlank测试：")
+    //     console.log(isBlank(test_str1));
+    //     console.log("-----------分界线-------");
+    //     console.log("check_uni测试：");
+    //     console.log(check_uni(test_str2));
+    //     if(isBlank(name)&&isBlank(tel){}
+        
     // }
     function check(){
         var name = $('#name').val();
@@ -110,61 +117,50 @@ $(function () {
                     var introduction = new RegExp('introduction');
                     attention();
                     if (missing.test(data.errmsg)) {
-                        $("#attention").show();
-                        $(".text").focus();
+                        // $("#attention").show();
+                        $("input").focus();
                         $("#attention").text ("你漏填了什么，请检查一下再提交哦");
                     } else if (existed.test(data.errmsg)) {
-                        $("#attention").show();
+                        // $("#attention").show();
                         $("#attention").text ("您已经报名过，是否选择覆盖上次报名信息") ;
                     } else if (special.test(data.errmsg)) {
-                        $("#attention").show();
+                        // $("#attention").show();
                         $("#name").focus();
                         $("#attention").text ("哎呀姓名不能有特殊符号哦");
                     } else if (telephone.test(data.errmsg)) {
-                        $("#attention").show();
+                        // $("#attention").show();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写不正确哦");
                     } else if (introduction.test(data.errmsgs)) {
-                        $("#attention").show();
+                        // $("#attention").show();
                         $("#introduction").focus();
                         $("#attention").text  ("哎呀个人简介不能超过50字哦");   
                     }
                  } else {
-                    $("#attention").show();
+                    // $("#attention").show();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
                 }
             } else {
-                $("#attention").show();
+                // $("#attention").show();
                 $("#attention").text("系统繁忙，请稍后再试");
             }
         });
     } 
-    console.log("到达attention函数上空");
     function attention() {
         $("#attention").css({
             "background-color": "#dee6a8",
             "border-radius":"3em",
             "border":"0.8em solid #c8cccf",
-            "font-size": "1em",
             "max-width":"100% "       
         });
-        $("#attention").show();
-        $("#attention").html(msg);
-    }
-    // $(".sign").on('click','#sign_btn',function(){
-    //     alert("你点了这个按钮");
-    //     sign();
-    // })
-    console.log("到达click函数上空");
+        }
     $("#sign_btn").click(function(){
-        alert("hey")
         console.log("你点了这个按钮");
         check();
     });
 
     //前端提示 msg 
     //所有部门 数组
-    console.log("到达selector函数上空");
     var depa = new Array(20);
     depa[0] = "技术部-代码组";
     depa[1] = "技术部-设计组";
