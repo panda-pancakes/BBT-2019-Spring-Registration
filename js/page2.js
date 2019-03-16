@@ -87,8 +87,8 @@ $(function () {
         if(a=1){
             return "不要输些奇奇怪怪的东西";
         }else{
-            $("#sign_btn").removeAttr("disabled");
-            sign();
+            // $("#sign_btn").removeAttr("disabled");
+            check();
             return "填完啦！正在帮你提交信息";
         }
     }
@@ -105,7 +105,7 @@ $(function () {
         var adjustment = $('.adjustment').val();
         var introduction = $('#introduction').val();
         //打包给php 
-        console.log("正在执行sign");
+        console.log("正在执行check");
         var info = JSON.stringify({
             name,
             sex,
@@ -141,7 +141,7 @@ $(function () {
                         $("#attention").show();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写不正确哦");
-                    } else if (introduction.test(data.errmsg)) {
+                    } else if (introduction.test(data.errmsgs)) {
                         $("#attention").show();
                         $("#introduction").focus();
                         $("#attention").text  ("哎呀个人简介不能超过50字哦");   
@@ -172,17 +172,15 @@ $(function () {
         });
         $("#attention").show();
         $("#attention").text(msg);
-        $("#sign_btn").removeAttr("disabled");
     }
-
-    
-    $("#sign_btn").click(function(){
+    $(".signbtn").on('click','#sign_btn',function(){
         console.log("你点了这个按钮");
-        speakloud();
-        $("#sign_btn").attr("disabled",true);
-        console.log(msg);
-        //禁用按钮    
+        sign();
     })
+    // $("#sign_btn").click(function(){
+    //     console.log("你点了这个按钮");
+    //     sign();
+    // });
 
     //前端提示 msg 
     //所有部门 数组
