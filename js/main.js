@@ -42,5 +42,5 @@ $(function(){
     depa[20] = "产品运营部（北校专业）";
     article[0]="部门简介一长串";
     var num = showSwiper.realIndex;
-    $("#depa").html(""+String(depa[num])+"");
+    $("#depa").html(depa[num]);
 }) 

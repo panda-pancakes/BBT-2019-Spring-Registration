@@ -22,7 +22,8 @@ $(function () {
         "vertical-align":" middle",
         "text-align": "center",
         "padding-left": "10%",
-        "padding-top": "25%"   
+        "padding-top": "35%" ,
+        "max-width":"200%",
         });
         $("#prev").css({
             "vertical-align": "middle"
