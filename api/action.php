@@ -115,7 +115,7 @@ if (!isset($_GET["method"])) {
 			} else {
 				$ret->errcode = "233";
 			}
-		//}
+		}
 	}
 	 
 } 
