@@ -16,7 +16,6 @@ $(function(){
             prevEl: '.swiper-button-prev',
           },
         });
-    var article = new Array();
     var depa = new Array(20);
     var showbox = document.getElementsByClassName("swiper-wrapper");
     depa[0] = "技术部-代码组";

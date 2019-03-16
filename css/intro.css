@@ -8,11 +8,11 @@
     z-index: 9;
     display: block;
     max-block-size: 300%;
-    max-width: 400px;
-    margin-top: 0px;
+    max-width: 356%;
+    margin-top: 0%;
 }
 #showbox{
-    margin-top: 10px;
+    margin-top: 2%;
 }
 #depa{
     text-align: center;
@@ -39,8 +39,8 @@
     align-items: center;
   }
 #btn10{
-    margin: 10px;
-    margin-left: 88px;
+    margin-left: 25%;
+    max-width: 135%;
     display: flex;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -60,6 +60,6 @@
     background-image: url("../img/swiper/button/2.png");
 }
 p{
-    max-width: 70%;
+    max-width: 73%;
     text-align: left;
 }
