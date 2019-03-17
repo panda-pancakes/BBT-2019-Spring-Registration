@@ -6,7 +6,6 @@ $(function () {
     $("#bgimg1").hide();
     $("#successbox").hide();
     //js混用
-<<<<<<< HEAD
     $("#name").bind('input propertychange', function() { 
         $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
         $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
@@ -29,30 +28,6 @@ $(function () {
         $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
         $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
         $("#introduction").attr("value",$("#introduction").val());
-=======
-    $("#name").bind('input propertychange', function () {
-        $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        $(this).attr("value", $(this).val());
-        cc();
-    });
-    $("#dorm").bind('input propertychange', function () {
-        $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        $(this).attr("value", $(this).val());
-        cc();
-    })
-    $("#tel").bind('input propertychange', function () {
-        $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        $(this).attr("value", $(this).val());
-        cc();
-    })
-    $("#introduction").bind('input propertychange', function () {
-        $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        $(this).attr("value", $(this).val());
->>>>>>> b7b50a141519dc78357b9f3fd7f2cd7f26ab064d
         cc();
     })
 
@@ -233,30 +208,15 @@ $(function () {
     }
     console.log("-------172---oninput上空 --------");
 
-<<<<<<< HEAD
     function cc(){
         var a=prevent();
-=======
-    function cc() {
-        var a = prevent();
->>>>>>> b7b50a141519dc78357b9f3fd7f2cd7f26ab064d
         // console.log("------a="+a+"------------");
         if (a == 1) {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
-<<<<<<< HEAD
             attention();    
         }else{
             
-=======
-            attention();
-        } else {
-            $("#sign_btn").click(function () {
-                // console.log("你点了这个按钮");
-                attention();
-                check();
-            });
->>>>>>> b7b50a141519dc78357b9f3fd7f2cd7f26ab064d
         }
     }
 
