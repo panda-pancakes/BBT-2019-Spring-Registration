@@ -60,21 +60,19 @@ function signup($info, $cover) {
 
 function admin_login($username, $passwd) {	
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
 	if ($con->connect_error) {
 		return -2;
-
 	} else {
 		//$enc_pwd = md5($passwd);
-		$stmt = $con->prepare("select permission from admin where department=? and password=?");
+		$stmt = $con->prepare("select permission from admin where username=? and password=?");
 		$stmt->bind_param("ss", $username, $passwd);
 		$stmt->execute();
 		$stmt->bind_result($ret);
 		$stmt->fetch();
-		var_dump($ret);
 		$stmt->close();
 		$con->close();
-		return $ret;
+
+		return isset($ret) ? $ret : -1;
 	}
 }
 

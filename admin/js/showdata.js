@@ -1,4 +1,4 @@
-$.get("/BBT-2019-Spring-Registration/BBT-2019-Spring-Registration/api/action.php?method=admin_query", function(result){
+$.get("../api/database.php?method=admin_query", function(result){
     var Eachdata = "";
     if(result.data == null){
         $("#Statistics").css("display","block")
