@@ -61,15 +61,18 @@ function admin_login($username, $passwd) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 	if ($con->connect_error) {
-		$ret = -2;
+		return -2;
 
 	} else {
-		$enc_pwd = md5($passwd);
+		//$enc_pwd = md5($passwd);
+		//var_dump($enc_pwd);
+		var_dump($passwd);
 		$stmt = $con->prepare("select permission from admin where department=? and password=?");
-		$stmt->bind_param("ss", $username, $enc_pwd);
+		$stmt->bind_param("ss", $username, $passwd);
 		$stmt->execute();
 		$stmt->bind_result($ret);
 		$stmt->fetch();
+		var_dump($ret);
 		$stmt->close();
 		$con->close();
 
@@ -86,13 +89,15 @@ function admin_query($permission) {
 		return -2;
 
 	} else {	
-		if ($permission === 0) {
+		if ($permission == 0) {
 			$stmt = $con->prepare("select * from application");
 		} else {
 			$stmt = $con->prepare("select * from application where department = ?");
 			$stmt->bind_param("s", $permission);
 		}
+		$ret = new StdClass();
 		$stmt->execute();
+		$stmt->bind_result($ret->name,$ret->sex,$ret->tel,$ret->grade,$ret->college,$ret->dorm,$ret->department,$ret->alternative,$ret->adjustment,$ret->introduction,$ret->timestamp,$ret->information,$ret->note);
 		// 这里还没处理
 		$stmt->fetch();
 		$stmt->close();	 

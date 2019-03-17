@@ -121,20 +121,21 @@ if (!isset($_GET["method"])) {
 
 	} else {
 		$status = admin_login($_POST["department"], $_POST["password"]);
+		var_dump($status);
 		if ($status >= 0) {
 			$_SESSION["department"] = $_POST["department"];
 			$_SESSION["permission"] = $status;
 		} elseif ($status == -2) {
 			$ret->errmsg = "database issue";
-		} else {
+		} else{
 			$ret->errmsg = "Either this account doesn't exist or the password is incorrect.";
 		}
 	}
 
 } elseif ($_GET["method"] == "admin_query") {
+	var_dump($_SESSION['permission']);
 	if (isset($_SESSION["permission"])) {
-		$ret->$data = admin_query($_SESSION["permission"]);
-
+		$ret->data = admin_query($_SESSION["permission"]);
 	} else {
 		$ret->errmsg = "Please login first";
 	}
