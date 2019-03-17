@@ -122,11 +122,12 @@ if (!isset($_GET["method"])) {
 	} else {
 		$status = admin_login($_POST["department"], $_POST["password"]);
 		if ($status >= 0) {
+			$ret->errcode = 0;
 			$_SESSION["department"] = $_POST["department"];
 			$_SESSION["permission"] = $status;
 		} elseif ($status == -2) {
 			$ret->errmsg = "database issue";
-		} else {
+		} else{
 			$ret->errmsg = "Either this account doesn't exist or the password is incorrect.";
 		}
 	}
@@ -134,11 +135,16 @@ if (!isset($_GET["method"])) {
 } elseif ($_GET["method"] == "admin_query") {
 	if (isset($_SESSION["permission"])) {
 		$ret->$data = admin_query($_SESSION["permission"]);
-
 	} else {
 		$ret->errmsg = "Please login first";
 	}
 
+}elseif($_GET['method'] == "change_department"){
+	if(isset($_GET['value'])){
+		$ret->errmsg = "Please select the department.";
+	}else{
+		$rett->$data = change_department($_GET['value']);
+	}
 } else {
 	$ret->errmsg = "Unspecified Method";
 }

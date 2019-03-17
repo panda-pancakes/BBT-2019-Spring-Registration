@@ -16,6 +16,7 @@ function query($info) {
 	$stmt->bind_param("ss", $info["name"], $info["tel"]);
 	$stmt->execute();
 	$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction, $ret->information);
+	var_dump($ret->name);
 	$stmt->fetch();
 	$stmt->close();
 	$con->close();
@@ -59,10 +60,8 @@ function signup($info, $cover) {
 
 function admin_login($username, $passwd) {	
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
 	if ($con->connect_error) {
-		$ret = -2;
-
+		return -2;
 	} else {
 		//$enc_pwd = md5($passwd);
 		$stmt = $con->prepare("select permission from admin where username=? and password=?");
@@ -86,18 +85,40 @@ function admin_query($permission) {
 		return -2;
 
 	} else {	
-		if ($permission === 0) {
+		if ($permission == 0) {
 			$stmt = $con->prepare("select * from application");
 		} else {
 			$stmt = $con->prepare("select * from application where department = ?");
-			$stmt->bind_param("s", $permission);
+			$stmt->bind_param("s",$permission);
 		}
 		$stmt->execute();
+		$stmt->bind_result($ret);
 		// 这里还没处理
 		$stmt->fetch();
 		$stmt->close();	 
     	$con->close();
 	}
 
+	return $ret;
+}
+function change_department($value){
+
+	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+	if($con->connect_error){
+		return -2;
+	}else{
+		if($value == 0){
+			$stmt = $con->prepare("select * from application");
+		}else{
+			$stmt = $con->prepare("select * from application where department = ?");
+			$stmt->bind_param("i",$value);
+		}
+		$stmt->execute();
+		$stmt->bind_result($ret);
+		$stmt->fetch();
+		$stmt->close();
+		$con->close();
+	}
 	return $ret;
 }

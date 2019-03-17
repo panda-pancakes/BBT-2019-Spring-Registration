@@ -7,8 +7,6 @@ $(document).ready(function(){
       },
       function(result){
         if(result.errcode == 0){
-          $("#errmsg").css("display","block")
-          document.getElementById('errmsg').innerHTML = result.errmsg,"json"
           window.location.href='index.html';
         }else{
           $("#errmsg").css("display","block")
