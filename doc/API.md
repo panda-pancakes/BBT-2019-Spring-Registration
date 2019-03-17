@@ -114,4 +114,24 @@ errmsg值为 `existed` 时表明该用户信息已存在(若姓名和手机号�
 | errmsg       | String  | API调用失败时返回的错误信息.	|
 | data         | Array   | 返回所有报名信息.				|
 
+##Change department
+###Description
+* 内部查询切换按钮
 
+### URL
+
+* `/aoi/action.php?method=change_department`
+
+###Method
+* `GET`
+
+### Encoding
+
+* `JSON`
+
+### Response
+| Parameter    | Type    | Description                  |
+| ------------ | ------- | ---------------------------- |
+| status       | Boolean | 成功返回ok，否则返回failed.	|
+| errmsg       | String  | API调用失败时返回的错误信息.	|
+| data         | Array   | 返回所有报名信息.				|
