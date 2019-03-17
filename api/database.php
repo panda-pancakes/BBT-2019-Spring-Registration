@@ -17,7 +17,6 @@ function query($info) {
 	$stmt->bind_param("ss", $info["name"], $info["tel"]);
 	$stmt->execute();
 	$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction, $ret->information);
-	var_dump($ret->name);
 	$stmt->fetch();
 	$stmt->close();
 	$con->close();
