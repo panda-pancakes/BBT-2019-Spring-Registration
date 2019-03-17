@@ -7,29 +7,29 @@ $(function () {
     $("#successbox").hide();
 
     //js混用
-    document.getElementById("name").oninput=function(){
+    document.getElementById("name").oninput = function () {
         console.log("oninput name");
-        $("#name").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#name").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $("#name").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
+        $("#name").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
         cc();
     }
-    document.getElementById("dorm").oninput=function(){
+    document.getElementById("dorm").oninput = function () {
         console.log("oninput dorm");
-        $("#dorm").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#dorm").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $("#dorm").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
+        $("#dorm").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
 
         cc();
     }
-    document.getElementById("tel").oninput=function(){
+    document.getElementById("tel").oninput = function () {
         console.log("oninput tel");
-        $("#tel").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#tel").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $("#tel").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
+        $("#tel").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
 
         cc();
     }
-    document.getElementById("introduction").oninput=function(){
-        $("#introduction").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#introduction").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+    document.getElementById("introduction").oninput = function () {
+        $("#introduction").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
+        $("#introduction").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
 
         cc();
     }
@@ -43,13 +43,13 @@ $(function () {
         $("#bbt").hide();
         // $("#check_box").show();
         $("#check_box").css({
-        "margin-top":"1%",
-        "display": "table",
-        "vertical-align":" middle",
-        "text-align": "center",
-        "padding-left": "10%",
-        "padding-top": "25%" ,
-        "max-width":"200%",
+            "margin-top": "1%",
+            "display": "table",
+            "vertical-align": " middle",
+            "text-align": "center",
+            "padding-left": "10%",
+            "padding-top": "25%",
+            "max-width": "200%",
         });
         $("#prev").css({
             "vertical-align": "middle"
@@ -103,7 +103,7 @@ $(function () {
                         $("#233").show();
                         attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
-                    }else {
+                    } else {
 
                         attention();
                         $("#attention").text("查询成功");
@@ -116,10 +116,10 @@ $(function () {
             }
         })
     })
-    
+
     //覆盖
     console.log("------96----路过覆盖函数上空 --------");
-    $("#cover_user").click(function(){
+    $("#cover_user").click(function () {
         console.log("覆盖");
         var name = $('#name').val();
         var tel = $("#tel").val();
@@ -127,7 +127,7 @@ $(function () {
             name,
             tel,
         });
-        $.post("/api/action.php?method=admin_query`", info, function (data,status) {
+        $.post("/api/action.php?method=admin_query`", info, function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
                     $("#233").show(); //直接报名按钮
@@ -146,7 +146,7 @@ $(function () {
                         $("#233").show();
                         attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
-                    }else {
+                    } else {
                         attention();
                         $("#attention").text("查询成功");
                         cover();
@@ -161,34 +161,36 @@ $(function () {
         })
     })
     console.log("------138----路过覆盖css函数上空 --------");
-    function cover(){
+
+    function cover() {
         $("#cover_user").show();
         $("#successbox:first-child").hide();
         $("#successbox").css({
             "visibility": "visible",
-            "display":"table-cell",
-            "z-index":"10",
-            "max-width":"100% ",
-            "color":" #707070",
-            "font-size": "1em",     
-            "text-align":"center"    
+            "display": "table-cell",
+            "z-index": "10",
+            "max-width": "100% ",
+            "color": " #707070",
+            "font-size": "1em",
+            "text-align": "center"
         });
     }
     console.log("----152------前端检查字符函数上空 --------");
     //前端检查字符
-    function prevent(){
+    function prevent() {
         function isBlank(str) {
             return (!str || /^\s*$/.test(str));
-            }
-        function check_uni(str){
+        }
+
+        function check_uni(str) {
             return (!str || !patt_illegal.test(str));
         }
     }
     console.log("-------172---oninput上空 --------");
 
-    function cc(){
-        var a=prevent();
-        if(a==1){
+    function cc() {
+        var a = prevent();
+        if (a == 1) {
             $("input").focus();
         }
         $("#attention").show();
@@ -197,17 +199,18 @@ $(function () {
     }
 
     console.log("-------182---oninput上空 --------");
+
     function attention() {
         console.log("attention");
         $("#attention").show();
         $("#cover_user").show();
         $("#attention").css({
-            "display":"table-cell",
+            "display": "table-cell",
         });
     }
-        console.log("------194----check上空 --------");
+    console.log("------194----check上空 --------");
     //注册
-    function check(){
+    function check() {
         var name = $('#name').val();
         var sex = $('.sex').val();
         var college = $('#college option:selected').val();
@@ -244,10 +247,10 @@ $(function () {
                     if (missing.test(data.errmsg)) {
                         attention();
                         $("input").focus();
-                        $("#attention").text ("你漏填了什么，请检查一下再提交哦");
+                        $("#attention").text("你漏填了什么，请检查一下再提交哦");
                     } else if (existed.test(data.errmsg)) {
                         attention();
-                        $("#attention").text ("您已经报名过，是否选择覆盖上次报名信息") ;
+                        $("#attention").text("您已经报名过，是否选择覆盖上次报名信息");
                     } else if (special.test(data.errmsg)) {
                         attention();
                         $("#name").focus();
@@ -261,7 +264,7 @@ $(function () {
                         $("#introduction").focus();
                         $("#attention").text("哎呀个人简介不能超过50字哦");
                     }
-                 } else {
+                } else {
                     attention();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
                 }
@@ -270,9 +273,9 @@ $(function () {
                 $("#attention").text("系统繁忙，请稍后再试");
             }
         });
-    } 
+    }
     console.log("------260----signbtn上空 --------");
-    $("#sign_btn").click(function(){
+    $("#sign_btn").click(function () {
         console.log("你点了这个按钮");
         attention();
         cc();
@@ -303,7 +306,35 @@ $(function () {
     depa[19] = "综合管理部-摄影记者";
     depa[20] = "产品运营部（北校专业）";
 
-    var major = new Array();
+    var major = new Array(28);
+    major[1] = "机械与汽车工程学院";
+    major[2] = "建筑学院";
+    major[3] = "土木与交通学院";
+    major[4] = "电子与信息学院";
+    major[5] = "材料科学与工程学院";
+    major[6] = "化学与化工学院";
+    major[7] = "轻工科学与工程学院";
+    major[8] = "食品科学与工程学院";
+    major[9] = "数学学院";
+    major[10] = "物理与光电学院";
+    major[11] = "经济与贸易学院";
+    major[12] = "自动化科学与工程学院";
+    major[13] = "计算机科学与工程学院";
+    major[14] = "电力学院";
+    major[15] = "生物科学与工程学院"
+    major[16] = "环境与能源学院";
+    major[17] = "软件学院";
+    major[18] = "工商管理学院";
+    major[19] = "公共管理学院";
+    major[20] = "马克思主义学院";
+    major[21] = "外国语学院";
+    major[22] = "法学院";
+    major[23] = "新闻与传播学院";
+    major[24] = "艺术学院";
+    major[25] = "体育学院";
+    major[26] = "设计学院";
+    major[27] = "医学院";
+    major[28] = "国际教育学院";
 
     //select的option value循环
     function selector() {
