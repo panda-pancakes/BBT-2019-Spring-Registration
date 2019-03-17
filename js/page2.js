@@ -5,7 +5,6 @@ $(function () {
     $("#cover_user").hide();
     $("#bgimg1").hide();
     $("#successbox").hide();
-
     //js混用
     document.getElementById("name").oninput = function () {
         console.log("oninput name");
@@ -209,6 +208,7 @@ $(function () {
         });
     }
     console.log("------194----check上空 --------");
+
     //注册
     function check() {
         var name = $('#name').val();
