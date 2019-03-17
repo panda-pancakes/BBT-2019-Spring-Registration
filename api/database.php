@@ -3,6 +3,7 @@ require_once("../config.php");
 
 function query($info) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	$con->set_charset('utf8');
 	
 	if ($con->connect_error) {
 		return -2;
@@ -60,6 +61,7 @@ function signup($info, $cover) {
 
 function admin_login($username, $passwd) {	
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	$con->set_charset('utf8');
 	if ($con->connect_error) {
 		return -2;
 	} else {
@@ -80,7 +82,7 @@ function admin_login($username, $passwd) {
 function admin_query($permission) {
 
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
+	$con->set_charset('utf8');
 	if($con->connect_error){
 		return -2;
 
@@ -104,7 +106,7 @@ function admin_query($permission) {
 function change_department($value){
 
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
+	$con->set_charset('utf8');
 	if($con->connect_error){
 		return -2;
 	}else{
