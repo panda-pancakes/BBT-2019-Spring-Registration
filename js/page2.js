@@ -4,8 +4,7 @@ $(function () {
     $("#233").hide();
     $("#cover_user").hide();
     $("#bgimg1").hide();
-    var name = $('#name').val();
-    var tel = $("#tel").val();
+    $("#successbox").hide();
     var dorm = $("#dorm").val();
     var msg = String;
     //用来前端提示 信息
@@ -50,6 +49,7 @@ $(function () {
     }) //显示查询页面
     console.log("到达checkbtn函数上空");
 
+    //真的查询
     $("#check_btn").click(function () {
         console.log("你点了这个按钮");
         var name = $('#name').val();
@@ -60,6 +60,46 @@ $(function () {
         });
         console.log(info);
         $.post("./api/action.php?method=query", info, function (data, status) {
+            if (status == "success") {
+                if (data.status == "failed") {
+                    $("#233").show(); //直接报名按钮
+                    var missing = new RegExp('Missing');
+                    var telephone = new RegExp('telephone');
+                    if (missing.test(data.errmsg)) {
+                        $("#attention").show();
+                        $(".text").focus();
+                        $("#attention").text("你漏填了什么，请检查一下再提交哦");
+                    } else if (telephone.test(data.errmsg)) {
+                        $("#attention").show();
+                        $("#tel").focus();
+                        $("#attention").text("哎呀手机号填写格式不正确哦");
+                    } else if (data.errcode == '233') {
+                        $("#233").show();
+                        $("#attention").show();
+                        $("#attention").text("不好意思，没有您的报名信息哦");
+                    }else {
+                        $("#cover_user").show();
+                        $("#attention").show();
+                        $("#attention").text("查询成功");
+                        console.log(data.info);
+                    }
+                } else {
+                    $("#attention").show();
+                    $("#attention").text("系统繁忙，请稍后再试");
+                }
+            }
+        })
+    })
+    
+    $("#cover_user").click(function(){
+        console.log("覆盖");
+        var name = $('#name').val();
+        var tel = $("#tel").val();
+        var info = JSON.stringify({
+            name,
+            tel,
+        });
+        $.post("/api/action.php?method=admin_query`", info, function (data,status) {
             if (status == "success") {
                 if (data.status == "failed") {
                     $("#233").show(); //直接报名按钮
@@ -89,26 +129,34 @@ $(function () {
                     $("#attention").text("系统繁忙，请稍后再试");
                 }
             }
-        })})
+        })
+    })
     
     //前端检查字符
-    // function prevent(){
-    //     function isBlank(str) {
-    //         return (!str || /^\s*$/.test(str));
-    //         }
-    //     function check_uni(str){
-    //         return (!str || !patt_illegal.test(str));
-    //     }
-    //     var test_str1 = "*";
-    //     var test_str2 = "你";
-    //     console.log("isBlank测试：")
-    //     console.log(isBlank(test_str1));
-    //     console.log("-----------分界线-------");
-    //     console.log("check_uni测试：");
-    //     console.log(check_uni(test_str2));
-    //     if(isBlank(name)&&isBlank(tel){}
-        
-    // }
+    var input = document.getElementsByTagName("input");
+    function prevent(){
+        function isBlank(str) {
+            return (!str || /^\s*$/.test(str));
+            }
+        function check_uni(str){
+            return (!str || !patt_illegal.test(str));
+        }
+        if(!isBlank($("input[required='required']").val())){
+            if(check_uni($("#name").val())){
+                return 0;
+            }else{
+                input = input.replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+                input = input.replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+                return 1;
+            }
+        }
+    }
+    oninput(function(){
+        var a=prevent();
+        if(a==1){
+            input.focus();
+        }
+    })
     function check(){
         var name = $('#name').val();
         var sex = $('.sex').val();
