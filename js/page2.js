@@ -6,28 +6,28 @@ $(function () {
     $("#bgimg1").hide();
     $("#successbox").hide();
     //js混用
-    $("#name").bind('input propertychange', function() { 
-        $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $(this).attr("value",$(this).val());
+    $("#name").bind('input propertychange', function () {
+        $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
+        $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
+        $(this).attr("value", $(this).val());
         cc();
-       });
-    $("#dorm").bind('input propertychange', function(){
-        $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $(this).attr("value",$(this).val());
-        cc();
-    })
-    $("#tel").bind('input propertychange', function(){
-        $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $(this).attr("value",$(this).val());
+    });
+    $("#dorm").bind('input propertychange', function () {
+        $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
+        $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
+        $(this).attr("value", $(this).val());
         cc();
     })
-    $("#introduction").bind('input propertychange', function(){
-        $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $(this).attr("value",$(this).val());
+    $("#tel").bind('input propertychange', function () {
+        $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
+        $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
+        $(this).attr("value", $(this).val());
+        cc();
+    })
+    $("#introduction").bind('input propertychange', function () {
+        $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
+        $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
+        $(this).attr("value", $(this).val());
         cc();
     })
 
@@ -175,47 +175,49 @@ $(function () {
     function isBlank(str) {
         return (!str || /^\s*$/.test(str));
     }
-    function check_uni(str){
-        var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");    
+
+    function check_uni(str) {
+        var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
         return (!str || !patt_illegal.test(str));
     }
-    function prevent(){
-        var name=$("#name").val();
-        var tel=$("#tel").val();
-        var dorm=$("#dorm").val();
-        var rest =true;
-        if(isBlank(name)){
+
+    function prevent() {
+        var name = $("#name").val();
+        var tel = $("#tel").val();
+        var dorm = $("#dorm").val();
+        var rest = true;
+        if (isBlank(name)) {
             $("#name").focus();
-            rest=false;
-            if(!check_uni(name)){
+            rest = false;
+            if (!check_uni(name)) {
                 $("#name").focus();
-                rest=false;
+                rest = false;
             }
-        }else if(isBlank(dorm)){
-            rest=false;
-            if(!check_uni(dorm)){
-                rest=false;
+        } else if (isBlank(dorm)) {
+            rest = false;
+            if (!check_uni(dorm)) {
+                rest = false;
             }
-        }else if(isBlank(tel)){
-            rest=false;
+        } else if (isBlank(tel)) {
+            rest = false;
         }
-        if(rest){
+        if (rest) {
             return 0;
-        }else{
+        } else {
             return 1;
         }
     }
     console.log("-------172---oninput上空 --------");
 
-    function cc(){
-        var a=prevent();
+    function cc() {
+        var a = prevent();
         // console.log("------a="+a+"------------");
-        if(a==1){
+        if (a == 1) {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
-            attention();    
-        }else{
-            $("#sign_btn").click(function(){
+            attention();
+        } else {
+            $("#sign_btn").click(function () {
                 // console.log("你点了这个按钮");
                 attention();
                 check();
@@ -234,18 +236,17 @@ $(function () {
         });
     }
     console.log("------194----check上空 --------");
-
     //注册
     function check() {
         var name = $('#name').val();
-        var sex = $('.sex').val();
-        var college = $('#college option:selected').val();
-        var grade = $(".grade").val();
+        var sex = $('input:radio[name="sex"]:checked').val();
+        var college = $("select#college").get(0).selectedIndex;
+        var grade = $('input:radio[name="grade"]:checked').val();
         var dorm = $("#dorm").val();
         var tel = $('#tel').val();
-        var department = $('#department option:selected').val();
-        var alternative = $('#alternative option:selected').val();
-        var adjustment = $('.adjustment').val();
+        var department = $("select#college").get(0).selectedIndex;
+        var alternative = $("select#college").get(0).selectedIndex;
+        var adjustment = $('input:radio[name="adjustment"]:checked').val();
         var introduction = $('#introduction').val();
         //打包给php 
         console.log("正在执行check：");
