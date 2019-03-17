@@ -214,19 +214,9 @@ $(function () {
         if (a == 1) {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
-<<<<<<< HEAD
-            attention();
-        } else {
-            $("#sign_btn").click(function () {
-                console.log("你点了这个按钮");
-                attention();
-                check();
-            });
-=======
             attention();    
         }else{
             
->>>>>>> 95a38a75b7e152edd3a1c69d980bd38fcd3c343f
         }
     }
     console.log("-------182---oninput上空 --------");
