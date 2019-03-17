@@ -279,6 +279,8 @@ $(function () {
         console.log("你点了这个按钮");
         attention();
         cc();
+        check();
+        
     });
 
     //前端提示 msg 
