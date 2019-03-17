@@ -6,28 +6,28 @@ $(function () {
     $("#bgimg1").hide();
     $("#successbox").hide();
     //js混用
-    $("#name").bind('input propertychange', function () {
-        $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        $(this).attr("value", $(this).val());
+    $("#name").bind('input propertychange', function() { 
+        $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $("#name").attr("value",$("#name").val());
         cc();
-    });
-    $("#dorm").bind('input propertychange', function () {
-        $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        $(this).attr("value", $(this).val());
-        cc();
-    })
-    $("#tel").bind('input propertychange', function () {
-        $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        $(this).attr("value", $(this).val());
+       });
+    $("#dorm").bind('input propertychange', function(){
+        $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $("#dorm").attr("value",$("#dorm").val());
         cc();
     })
-    $("#introduction").bind('input propertychange', function () {
-        $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        $(this).attr("value", $(this).val());
+    $("#tel").bind('input propertychange', function(){
+        $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $("#tel").attr("value",$("#tel").val());
+        cc();
+    })
+    $("#introduction").bind('input propertychange', function(){
+        $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $("#introduction").attr("value",$("#introduction").val());
         cc();
     })
 
@@ -99,7 +99,6 @@ $(function () {
                         attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
                     } else {
-
                         attention();
                         $("#attention").text("查询成功");
                         console.log(data.info);
@@ -209,12 +208,13 @@ $(function () {
     }
     console.log("-------172---oninput上空 --------");
 
-    function cc() {
-        var a = prevent();
+    function cc(){
+        var a=prevent();
         // console.log("------a="+a+"------------");
         if (a == 1) {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
+<<<<<<< HEAD
             attention();
         } else {
             $("#sign_btn").click(function () {
@@ -222,6 +222,11 @@ $(function () {
                 attention();
                 check();
             });
+=======
+            attention();    
+        }else{
+            
+>>>>>>> 95a38a75b7e152edd3a1c69d980bd38fcd3c343f
         }
     }
     console.log("-------182---oninput上空 --------");

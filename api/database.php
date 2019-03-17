@@ -64,16 +64,16 @@ function admin_login($username, $passwd) {
 		$ret = -2;
 
 	} else {
-		$enc_pwd = md5($passwd);
+		//$enc_pwd = md5($passwd);
 		$stmt = $con->prepare("select permission from admin where username=? and password=?");
-		$stmt->bind_param("ss", $username, $enc_pwd);
+		$stmt->bind_param("ss", $username, $passwd);
 		$stmt->execute();
 		$stmt->bind_result($ret);
 		$stmt->fetch();
 		$stmt->close();
 		$con->close();
 
-		return $ret;
+		return isset($ret) ? $ret : -1;
 	}
 }
 
