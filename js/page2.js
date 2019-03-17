@@ -6,7 +6,6 @@ $(function () {
     $("#bgimg1").hide();
     $("#successbox").hide();
     //js混用
-<<<<<<< HEAD
     $("#name").bind('input propertychange', function() { 
         $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
         $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
@@ -29,32 +28,6 @@ $(function () {
         $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
         $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
         $(this).attr("value",$(this).val());
-=======
-    document.getElementById("name").oninput = function () {
-        console.log("oninput name");
-        $("#name").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#name").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-        cc();
-    }
-    document.getElementById("dorm").oninput = function () {
-        console.log("oninput dorm");
-        $("#dorm").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#dorm").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-
-        cc();
-    }
-    document.getElementById("tel").oninput = function () {
-        console.log("oninput tel");
-        $("#tel").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#tel").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-
-        cc();
-    }
-    document.getElementById("introduction").oninput = function () {
-        $("#introduction").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
-        $("#introduction").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
-
->>>>>>> 3b2e5dd0d3cfe5c44622fd33cd55916ebef12fdb
         cc();
     })
 
@@ -199,7 +172,6 @@ $(function () {
     }
     console.log("----152------前端检查字符函数上空 --------");
     //前端检查字符
-<<<<<<< HEAD
     function isBlank(str) {
         return (!str || /^\s*$/.test(str));
     }
@@ -231,20 +203,10 @@ $(function () {
             return 0;
         }else{
             return 1;
-=======
-    function prevent() {
-        function isBlank(str) {
-            return (!str || /^\s*$/.test(str));
-        }
-
-        function check_uni(str) {
-            return (!str || !patt_illegal.test(str));
->>>>>>> 3b2e5dd0d3cfe5c44622fd33cd55916ebef12fdb
         }
     }
     console.log("-------172---oninput上空 --------");
 
-<<<<<<< HEAD
     function cc(){
         var a=prevent();
         // console.log("------a="+a+"------------");
@@ -258,12 +220,6 @@ $(function () {
                 attention();
                 check();
             });
-=======
-    function cc() {
-        var a = prevent();
-        if (a == 1) {
-            $("input").focus();
->>>>>>> 3b2e5dd0d3cfe5c44622fd33cd55916ebef12fdb
         }
     }
 
@@ -345,17 +301,6 @@ $(function () {
         });
     }
     console.log("------260----signbtn上空 --------");
-<<<<<<< HEAD
-
-=======
-    $("#sign_btn").click(function () {
-        console.log("你点了这个按钮");
-        attention();
-        cc();
-        check();
-        
-    });
->>>>>>> 3b2e5dd0d3cfe5c44622fd33cd55916ebef12fdb
 
     //前端提示 msg 
     //所有部门 数组
