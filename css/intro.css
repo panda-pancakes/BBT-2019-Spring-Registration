@@ -14,7 +14,8 @@
     z-index: 9;
     display: block;
     max-block-size: 300%;
-    max-width: 356%;
+    width: -webkit-fill-available;
+    background: none;
     margin-top: 0%;
 }
 body{
@@ -77,14 +78,20 @@ body{
     max-width: 100%;
 }
 .swiper-button-prev{
+    background: none;
+    background-position: left;
     background-image: url("../img/swiper/button/1.png");
     position: fixed;
+    margin-top: 10%;
     left: 2%;
     /* margin-left: -37px; */
 }
 .swiper-button-next{
+    background: none;
+    background-position: right;
     background-image: url("../img/swiper/button/2.png");
     position: fixed;
+    margin-top: 10%;
     right: 2%;
 }
 #depa{

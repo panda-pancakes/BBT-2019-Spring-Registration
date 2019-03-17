@@ -61,14 +61,19 @@ input[type="text"],input[type="tel"]{
 .prev{
     position: fixed;
     top:0%;
-    margin-left: -11.5%;
-    max-width: 100%;
+    top: 0%;
+    display: block;
+    /* margin-left: -11.5%; */
+    left: 0%;
+    width: -webkit-fill-available;
+    background: none;
     padding: 0%;
     background: none;
 }
 #bgimg1{
     position:fixed;
     bottom: 0%;
+    width: -webkit-fill-available;
     max-width: 100%;
     z-index: -1;
 }
@@ -83,10 +88,19 @@ input{
     border-radius:4px;
     border:1px solid #c8cccf;
     font-size: 0.8em;
-    margin-top: 3%;
-    padding: 3%;
+    padding: 1.4%;
     color: #707070;
     font-size: 1.1em;
     background-color: #dee6a8;
-    border-radius:0.3em；
+    border-radius:0.3em;
+    /* margin-left: 25%; */
+    max-width: 64%;
+}
+#successbox{
+    display: block;
+    z-index: 10;
+    max-width: 100% ;
+    color:  #707070;
+    font-size: 1em;
+    text-align: center;
 }
