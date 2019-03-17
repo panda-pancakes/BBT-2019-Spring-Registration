@@ -6,6 +6,30 @@ $(function () {
     $("#bgimg1").hide();
     $("#successbox").hide();
     //js混用
+<<<<<<< HEAD
+    $("#name").bind('input propertychange', function() { 
+        $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $(this).attr("value",$(this).val());
+        cc();
+       });
+    $("#dorm").bind('input propertychange', function(){
+        $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $(this).attr("value",$(this).val());
+        cc();
+    })
+    $("#tel").bind('input propertychange', function(){
+        $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $(this).attr("value",$(this).val());
+        cc();
+    })
+    $("#introduction").bind('input propertychange', function(){
+        $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $(this).attr("value",$(this).val());
+=======
     document.getElementById("name").oninput = function () {
         console.log("oninput name");
         $("#name").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
@@ -30,10 +54,9 @@ $(function () {
         $("#introduction").text().replace("/[\'\"\\\/\b\f\n\r\t]/g", "");
         $("#introduction").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?", "");
 
+>>>>>>> 3b2e5dd0d3cfe5c44622fd33cd55916ebef12fdb
         cc();
-    }
-    //用来前端提示 信息
-    var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
+    })
 
     console.log("------14----js错误检查程序loading--------");
     console.log("------15----查询进度 页面 输入手机号和姓名 --------");
@@ -150,7 +173,7 @@ $(function () {
                         $("#attention").text("查询成功");
                         cover();
                         $("#successbox:first-child").show();
-                        console.log(data.info);
+                        // console.log(data.info);
                     }
                 } else {
                     attention();
@@ -176,6 +199,39 @@ $(function () {
     }
     console.log("----152------前端检查字符函数上空 --------");
     //前端检查字符
+<<<<<<< HEAD
+    function isBlank(str) {
+        return (!str || /^\s*$/.test(str));
+    }
+    function check_uni(str){
+        var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");    
+        return (!str || !patt_illegal.test(str));
+    }
+    function prevent(){
+        var name=$("#name").val();
+        var tel=$("#tel").val();
+        var dorm=$("#dorm").val();
+        var rest =true;
+        if(isBlank(name)){
+            $("#name").focus();
+            rest=false;
+            if(!check_uni(name)){
+                $("#name").focus();
+                rest=false;
+            }
+        }else if(isBlank(dorm)){
+            rest=false;
+            if(!check_uni(dorm)){
+                rest=false;
+            }
+        }else if(isBlank(tel)){
+            rest=false;
+        }
+        if(rest){
+            return 0;
+        }else{
+            return 1;
+=======
     function prevent() {
         function isBlank(str) {
             return (!str || /^\s*$/.test(str));
@@ -183,24 +239,38 @@ $(function () {
 
         function check_uni(str) {
             return (!str || !patt_illegal.test(str));
+>>>>>>> 3b2e5dd0d3cfe5c44622fd33cd55916ebef12fdb
         }
     }
     console.log("-------172---oninput上空 --------");
 
+<<<<<<< HEAD
+    function cc(){
+        var a=prevent();
+        // console.log("------a="+a+"------------");
+        if(a==1){
+            $("attention").text("请再检查一下自己填的内容！");
+            $("#attention").show();
+            attention();    
+        }else{
+            $("#sign_btn").click(function(){
+                // console.log("你点了这个按钮");
+                attention();
+                check();
+            });
+=======
     function cc() {
         var a = prevent();
         if (a == 1) {
             $("input").focus();
+>>>>>>> 3b2e5dd0d3cfe5c44622fd33cd55916ebef12fdb
         }
-        $("#attention").show();
-        attention();
-        $("attention").text("请再检查一下自己填的内容！");
     }
 
     console.log("-------182---oninput上空 --------");
 
     function attention() {
-        console.log("attention");
+        console.log($("#attention").val());
         $("#attention").show();
         $("#cover_user").show();
         $("#attention").css({
@@ -259,7 +329,7 @@ $(function () {
                         attention();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写不正确哦");
-                    } else if (introduction.test(data.errmsgs)) {
+                    } else if (introduction.test(data.errmsg)) {
                         attention();
                         $("#introduction").focus();
                         $("#attention").text("哎呀个人简介不能超过50字哦");
@@ -275,6 +345,9 @@ $(function () {
         });
     }
     console.log("------260----signbtn上空 --------");
+<<<<<<< HEAD
+
+=======
     $("#sign_btn").click(function () {
         console.log("你点了这个按钮");
         attention();
@@ -282,6 +355,7 @@ $(function () {
         check();
         
     });
+>>>>>>> 3b2e5dd0d3cfe5c44622fd33cd55916ebef12fdb
 
     //前端提示 msg 
     //所有部门 数组
