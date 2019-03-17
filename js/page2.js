@@ -208,6 +208,16 @@ $(function () {
     }
     console.log("-------172---oninput上空 --------");
 
+    $("#sign_btn").click(function(){
+        if(cc()==true){
+            check();
+        }else{
+            $("attention").text("请再检查一下自己填的内容！");
+            $("#attention").show();
+            attention();    
+        }
+    })
+
     function cc(){
         var a=prevent();
         // console.log("------a="+a+"------------");
@@ -215,8 +225,9 @@ $(function () {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
             attention();    
+            return false;
         }else{
-            
+            return true;
         }
     }
 
