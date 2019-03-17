@@ -5,36 +5,31 @@ $(function () {
     $("#cover_user").hide();
     $("#bgimg1").hide();
     $("#successbox").hide();
-
     //js混用
-    document.getElementById("name").oninput=function(){
-        console.log("oninput name");
-        $("#name").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#name").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+    $("#name").bind('input propertychange', function() { 
+        $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $(this).attr("value",$(this).val());
         cc();
-    }
-    document.getElementById("dorm").oninput=function(){
-        console.log("oninput dorm");
-        $("#dorm").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#dorm").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-
+       });
+    $("#dorm").bind('input propertychange', function(){
+        $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $(this).attr("value",$(this).val());
         cc();
-    }
-    document.getElementById("tel").oninput=function(){
-        console.log("oninput tel");
-        $("#tel").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#tel").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-
+    })
+    $("#tel").bind('input propertychange', function(){
+        $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $(this).attr("value",$(this).val());
         cc();
-    }
-    document.getElementById("introduction").oninput=function(){
-        $("#introduction").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#introduction").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-
+    })
+    $("#introduction").bind('input propertychange', function(){
+        $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        $(this).attr("value",$(this).val());
         cc();
-    }
-    //用来前端提示 信息
-    var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
+    })
 
     console.log("------14----js错误检查程序loading--------");
     console.log("------15----查询进度 页面 输入手机号和姓名 --------");
@@ -151,7 +146,7 @@ $(function () {
                         $("#attention").text("查询成功");
                         cover();
                         $("#successbox:first-child").show();
-                        console.log(data.info);
+                        // console.log(data.info);
                     }
                 } else {
                     attention();
@@ -176,29 +171,60 @@ $(function () {
     }
     console.log("----152------前端检查字符函数上空 --------");
     //前端检查字符
+    function isBlank(str) {
+        return (!str || /^\s*$/.test(str));
+    }
+    function check_uni(str){
+        var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");    
+        return (!str || !patt_illegal.test(str));
+    }
     function prevent(){
-        function isBlank(str) {
-            return (!str || /^\s*$/.test(str));
+        var name=$("#name").val();
+        var tel=$("#tel").val();
+        var dorm=$("#dorm").val();
+        var rest =true;
+        if(isBlank(name)){
+            $("#name").focus();
+            rest=false;
+            if(!check_uni(name)){
+                $("#name").focus();
+                rest=false;
             }
-        function check_uni(str){
-            return (!str || !patt_illegal.test(str));
+        }else if(isBlank(dorm)){
+            rest=false;
+            if(!check_uni(dorm)){
+                rest=false;
+            }
+        }else if(isBlank(tel)){
+            rest=false;
+        }
+        if(rest){
+            return 0;
+        }else{
+            return 1;
         }
     }
     console.log("-------172---oninput上空 --------");
 
     function cc(){
         var a=prevent();
+        // console.log("------a="+a+"------------");
         if(a==1){
-            $("input").focus();
+            $("attention").text("请再检查一下自己填的内容！");
+            $("#attention").show();
+            attention();    
+        }else{
+            $("#sign_btn").click(function(){
+                // console.log("你点了这个按钮");
+                attention();
+                check();
+            });
         }
-        $("#attention").show();
-        attention();
-        $("attention").text("请再检查一下自己填的内容！");
     }
 
     console.log("-------182---oninput上空 --------");
     function attention() {
-        console.log("attention");
+        console.log($("#attention").val());
         $("#attention").show();
         $("#cover_user").show();
         $("#attention").css({
@@ -256,7 +282,7 @@ $(function () {
                         attention();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写不正确哦");
-                    } else if (introduction.test(data.errmsgs)) {
+                    } else if (introduction.test(data.errmsg)) {
                         attention();
                         $("#introduction").focus();
                         $("#attention").text("哎呀个人简介不能超过50字哦");
@@ -272,15 +298,11 @@ $(function () {
         });
     } 
     console.log("------260----signbtn上空 --------");
-    $("#sign_btn").click(function(){
-        console.log("你点了这个按钮");
-        attention();
-        cc();
-    });
+
 
     //前端提示 msg 
     //所有部门 数组
-    var depa = new Array(20);
+    var depa = new Array();
     depa[0] = "技术部-代码组";
     depa[1] = "技术部-设计组";
     depa[2] = "技术部（北校专业）";
