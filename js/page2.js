@@ -6,31 +6,33 @@ $(function () {
     $("#bgimg1").hide();
     $("#successbox").hide();
     //js混用
-    $("#name").bind('input propertychange', function() { 
-        $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $("#name").attr("value",$("#name").val());
-        cc();
-       });
-    $("#dorm").bind('input propertychange', function(){
-        $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $("#dorm").attr("value",$("#dorm").val());
-        cc();
-    })
-    $("#tel").bind('input propertychange', function(){
-        $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $("#tel").attr("value",$("#tel").val());
-        cc();
-    })
-    $("#introduction").bind('input propertychange', function(){
-        $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-        $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $("#introduction").attr("value",$("#introduction").val());
-        cc();
-    })
-
+    function oninput(){
+        $("#name").bind('input propertychange', function() { 
+            $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+            $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+            $("#name").attr("value",$("#name").val());
+            cc();
+           });
+        $("#dorm").bind('input propertychange', function(){
+            $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+            $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+            $("#dorm").attr("value",$("#dorm").val());
+            cc();
+        })
+        $("#tel").bind('input propertychange', function(){
+            $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+            $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+            $("#tel").attr("value",$("#tel").val());
+            cc();
+        })
+        $("#introduction").bind('input propertychange', function(){
+            $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+            $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+            $("#introduction").attr("value",$("#introduction").val());
+            cc();
+        })    
+    }
+    oninput();
     console.log("------14----js错误检查程序loading--------");
     console.log("------15----查询进度 页面 输入手机号和姓名 --------");
     //查询进度 页面 输入手机号和姓名 
@@ -121,11 +123,9 @@ $(function () {
             name,
             tel,
         });
-        $.post("/api/action.php?method=admin_query`", info, function (data, status) {
+        $.post("/api/action.php?method=query", info, function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
-                    $("#233").show(); //直接报名按钮
-                    $("#cover_user").show(); //修改按钮
                     var missing = new RegExp('Missing');
                     var telephone = new RegExp('telephone');
                     if (missing.test(data.errmsg)) {
@@ -141,15 +141,15 @@ $(function () {
                         attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
                     } else {
-                        attention();
-                        $("#attention").text("查询成功");
+                        attention();$("#attention").text("系统繁忙，请稍后再试");
+                       
                         cover();
                         $("#successbox:first-child").show();
                         // console.log(data.info);
                     }
                 } else {
                     attention();
-                    $("#attention").text("系统繁忙，请稍后再试");
+                     $("#attention").text("查询成功");
                 }
             }
         })
@@ -174,7 +174,10 @@ $(function () {
     function isBlank(str) {
         return (!str || /^\s*$/.test(str));
     }
-
+    function check_num(a){
+        var patt_num = new RegExp("0123456789");
+        return (patt_num.test(a));
+    }
     function check_uni(str) {
         var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
         return (!str || !patt_illegal.test(str));
@@ -194,10 +197,8 @@ $(function () {
             }
         } else if (isBlank(dorm)) {
             rest = false;
-            if (!check_uni(dorm)) {
-                rest = false;
-            }
-        } else if (isBlank(tel)) {
+        } else if (check_num(tel)) {
+            $("#tel").focus();
             rest = false;
         }
         if (rest) {
@@ -208,6 +209,16 @@ $(function () {
     }
     console.log("-------172---oninput上空 --------");
 
+    $("#sign_btn").click(function(){
+        if(cc()==true){
+            check();
+        }else{
+            $("attention").text("请再检查一下自己填的内容！");
+            $("#attention").show();
+            attention();    
+        }
+    })
+
     function cc(){
         var a=prevent();
         // console.log("------a="+a+"------------");
@@ -215,8 +226,9 @@ $(function () {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
             attention();    
+            return false;
         }else{
-            
+            return true;
         }
     }
     console.log("-------182---oninput上空 --------");
@@ -271,6 +283,7 @@ $(function () {
                         $("#attention").text("你漏填了什么，请检查一下再提交哦");
                     } else if (existed.test(data.errmsg)) {
                         attention();
+                        
                         $("#attention").text("您已经报名过，是否选择覆盖上次报名信息");
                     } else if (special.test(data.errmsg)) {
                         attention();
