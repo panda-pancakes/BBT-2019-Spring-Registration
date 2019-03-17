@@ -32,7 +32,7 @@ function signup($info, $cover) {
 
 	$data = query($info);
 
-	if ($data->name) {
+	if ($data->name && $data->tel) {
 		if ($cover) {
 			$sql = "update application set sex = ?, grade = ?, college = ?, dorm = ?, department = ?, alternative = ?, adjustment = ?, introduction = ? where name = ? && tel = ?";
 			$stmt = $con->prepare($sql);
