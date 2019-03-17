@@ -218,13 +218,12 @@ $(function () {
             attention();
         } else {
             $("#sign_btn").click(function () {
-                // console.log("你点了这个按钮");
+                console.log("你点了这个按钮");
                 attention();
                 check();
             });
         }
     }
-
     console.log("-------182---oninput上空 --------");
 
     function attention() {
