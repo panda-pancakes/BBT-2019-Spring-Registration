@@ -92,14 +92,21 @@ select{
     font-size: 0.8em;
 }
 #attention{
-    visibility: hidden;
+    display: none;
+    z-index: 10;
     background-color: #dee6a8;
     border-radius:4px;
     border:1px solid #c8cccf;
     font-size: 0.8em;
     margin-top: 3%;
     padding: 3%;
+    color: #707070;
     font-size: 1.1em;
     background-color: #dee6a8;
     border-radius:0.3em；
+}
+#successs{
+    display: none;
+    color: #707070;
+    font-size: 0.93em;
 }
