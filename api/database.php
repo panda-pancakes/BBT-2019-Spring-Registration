@@ -65,7 +65,7 @@ function admin_login($username, $passwd) {
 
 	} else {
 		$enc_pwd = md5($passwd);
-		$stmt = $con->prepare("select permission from admin where department=? and password=?");
+		$stmt = $con->prepare("select permission from admin where username=? and password=?");
 		$stmt->bind_param("ss", $username, $enc_pwd);
 		$stmt->execute();
 		$stmt->bind_result($ret);
