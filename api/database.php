@@ -3,6 +3,7 @@ require_once("../config.php");
 
 function query($info) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	$con->set_charset('utf8');
 	
 	if ($con->connect_error) {
 		return -2;
@@ -16,7 +17,6 @@ function query($info) {
 	$stmt->bind_param("ss", $info["name"], $info["tel"]);
 	$stmt->execute();
 	$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction, $ret->information);
-	var_dump($ret->name);
 	$stmt->fetch();
 	$stmt->close();
 	$con->close();
@@ -33,7 +33,7 @@ function signup($info, $cover) {
 
 	$data = query($info);
 
-	if ($data->name) {
+	if ($data->name && $data->tel) {
 		if ($cover) {
 			$sql = "update application set sex = ?, grade = ?, college = ?, dorm = ?, department = ?, alternative = ?, adjustment = ?, introduction = ? where name = ? && tel = ?";
 			$stmt = $con->prepare($sql);
@@ -60,6 +60,7 @@ function signup($info, $cover) {
 
 function admin_login($username, $passwd) {	
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+	$con->set_charset('utf8');
 	if ($con->connect_error) {
 		return -2;
 	} else {
@@ -80,7 +81,7 @@ function admin_login($username, $passwd) {
 function admin_query($permission) {
 
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
+	$con->set_charset('utf8');
 	if($con->connect_error){
 		return -2;
 
@@ -104,7 +105,7 @@ function admin_query($permission) {
 function change_department($value){
 
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
+	$con->set_charset('utf8');
 	if($con->connect_error){
 		return -2;
 	}else{
