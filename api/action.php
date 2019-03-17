@@ -135,11 +135,17 @@ if (!isset($_GET["method"])) {
 } elseif ($_GET["method"] == "admin_query") {
 	var_dump($_SESSION['permission']);
 	if (isset($_SESSION["permission"])) {
-		$ret->data = admin_query($_SESSION["permission"]);
+		$ret->$data = admin_query($_SESSION["permission"]);
 	} else {
 		$ret->errmsg = "Please login first";
 	}
 
+}elseif($_GET['method'] == "change_department"){
+	if(isset($_GET['value'])){
+		$ret->errmsg = "Please select the department";
+	}else{
+		$rett->$data = change_department($_GET['value']);
+	}
 } else {
 	$ret->errmsg = "Unspecified Method";
 }
