@@ -24,28 +24,26 @@
     </div>
     <div>
         <label for="sex">性别：</label>
-        <input type="radio" name="sex" class="sex" value="M" checked><span style="color: #707070">男</span>
-        <input type="radio" name="sex" class="sex" value="F" checked><span style="color: #707070">女</span>
+        <input type="radio" name="sex" class="sex" value="M"  checked><span style="color: #707070">男</span>
+        <input type="radio" name="sex" class="sex" value="F"  checked><span style="color: #707070">女</span>
     </div>
     <div>
         <label for="grade">年级：</label>
-        <input type="radio" name="grade" class="grade" value="o" checked><span style="color: #707070">大一</span>
-        <input type="radio" name="grade" class="grade" value="T" checked><span style="color: #707070">大二</span>
+        <input type="radio" name="grade" class="grade" value="o"  checked><span style="color: #707070">大一</span>
+        <input type="radio" name="grade" class="grade" value="T"  checked><span style="color: #707070">大二</span>
     </div>
     <div>
     <label for="college">学院：</label>
     <select required = "required" id="college">
-        <option value="1m">xxxx学院</option>
-        <option value="2m">xxxx学院</option>
     </select>
     </div>
     <div>
         <label for="dorm">宿舍：</label>
-        <input class="text" type="text" name="dorm" maxlength="7" id="dorm" placeholder="例：C1-211" required = "required">
+        <input class="text" type="text" name="dorm" maxlength="7"  id="dorm" placeholder="例：C1-211" required = "required">
     </div>
     <div>    
         <label for="tel">联系电话：</label>
-        <input class="text" type="text" name="tel" maxlength="11" id="tel" placeholder="用于接收面试短信（别填错了" required = "required" >
+        <input class="text" type="text" name="tel" maxlength="11"  id="tel" placeholder="用于接收面试短信（别填错了" required = "required" >
     </div>
     <div>
         <label>第一志愿：</label>
@@ -57,18 +55,22 @@
     </div>
     <div>
         <label for="adjustment">是否服从调配：</label>
-        <input type="radio" name="adjustment" class="adjustment" value="Y" checked><span style="color: #707070">是</span>
-        <input type="radio" name="adjustment" class="adjustment" value="N" checked><span style="color: #707070">否</span>
+        <input type="radio" name="adjustment" class="adjustment" value="Y"   checked><span style="color: #707070">是</span>
+        <input type="radio" name="adjustment" class="adjustment" value="N"  checked><span style="color: #707070">否</span>
     </div>
     <div>
         <label for="intro">个人简介（选填）</label>
-        <textarea rows="10" cols="25" id="introduction" placeholder="不要超过50字哦">
+        <textarea rows="10" cols="25" id="introduction" placeholder="不要超过50字哦" style="text-align:start">
         </textarea>
     </div>
     <div class="slide" id="attention">
     </div>
-    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交" onsubmit="check()">
+    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交" >
 <!-- </form> -->
+</div>
+<div id="successbox">
+    <p>报名成功！<br>百步梯期待你的加入</p>
+    <img id="tree" src="img/pictures/2.png">
 </div>
 </div>
 </body>

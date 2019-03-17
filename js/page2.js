@@ -5,13 +5,39 @@ $(function () {
     $("#cover_user").hide();
     $("#bgimg1").hide();
     $("#successbox").hide();
-    var dorm = $("#dorm").val();
-    var msg = String;
-    //用来前端提示 信息
-    var patt_num = new RegExp("0123456789");
-    var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
-    msg = "你绝对没填完信息";
 
+    //js混用
+    document.getElementById("name").oninput=function(){
+        console.log("oninput name");
+        $("#name").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#name").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+        cc();
+    }
+    document.getElementById("dorm").oninput=function(){
+        console.log("oninput dorm");
+        $("#dorm").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#dorm").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+
+        cc();
+    }
+    document.getElementById("tel").oninput=function(){
+        console.log("oninput tel");
+        $("#tel").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#tel").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+
+        cc();
+    }
+    document.getElementById("introduction").oninput=function(){
+        $("#introduction").text().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
+        $("#introduction").text().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
+
+        cc();
+    }
+    //用来前端提示 信息
+    var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
+
+    console.log("------14----js错误检查程序loading--------");
+    console.log("------15----查询进度 页面 输入手机号和姓名 --------");
     //查询进度 页面 输入手机号和姓名 
     $("#check_user").click(function () {
         $("#bbt").hide();
@@ -66,31 +92,33 @@ $(function () {
                     var missing = new RegExp('Missing');
                     var telephone = new RegExp('telephone');
                     if (missing.test(data.errmsg)) {
-                        $("#attention").show();
+                        attention();
                         $(".text").focus();
                         $("#attention").text("你漏填了什么，请检查一下再提交哦");
                     } else if (telephone.test(data.errmsg)) {
-                        $("#attention").show();
+                        attention();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写格式不正确哦");
                     } else if (data.errcode == '233') {
                         $("#233").show();
-                        $("#attention").show();
+                        attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
                     }else {
-                        $("#cover_user").show();
-                        $("#attention").show();
+
+                        attention();
                         $("#attention").text("查询成功");
                         console.log(data.info);
                     }
                 } else {
-                    $("#attention").show();
+                    attention();
                     $("#attention").text("系统繁忙，请稍后再试");
                 }
             }
         })
     })
     
+    //覆盖
+    console.log("------96----路过覆盖函数上空 --------");
     $("#cover_user").click(function(){
         console.log("覆盖");
         var name = $('#name').val();
@@ -107,33 +135,47 @@ $(function () {
                     var missing = new RegExp('Missing');
                     var telephone = new RegExp('telephone');
                     if (missing.test(data.errmsg)) {
-                        $("#attention").show();
+                        attention();
                         $(".text").focus();
                         $("#attention").text("你漏填了什么，请检查一下再提交哦");
                     } else if (telephone.test(data.errmsg)) {
-                        $("#attention").show();
+                        attention();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写格式不正确哦");
                     } else if (data.errcode == '233') {
                         $("#233").show();
-                        $("#attention").show();
+                        attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
                     }else {
-                        $("#cover_user").show();
-                        $("#attention").show();
+                        attention();
                         $("#attention").text("查询成功");
+                        cover();
+                        $("#successbox:first-child").show();
                         console.log(data.info);
                     }
                 } else {
-                    $("#attention").show();
+                    attention();
                     $("#attention").text("系统繁忙，请稍后再试");
                 }
             }
         })
     })
-    
+    console.log("------138----路过覆盖css函数上空 --------");
+    function cover(){
+        $("#cover_user").show();
+        $("#successbox:first-child").hide();
+        $("#successbox").css({
+            "visibility": "visible",
+            "display":"table-cell",
+            "z-index":"10",
+            "max-width":"100% ",
+            "color":" #707070",
+            "font-size": "1em",     
+            "text-align":"center"    
+        });
+    }
+    console.log("----152------前端检查字符函数上空 --------");
     //前端检查字符
-    var input = document.getElementsByTagName("input");
     function prevent(){
         function isBlank(str) {
             return (!str || /^\s*$/.test(str));
@@ -141,22 +183,30 @@ $(function () {
         function check_uni(str){
             return (!str || !patt_illegal.test(str));
         }
-        if(!isBlank($("input[required='required']").val())){
-            if(check_uni($("#name").val())){
-                return 0;
-            }else{
-                input = input.replace("/[\'\"\\\/\b\f\n\r\t]/g","");
-                input = input.replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-                return 1;
-            }
-        }
     }
-    oninput(function(){
+    console.log("-------172---oninput上空 --------");
+
+    function cc(){
         var a=prevent();
         if(a==1){
-            input.focus();
+            $("input").focus();
         }
-    })
+        $("#attention").show();
+        attention();
+        $("attention").text("请再检查一下自己填的内容！");
+    }
+
+    console.log("-------182---oninput上空 --------");
+    function attention() {
+        console.log("attention");
+        $("#attention").show();
+        $("#cover_user").show();
+        $("#attention").css({
+            "display":"table-cell",
+        });
+    }
+        console.log("------194----check上空 --------");
+    //注册
     function check(){
         var name = $('#name').val();
         var sex = $('.sex').val();
@@ -192,49 +242,40 @@ $(function () {
                     var introduction = new RegExp('introduction');
                     attention();
                     if (missing.test(data.errmsg)) {
-                        // $("#attention").show();
+                        attention();
                         $("input").focus();
                         $("#attention").text ("你漏填了什么，请检查一下再提交哦");
                     } else if (existed.test(data.errmsg)) {
-                        // $("#attention").show();
+                        attention();
                         $("#attention").text ("您已经报名过，是否选择覆盖上次报名信息") ;
                     } else if (special.test(data.errmsg)) {
-                        // $("#attention").show();
+                        attention();
                         $("#name").focus();
                         $("#attention").text("哎呀姓名不能有特殊符号哦");
                     } else if (telephone.test(data.errmsg)) {
-                        // $("#attention").show();
+                        attention();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写不正确哦");
                     } else if (introduction.test(data.errmsgs)) {
-                        // $("#attention").show();
+                        attention();
                         $("#introduction").focus();
                         $("#attention").text("哎呀个人简介不能超过50字哦");
                     }
                  } else {
-                    // $("#attention").show();
+                    attention();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
                 }
             } else {
-                // $("#attention").show();
+                attention();
                 $("#attention").text("系统繁忙，请稍后再试");
             }
         });
     } 
-    function attention() {
-        $("#attention").css({
-            "visibility": "visible",
-            "display":"table-cell",
-            "z-index":"10",
-            "border":"0.1em solid #c8cccf",
-            "max-width":"100% ",
-            "color":" #707070",
-            "font-size": "1em",         
-        });
-        }
+    console.log("------260----signbtn上空 --------");
     $("#sign_btn").click(function(){
         console.log("你点了这个按钮");
-        check();
+        attention();
+        cc();
     });
 
     //前端提示 msg 
@@ -270,9 +311,13 @@ $(function () {
             $("#department").append("<option value=" + i + ">" + depa[i] + "</option>");
             $("#alternative").append("<option value=" + i + ">" + depa[i] + "</option>");
         }
+        for (var i = 0; i <= 20; i++) {
+            $("#college").append("<option value=" + i + ">" + major[i] + "</option>");
+        }
     }
     $("#department").change(selector());
     $("#alternative").change(selector());
+    $("#college").change(selector());
 
     // 工厂函数结束↓
 })
