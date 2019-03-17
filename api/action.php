@@ -126,7 +126,7 @@ if (!isset($_GET["method"])) {
 			$_SESSION["permission"] = $status;
 		} elseif ($status == -2) {
 			$ret->errmsg = "database issue";
-		} elseif ($status == -1) {
+		} else {
 			$ret->errmsg = "Either this account doesn't exist or the password is incorrect.";
 		}
 	}

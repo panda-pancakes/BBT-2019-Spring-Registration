@@ -12,3 +12,4 @@ $.get("/BBT-2019-Spring-Registration/api/database.php?method = admin_query", fun
     }
 };
 })
+//$('#department option:selected') .val();

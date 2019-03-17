@@ -61,7 +61,7 @@ function admin_login($username, $passwd) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 	if ($con->connect_error) {
-		return -2;
+		$ret = -2;
 
 	} else {
 		$enc_pwd = md5($passwd);
