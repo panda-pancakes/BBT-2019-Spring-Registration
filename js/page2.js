@@ -9,25 +9,25 @@ $(function () {
     $("#name").bind('input propertychange', function() { 
         $("#name").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
         $("#name").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $(this).attr("value",$(this).val());
+        $("#name").attr("value",$("#name").val());
         cc();
        });
     $("#dorm").bind('input propertychange', function(){
         $("#dorm").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
         $("#dorm").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $(this).attr("value",$(this).val());
+        $("#dorm").attr("value",$("#dorm").val());
         cc();
     })
     $("#tel").bind('input propertychange', function(){
         $("#tel").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
         $("#tel").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $(this).attr("value",$(this).val());
+        $("#tel").attr("value",$("#tel").val());
         cc();
     })
     $("#introduction").bind('input propertychange', function(){
         $("#introduction").val().replace("/[\'\"\\\/\b\f\n\r\t]/g","");
         $("#introduction").val().replace("(/[\@\#\$\%\^\&\*\{\}\:\"\L\<\>\?","");
-        $(this).attr("value",$(this).val());
+        $("#introduction").attr("value",$("#introduction").val());
         cc();
     })
 
@@ -99,7 +99,6 @@ $(function () {
                         attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
                     } else {
-
                         attention();
                         $("#attention").text("查询成功");
                         console.log(data.info);
@@ -215,11 +214,7 @@ $(function () {
             $("#attention").show();
             attention();    
         }else{
-            $("#sign_btn").click(function(){
-                // console.log("你点了这个按钮");
-                attention();
-                check();
-            });
+            
         }
     }
 
