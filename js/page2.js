@@ -9,32 +9,32 @@ $(function () {
     function oninput(){
         $("#name").bind('input propertychange', function() { 
             $("#name").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
-            $("#name").val().replace(/\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}/,'');
+            $("#name").val().replace(/[\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}]/,'');
             $("#name").attr("value",$("#name").val());
             cc();
            });
         $("#dorm").bind('input propertychange', function(){
             $("#dorm").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
-            $("#dorm").val().replace(/\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}/,'');
+            $("#dorm").val().replace(/[\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}]/,'');
             $("#dorm").attr("value",$("#dorm").val());
             cc();
         })
         $("#tel").bind('input propertychange', function(){
             $("#tel").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
-            $("#tel").val().replace(/\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}/,'');
+            $("#tel").val().replace(/[\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}]/,'');
             $("#tel").attr("value",$("#tel").val());
             cc();
         })
         $("#introduction").bind('input propertychange', function(){
             $("#introduction").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
-            $("#introduction").val().replace(/\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}/,'');
+            $("#introduction").val().replace(/[\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}]/,'');
             $("#introduction").attr("value",$("#introduction").val());
             cc();
         })    
     }
     oninput();
     console.log("------14----js错误检查程序loading--------");
-    console.log("------15----查询进度 页面 输入手机号和姓名 --------");
+    // console.log("------15----查询进度 页面 输入手机号和姓名 --------");
     //查询进度 页面 输入手机号和姓名 
     $("#check_user").click(function () {
         $("#bbt").hide();
@@ -72,7 +72,7 @@ $(function () {
         })
         $("#bgimg1").show();
     }) //显示查询页面
-    console.log("到达checkbtn函数上空");
+    // console.log("到达checkbtn函数上空");
 
     //真的查询
     $("#check_btn").click(function () {
@@ -122,7 +122,7 @@ $(function () {
     })
 
     //覆盖
-    console.log("------96----路过覆盖函数上空 --------");
+    // console.log("------96----路过覆盖函数上空 --------");
     $("#cover_user").click(function () {
         console.log("覆盖");
         var name = $('#name').val();
@@ -163,7 +163,7 @@ $(function () {
         })
     
     })
-    console.log("------138----路过覆盖css函数上空 --------");
+    // console.log("------138----路过覆盖css函数上空 --------");
 
     function cover() {
         $("#cover_user").show();
@@ -173,13 +173,13 @@ $(function () {
         });
         console.log("正在显示cover按钮");
     }
-    console.log("----152------前端检查字符函数上空 --------");
+    // console.log("----152------前端检查字符函数上空 --------");
     //前端检查字符
     function isBlank(str) {
         return (!str || /^\s*$/.test(str));
     }
     function check_num(a){
-        var patt_num = new RegExp("0123456789");
+        var patt_num = new RegExp("/^1[34578]\d{9}$/");
         return (patt_num.test(a));
     }
     function check_uni(str) {
@@ -188,6 +188,7 @@ $(function () {
     }
 
     function prevent() {
+        console.log("prevent()");
         var name = $("#name").val();
         var tel = $("#tel").val();
         var dorm = $("#dorm").val();
@@ -211,7 +212,7 @@ $(function () {
             return 1;
         }
     }
-    console.log("-------172---oninput上空 --------");
+    // console.log("-------172---oninput上空 --------");
 
     $("#sign_btn").click(function(){
         if(cc()==true){
@@ -235,7 +236,7 @@ $(function () {
             return true;
         }
     }
-    console.log("-------182---oninput上空 --------");
+    // console.log("-------182---oninput上空 --------");
 
     function attention() {
         console.log($("#attention").val());
@@ -314,7 +315,7 @@ $(function () {
             }
         });
     }
-    console.log("------260----signbtn上空 --------");
+    // console.log("------260----signbtn上空 --------");
 
     //前端提示 msg 
     //所有部门 数组
