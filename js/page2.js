@@ -8,27 +8,15 @@ $(function () {
     //前端过滤
     function oninput(){
         $("#name").bind('input propertychange', function() { 
-            $("#name").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
-            $("#name").val().replace(/[\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}]/,'');
-            $("#name").attr("value",$("#name").val());
             cc();
            });
         $("#dorm").bind('input propertychange', function(){
-            $("#dorm").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
-            $("#dorm").val().replace(/[\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}]/,'');
-            $("#dorm").attr("value",$("#dorm").val());
             cc();
         })
         $("#tel").bind('input propertychange', function(){
-            $("#tel").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
-            $("#tel").val().replace(/[\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}]/,'');
-            $("#tel").attr("value",$("#tel").val());
             cc();
         })
         $("#introduction").bind('input propertychange', function(){
-            $("#introduction").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
-            $("#introduction").val().replace(/[\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}]/,'');
-            $("#introduction").attr("value",$("#introduction").val());
             cc();
         })    
     }
@@ -176,41 +164,39 @@ $(function () {
         return (!str || /^\s*$/.test(str));
     }
     function check_num(a){
-        var patt_num = new RegExp("/^1[34578]\d{9}$/");
+        var patt_num = new RegExp(/^1[34578]\d{9}$/g);
         return (patt_num.test(a));
     }
+    // var tes1 = "@";
+    // var tes2 ="?";
     function check_uni(str) {
-        var patt_illegal = new RegExp("[^a-zA-Z\_\u4e00-\u9fa5]");
-        return (!str || !patt_illegal.test(str));
+        var patt_illegal = new RegExp(/[\@\#\$\%\^\&\*{\}\:\\L\<\>\?}\'\"\\\/\b\f\n\r\t]/g);
+        return patt_illegal.test(str);
     }
-
+    // console.log("tes1"+":"+check_uni(tes1)+"-----tes2="+check_uni(tes2));
     function prevent() {
         console.log("prevent()");
         var name = $("#name").val();
         var tel = $("#tel").val();
         var dorm = $("#dorm").val();
-        var rest = true;
-        if (isBlank(name)) {
+        //try another one
+        if((isBlank(name)) && (check_uni(name)) && (check_num(name))){
             $("#name").focus();
             $("#attention").text("填名字！");
-            // $("#attention").append('<img src="../img/attention/6.jpg" />');
             attention();
             rest = false;
-            if (!check_num(name)) {
-                $("#attention").text("填名字！");
-                attention();    
-                $("#name").focus();
-                rest = false;
-            }
-        } else if (isBlank(dorm)) {
+        }else if((isBlank(dorm))&& (check_uni(name))){
+            $("#dorm").focus();
             $("#attention").text("宿舍号！");
             attention();
             rest = false;
-        } else if (check_num(tel)) {
+        }else if((isBlank(tel)) && (check_uni(tel)) && (!check_num(tel))){
             $("#tel").focus();
-            $("#attention").text("11位手机号喔");
+            $("#attention").text("手机号！");
             attention();
             rest = false;
+        }else{
+            var rest = true;
         }
         if (rest) {
             return 0;
@@ -219,6 +205,7 @@ $(function () {
         }
     }
 
+    //报名按钮
     $("#sign_btn").click(function(){
         if(cc()==true){
             check();
@@ -329,7 +316,7 @@ $(function () {
                 $("#sign_btn").removeAttr('disabled');
             }, 40000);
             setTimeout(function () {
-                $("#attention").text("要等一会才能再次查询");
+                $("#attention").text("要等一会才能再次报名");
                 attention();
             }, 3000);
         });
