@@ -6,19 +6,16 @@ $(function () {
     $("#bgimg1").hide();
     $("#successbox").hide();
     //前端过滤
-    function oninput(){
-        $("#name").bind('input propertychange', function() { 
-            cc();
-           });
-        $("#dorm").bind('input propertychange', function(){
-            cc();
+    function oninput() {
+        $("#name").bind('input propertychange', function () {
+            name_check();
+        });
+        $("#dorm").bind('input propertychange', function () {
+            dorm_check();
         })
-        $("#tel").bind('input propertychange', function(){
-            cc();
+        $("#tel").bind('input propertychange', function () {
+            tel_check();
         })
-        $("#introduction").bind('input propertychange', function(){
-            cc();
-        })    
     }
     oninput();
     console.log("------14----js错误检查程序loading--------");
@@ -48,7 +45,7 @@ $(function () {
             tel,
         });
         console.log(info);
-        
+
         $.post("./api/action.php?method=query", info, function (data, status) {
             console.log("到达ajax");
             if (status == "success") {
@@ -71,7 +68,7 @@ $(function () {
                     } else {
                         attention();
                         $("#attention").text("系统繁忙，请稍后再试");
-                        
+
                         console.log(data.info);
                     }
                 } else {
@@ -108,7 +105,7 @@ $(function () {
             tel,
         });
         var cover = "true";
-            $.post("./api/action.php?method=signup", info , function (data, status) {
+        $.post("./api/action.php?method=signup", info, function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
                     var missing = new RegExp('Missing');
@@ -126,14 +123,15 @@ $(function () {
                         attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
                     } else {
-                        attention();$("#attention").text("系统繁忙，请稍后再试");
+                        attention();
+                        $("#attention").text("系统繁忙，请稍后再试");
                         $("#successbox:first-child").show();
                         // console.log(data.info);
                     }
-                }else{
+                } else {
                     cover();
                     attention();
-                    $("#attention").text("覆盖成功");    
+                    $("#attention").text("覆盖成功");
                 }
             }
         }).always(function () {
@@ -163,8 +161,10 @@ $(function () {
     function isBlank(str) {
         return (!str || /^\s*$/.test(str));
     }
-    function check_num(a){
-        var patt_num = new RegExp(/^1[34578]\d{9}$/g);
+
+    function check_num(a) {
+        //var patt_num = new RegExp(/^1[34578]\d{9}$/s);
+        var patt_num = new RegExp(/^[0-9]*$/g);
         return (patt_num.test(a));
     }
     // var tes1 = "@";
@@ -174,60 +174,69 @@ $(function () {
         return patt_illegal.test(str);
     }
     // console.log("tes1"+":"+check_uni(tes1)+"-----tes2="+check_uni(tes2));
-    function prevent() {
-        console.log("prevent()");
+    function name_check() {
         var name = $("#name").val();
-        var tel = $("#tel").val();
-        var dorm = $("#dorm").val();
-        //try another one
-        if((isBlank(name)) && (check_uni(name)) && (check_num(name))){
+        if ((isBlank(name)) || (check_uni(name)) || (check_num(name))) {
             $("#name").focus();
             $("#attention").text("填名字！");
             attention();
             rest = false;
-        }else if((isBlank(dorm))&& (check_uni(name))){
+        }else {
+            var rest = true;
+        }
+        return rest;
+    }
+
+    function dorm_check() {
+        var dorm = $("#dorm").val();
+        if ((isBlank(dorm)) || (check_uni(dorm))) {
             $("#dorm").focus();
             $("#attention").text("宿舍号！");
             attention();
             rest = false;
-        }else if((isBlank(tel)) && (check_uni(tel)) && (!check_num(tel))){
+        }else {
+            var rest = true;
+        }
+        return rest;
+    }
+
+    function tel_check(){
+        var tel = $("#tel").val();
+        if ((isBlank(tel)) || (check_uni(tel)) || (!check_num(tel))) {
             $("#tel").focus();
             $("#attention").text("手机号！");
             attention();
             rest = false;
-        }else{
+        } else {
             var rest = true;
         }
-        if (rest) {
-            return 0;
-        } else {
-            return 1;
-        }
+        return rest;
     }
+ 
 
     //报名按钮
-    $("#sign_btn").click(function(){
-        if(cc()==true){
+    $("#sign_btn").click(function () {
+        if (final_check()) {
             check();
-        }else{
+        } else {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
-            attention();    
+            attention();
         }
     })
 
     //调用检查字符的各个函数 并在attention写入提示信息  返回布尔值 正确时允许按下按钮发送请求
-    function cc(){
-        var a=prevent();
-        // console.log("------a="+a+"------------");
-        if (a == 1) {
+    function final_check() {
+        console.log("prevent()");
+        if (name_check() && dorm_check() && tel_check()) {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
-            attention();    
-            return false;
-        }else{
-            return true;
+            attention();
+            rest = false;
+        } else {
+            rest = true;
         }
+        return rest;
     }
 
     function attention() {
@@ -295,12 +304,12 @@ $(function () {
                         attention();
                         $("#introduction").focus();
                         // $("#attention").append("<img src=" + URL("../img/attention/6.png") + "class="+"attention"+">" );
-                    }else if (existed.test(data.errmsg)) {
+                    } else if (existed.test(data.errmsg)) {
                         attention();
                         $("#attention").text("您已经报名过，是否选择覆盖上次报名信息");
                         console.log("到达覆盖");
                         cover();
-                    } 
+                    }
                 } else {
                     attention();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
@@ -328,7 +337,8 @@ $(function () {
     var major = new Array();
     var depa = new Array();
     addarray();
-    function addarray(){
+
+    function addarray() {
         depa[0] = "技术部-代码组";
         depa[1] = "技术部-设计组";
         depa[2] = "技术部（北校专业）";
@@ -350,7 +360,7 @@ $(function () {
         depa[18] = "综合管理部-撰文记者";
         depa[19] = "综合管理部-摄影记者";
         depa[20] = "产品运营部（北校专业）";
-    
+
         major[0] = "机械与汽车工程学院";
         major[1] = "建筑学院";
         major[2] = "土木与交通学院";
@@ -379,8 +389,8 @@ $(function () {
         major[25] = "设计学院";
         major[26] = "医学院";
         major[27] = "国际教育学院";
-    
-    
+
+
     }
     //select的option value循环
     function selector() {
