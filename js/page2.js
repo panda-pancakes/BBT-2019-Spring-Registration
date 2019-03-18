@@ -45,15 +45,11 @@ $(function () {
             tel,
         });
         console.log(info);
-<<<<<<< HEAD
-        $.post("./api/action.php?method=query", info, function (data, status) {
-=======
         if (final_check()==false) {//真的在检查
         }
         if(final_check()){
             $.post("./api/action.php?method=query", info, function (data, status) {
             console.log("到达ajax");
->>>>>>> cd5fdf276fa66fd46601cca7eb1cf7ed859f260b
             if (status == "success") {
                 if (data.status == "failed") {
                     var missing = new RegExp('Missing');
@@ -228,7 +224,7 @@ $(function () {
     //调用检查字符的各个函数 并在attention写入提示信息  返回布尔值 正确时允许按下按钮发送请求
     function final_check() {
         console.log("prevent()");
-        if (name_check() && dorm_check() && tel_check()) {
+        if (name_check() && tel_check()) {
             rest = true;
         } else {
             $("attention").text("请再检查一下自己填的内容！");
