@@ -19,6 +19,24 @@ $(function () {
     }
     oninput();
     console.log("------14----js错误检查程序loading--------");
+        //cook cookies
+        function setCookie(cname,cvalue){
+            document.cookie=cname+"="+cvalue+";";
+            if(document.cookie.length<=0){
+                return false;
+            }
+        }
+        function getCookie(cname){
+            var a = cname+"=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++){
+                var c = ca[i].trim();
+                if (c.indexOf(name)==0){
+                    return c.substring(a.length,c.length);
+                }
+            }
+            return "";
+        }
     //查询进度 页面 输入手机号和姓名 
     $("#check_user").click(function () {
         $("#bbt").hide();
@@ -397,24 +415,7 @@ $(function () {
 
     // 工厂函数结束↓
 
-    //cook cookies
-    function setCookie(cname,cvalue){
-        document.cookie=cname+"="+cvalue+";";
-        if(document.cookie.length<=0){
-            return false;
-        }
-    }
-    function getCookie(cname){
-        var a = cname+"=";
-        var ca = document.cookie.split(';');
-        for(var i=0; i<ca.length; i++){
-            var c = ca[i].trim();
-            if (c.indexOf(name)==0){
-                return c.substring(a.length,c.length);
-            }
-        }
-        return "";
-    }
+
     //settimeout 禁用按钮
     function dontclick(){
         setTimeout(function () {
