@@ -67,7 +67,7 @@ if (!isset($_GET["method"])) {
 			"adjustment" => $data["adjustment"],
 			"introduction" => $data["introduction"],
 		);
-
+		//var_dump($_POST["cover"]);
 		$sta = signup($info, isset($_POST["cover"]) ? $_POST["cover"] : false);
 
 		if ($sta == -1) {
@@ -101,10 +101,11 @@ if (!isset($_GET["method"])) {
 		} else {
 			$ret->exist = isset($sta->name);
 			if ($ret->exist) {
-				$ret->info = $sta->info;
+				//获取不到$sta->info,因为数据是存在$sta里面的
+				$ret->info = $sta;
 
 			} else {
-				$ret->errcode = "233";
+				$ret->errmsg = "no infomation";
 			}
 		}
 	}

@@ -14,19 +14,19 @@ $(function () {
             cc();
            });
         $("#dorm").bind('input propertychange', function(){
-            $("#dorm").val().replacereplace(/[\'\"\\\/\b\f\n\r\t]/,'');
+            $("#dorm").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
             $("#dorm").val().replace(/\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}/,'');
             $("#dorm").attr("value",$("#dorm").val());
             cc();
         })
         $("#tel").bind('input propertychange', function(){
-            $("#tel").val().replacereplace(/[\'\"\\\/\b\f\n\r\t]/,'');
+            $("#tel").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
             $("#tel").val().replace(/\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}/,'');
             $("#tel").attr("value",$("#tel").val());
             cc();
         })
         $("#introduction").bind('input propertychange', function(){
-            $("#introduction").val().replacereplace(/[\'\"\\\/\b\f\n\r\t]/,'');
+            $("#introduction").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
             $("#introduction").val().replace(/\@\#\$\%\^\&\*\{\}\:\\L\<\>\?}/,'');
             $("#introduction").attr("value",$("#introduction").val());
             cc();
@@ -76,7 +76,7 @@ $(function () {
 
     //真的查询
     $("#check_btn").click(function () {
-        console.log("你点了这个按钮");
+        console.log("你点了信息查询按钮");
         var name = $('#name').val();
         var tel = $('#tel').val();
         var info = JSON.stringify({
@@ -84,13 +84,14 @@ $(function () {
             tel,
         });
         console.log(info);
-        cc();
-        if(cc()==true){
+        
         $.post("./api/action.php?method=query", info, function (data, status) {
+            console.log("到达ajax");
             if (status == "success") {
                 if (data.status == "failed") {
                     var missing = new RegExp('Missing');
                     var telephone = new RegExp('telephone');
+                    var noinfo = new RegExp('infomation');
                     if (missing.test(data.errmsg)) {
                         attention();
                         $(".text").focus();
@@ -99,23 +100,25 @@ $(function () {
                         attention();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写格式不正确哦");
-                    } else if (data.errcode == '233') {
+                    } else if (noinfo.test(data.errmsg)) {
                         $("#233").show();
                         attention();
                         $("#attention").text("不好意思，没有您的报名信息哦");
                     } else {
                         attention();
-                        $("#attention").text("查询成功");
-                        $("#cover_user").show(); //修改按钮
+                        $("#attention").text("系统繁忙，请稍后再试");
+                        
                         console.log(data.info);
                     }
                 } else {
                     attention();
-                    $("#attention").text("系统繁忙，请稍后再试");
+                    $("#attention").text("查询成功");
+                    //TO-DO:data里面存了返回的查询信息，跳转到另一页面，把该用户查询的信息给显示出来
+                    $("#cover_user").show(); //修改按钮
                 }
             }
         })
-    }
+    
     })
 
     //覆盖
@@ -123,14 +126,13 @@ $(function () {
     $("#cover_user").click(function () {
         console.log("覆盖");
         var name = $('#name').val();
-        var tel = $("#tel").val();
+        var tel = $('#tel').val();
         var info = JSON.stringify({
             name,
             tel,
         });
-        cc();
-        if(cc()==true){
-            $.post("/api/action.php?method=query", info, function (data, status) {
+        var cover = "true";
+            $.post("./api/action.php?method=signup", info , function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
                     var missing = new RegExp('Missing');
@@ -155,11 +157,11 @@ $(function () {
                 }else{
                     cover();
                     attention();
-                    $("#attention").text("查询成功");    
+                    $("#attention").text("覆盖成功");    
                 }
             }
         })
-    }
+    
     })
     console.log("------138----路过覆盖css函数上空 --------");
 
@@ -169,6 +171,7 @@ $(function () {
         $("#successbox").css({
             "visibility": "visible",
         });
+        console.log("正在显示cover按钮");
     }
     console.log("----152------前端检查字符函数上空 --------");
     //前端检查字符
@@ -251,8 +254,8 @@ $(function () {
         var grade = $('input:radio[name="grade"]:checked').val();
         var dorm = $("#dorm").val();
         var tel = $('#tel').val();
-        var department = $("select#college").get(0).selectedIndex;
-        var alternative = $("select#college").get(0).selectedIndex;
+        var department = $("select#department").get(0).selectedIndex;
+        var alternative = $("select#alternative").get(0).selectedIndex;
         var adjustment = $('input:radio[name="adjustment"]:checked').val();
         var introduction = $('#introduction').val();
         //打包给php 
@@ -269,6 +272,7 @@ $(function () {
             adjustment,
             introduction,
         });
+        console.log(info);
         $.post("./api/action.php?method=signup", info, function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
@@ -282,10 +286,6 @@ $(function () {
                         attention();
                         $("input").focus();
                         $("#attention").text("你漏填了什么，请检查一下再提交哦");
-                    } else if (existed.test(data.errmsg)) {
-                        attention();
-                        
-                        $("#attention").text("您已经报名过，是否选择覆盖上次报名信息");
                     } else if (special.test(data.errmsg)) {
                         attention();
                         $("#name").focus();
@@ -298,7 +298,12 @@ $(function () {
                         attention();
                         $("#introduction").focus();
                         $("#attention").text("哎呀个人简介不能超过50字哦");
-                    }
+                    }else if (existed.test(data.errmsg)) {
+                        attention();
+                        $("#attention").text("您已经报名过，是否选择覆盖上次报名信息");
+                        console.log("到达覆盖");
+                        cover();
+                    } 
                 } else {
                     attention();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");

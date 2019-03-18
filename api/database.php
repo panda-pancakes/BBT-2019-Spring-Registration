@@ -20,7 +20,6 @@ function query($info) {
 	$stmt->fetch();
 	$stmt->close();
 	$con->close();
-
 	return $ret;
 }
 
