@@ -122,9 +122,9 @@ if (!isset($_GET["method"])) {
 	} else {
 		$status = admin_login($_POST["department"], $_POST["password"]);
 		if ($status >= 0) {
-			$ret->errcode = 0;
 			$_SESSION["department"] = $_POST["department"];
 			$_SESSION["permission"] = $status;
+			$ret->errcode = 0;
 		} elseif ($status == -2) {
 			$ret->errmsg = "database issue";
 		} else{
@@ -134,18 +134,23 @@ if (!isset($_GET["method"])) {
 
 } elseif ($_GET["method"] == "admin_query") {
 	if (isset($_SESSION["permission"])) {
-		$ret->$data = admin_query($_SESSION["permission"]);
+		$ret->data = admin_query($_SESSION["permission"]);
+		$ret->sum = count((array)$ret);
 	} else {
+		$ret->errcode = -1;
 		$ret->errmsg = "Please login first";
 	}
 
 }elseif($_GET['method'] == "change_department"){
-	if(isset($_GET['value'])){
+	if(!isset($_GET['value'])){
 		$ret->errmsg = "Please select the department.";
 	}else{
-		$rett->$data = change_department($_GET['value']);
+		$ret->data = change_department($_GET['value']);
+		$ret->data = admin_query($_SESSION["permission"]);
+		$ret->sum = count((array)$ret);
 	}
 } else {
+	$ret->errcode = -1;
 	$ret->errmsg = "Unspecified Method";
 }
 

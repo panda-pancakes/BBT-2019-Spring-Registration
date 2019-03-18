@@ -77,10 +77,11 @@ function admin_login($username, $passwd) {
 		return isset($ret) ? $ret : -1;
 	}
 }
+//登录已完成
 
 
 function admin_query($permission) {
-
+	//var_dump($permission);
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	$con->set_charset('utf8');
 	if($con->connect_error){
@@ -88,20 +89,36 @@ function admin_query($permission) {
 
 	} else {	
 		if ($permission == 0) {
-			$stmt = $con->prepare("select * from application");
+			$dat = $con->query("select * from application");
+			//$stmt = $con->prepare("select * from application");
 		} else {
-			$stmt = $con->prepare("select * from application where department = ?");
-			$stmt->bind_param("s",$permission);
+			$dat = $con->query("select * from application where department = " . $permission);
+			//$stmt = $con->prepare("select * from application where department = ?");
+			//$stmt->bind_param("s",$permission);
 		}
-		$stmt->execute();
-		$stmt->bind_result($ret);
-		// 这里还没处理
-		$stmt->fetch();
-		$stmt->close();	 
+		//$stmt->execute();
+		$ret = new stdClass();
+		$array = [];
+		//$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction,$ret->timestamp, $ret->information,$ret->note);
+		while($row = $dat->fetch_assoc()){
+			$array[]=[
+				"name" => $row["name"],
+				"sex" => $row["sex"],
+				"tel" =>$row["tel"],
+				"grade" => $row["grade"],
+				"college" => $row["college"],
+				"dorm" => $row["dorm"],
+				"department"=> $row["department"],
+				"alternative"=>$row["alternative"],
+				"adjustment"=>$row["adjustment"],
+				"introduction"=>$row["introduction"],
+			];
+		}
+		//$stmt->close();	 
     	$con->close();
 	}
 
-	return $ret;
+	return $array;
 }
 function change_department($value){
 
@@ -117,7 +134,8 @@ function change_department($value){
 			$stmt->bind_param("i",$value);
 		}
 		$stmt->execute();
-		$stmt->bind_result($ret);
+		$ret = new stdClass();
+		$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction,$ret->timestamp, $ret->information,$ret->note);
 		$stmt->fetch();
 		$stmt->close();
 		$con->close();
