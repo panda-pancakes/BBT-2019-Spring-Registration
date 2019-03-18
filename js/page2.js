@@ -180,7 +180,7 @@ $(function () {
         var tel = $("#tel").val();
         var dorm = $("#dorm").val();
         //try another one
-        if((isBlank(name)) && (check_uni(name)) && (check_num(name))){
+        if((isBlank(name)) && (check_uni(name)) || (check_num(name))){
             $("#name").focus();
             $("#attention").text("填名字！");
             attention();
@@ -199,9 +199,9 @@ $(function () {
             var rest = true;
         }
         if (rest) {
-            return 0;
-        } else {
             return 1;
+        } else {
+            return 0;
         }
     }
 
@@ -397,4 +397,23 @@ $(function () {
     $("#college").change(selector());
 
     // 工厂函数结束↓
+
+    //cook cookies
+    function setCookie(cname,cvalue){
+        document.cookie=cname+"="+cvalue+";";
+        if(document.cookie.length<=0){
+            return false;
+        }
+    }
+    function getCookie(cname){
+        var a = cname+"=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++){
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0){
+                return c.substring(a.length,c.length);
+            }
+        }
+        return "";
+    }
 })
