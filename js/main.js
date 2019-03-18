@@ -45,6 +45,4 @@ $(function(){
             console.log(actIndex);
             $("#depa").html(depa[actIndex]);
         }
-
-
 }) 

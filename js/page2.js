@@ -45,7 +45,15 @@ $(function () {
             tel,
         });
         console.log(info);
+<<<<<<< HEAD
         $.post("./api/action.php?method=query", info, function (data, status) {
+=======
+        if (final_check()==false) {//真的在检查
+        }
+        if(final_check()){
+            $.post("./api/action.php?method=query", info, function (data, status) {
+            console.log("到达ajax");
+>>>>>>> cd5fdf276fa66fd46601cca7eb1cf7ed859f260b
             if (status == "success") {
                 if (data.status == "failed") {
                     var missing = new RegExp('Missing');
@@ -66,28 +74,30 @@ $(function () {
                     } else {
                         attention();
                         $("#attention").text("系统繁忙，请稍后再试");
-
                         console.log(data.info);
                     }
-                } else {
-                    console.log(data.status);
-                    attention();
-                    $("#attention").text("查询成功");
-                    //TO-DO:data里面存了返回的查询信息，跳转到另一页面，把该用户查询的信息给显示出来
+                } else {//查询成功
+                    console.log(data.info);
+                    setcookie(data.info.name);
+                    setcookie(data.info.tel);
+                    setCookie(data.info.dorm);
+                    setcookie(data.info.introduction);
+                    alert("感谢"+getCookie("name")+"同学的报名！");
+                    window.location.href="../signup.html";
+                    $("#name").val(getCookie("name"));
+                    $("#tel").val(getCookie("tel"));
+                    $("#dorm").val(getCookie("dorm"));
+                    $("#introduction").val(getCookie("intro"));
+                    // TO-DO:data里面存了返回的查询信息，跳转到另一页面，把该用户查询的信息给显示出来
+                    $("#sign_btn").hide();
                     $("#cover_user").show(); //修改按钮
                 }
             }
         }).always(function () {
             //模拟请求延时 防止 按钮重复按
-            setTimeout(function () {
-                console.log("启用信息查询按钮");
-                $("#check_btn").removeAttr('disabled');
-            }, 40000);
-            setTimeout(function () {
-                $("#attention").text("要等一会才能再次查询");
-                attention();
-            }, 3000);
-        })
+            dontclick();
+        });
+    }
     })
 
     //覆盖
@@ -123,32 +133,24 @@ $(function () {
                     } else {
                         attention();
                         $("#attention").text("系统繁忙，请稍后再试");
-                        $("#successbox:first-child").show();
                         // console.log(data.info);
                     }
                 } else {
                     cover();
                     attention();
-                    $("#attention").text("覆盖成功");
+                    $("#successbox:first-child").show();
+                    $("#attention").text("修改信息成功");
                 }
             }
         }).always(function () {
-            //模拟请求延时 防止 按钮重复按
-            setTimeout(function () {
-                console.log("启用信息查询按钮");
-                $("#cover_user").removeAttr('disabled');
-            }, 40000);
-            setTimeout(function () {
-                $("#attention").text("要等一会才能再次查询");
-                attention();
-            }, 3000);
+            dontclick();
         })
     })
 
     //显示cover按钮和树
     function cover() {
         $("#check_box").hide();
-        $("#cover_user").show();
+        // $("#cover_user").show();
         $("#successbox:first-child").hide();
         $("#successbox").css({
             "visibility": "visible",
@@ -227,12 +229,12 @@ $(function () {
     function final_check() {
         console.log("prevent()");
         if (name_check() && dorm_check() && tel_check()) {
+            rest = true;
+        } else {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
             attention();
             rest = false;
-        } else {
-            rest = true;
         }
         return rest;
     }
@@ -240,7 +242,7 @@ $(function () {
     function attention() {
         console.log($("#attention").text());
         $("#attention").show();
-        $("#cover_user").show();
+        // $("#cover_user").show();
         $("#attention").css({
             "display": "block",
         });
@@ -318,14 +320,7 @@ $(function () {
             }
         }).always(function () {
             //模拟请求延时 防止 按钮重复按
-            setTimeout(function () {
-                console.log("启用报名按钮");
-                $("#sign_btn").removeAttr('disabled');
-            }, 40000);
-            setTimeout(function () {
-                $("#attention").text("要等一会才能再次报名");
-                attention();
-            }, 3000);
+            dontclick();
         });
     }
     // console.log("------260----signbtn上空 --------");
@@ -405,4 +400,35 @@ $(function () {
     $("#college").change(selector());
 
     // 工厂函数结束↓
+
+    //cook cookies
+    function setCookie(cname,cvalue){
+        document.cookie=cname+"="+cvalue+";";
+        if(document.cookie.length<=0){
+            return false;
+        }
+    }
+    function getCookie(cname){
+        var a = cname+"=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++){
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0){
+                return c.substring(a.length,c.length);
+            }
+        }
+        return "";
+    }
+    //settimeout 禁用按钮
+    function dontclick(){
+        setTimeout(function () {
+            $("#attention").text("要等一会才能再次查询");
+            attention();
+        }, 1000);
+        setTimeout(function () {
+            console.log("启用信息查询按钮");
+            $("#check_btn").removeAttr('disabled');
+        }, 40000);
+
+    }
 })
