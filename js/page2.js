@@ -424,11 +424,12 @@ $(function () {
         setTimeout(function () {
             $("#attention").text("要等一会才能再次查询");
             attention();
-        }, 1000);
+            $("#attention").focus();
+        }, 5000);
         setTimeout(function () {
             console.log("启用信息查询按钮");
             $("#check_btn").removeAttr('disabled');
-        }, 40000);
+        }, 23333);
 
     }
 })
