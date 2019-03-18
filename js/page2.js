@@ -45,10 +45,10 @@ $(function () {
             tel,
         });
         console.log(info);
-        if (final_check()) {
-            check();
-        } else {
-        $.post("./api/action.php?method=query", info, function (data, status) {
+        if (final_check()==false) {//真的在检查
+        }
+        if(final_check()){
+            $.post("./api/action.php?method=query", info, function (data, status) {
             console.log("到达ajax");
             if (status == "success") {
                 if (data.status == "failed") {
@@ -72,7 +72,7 @@ $(function () {
                         $("#attention").text("系统繁忙，请稍后再试");
                         console.log(data.info);
                     }
-                } else {
+                } else {//查询成功
                     console.log(data.info);
                     setcookie(data.info.name);
                     setcookie(data.info.tel);
@@ -84,23 +84,15 @@ $(function () {
                     $("#tel").val(getCookie("tel"));
                     $("#dorm").val(getCookie("dorm"));
                     $("#introduction").val(getCookie("intro"));
-                    // attention();
-                    // $("#attention").text("查询成功");
                     // TO-DO:data里面存了返回的查询信息，跳转到另一页面，把该用户查询的信息给显示出来
-                    // $("#cover_user").show(); //修改按钮
+                    $("#sign_btn").hide();
+                    $("#cover_user").show(); //修改按钮
                 }
             }
         }).always(function () {
             //模拟请求延时 防止 按钮重复按
-            setTimeout(function () {
-                console.log("启用信息查询按钮");
-                $("#check_btn").removeAttr('disabled');
-            }, 40000);
-            setTimeout(function () {
-                $("#attention").text("要等一会才能再次查询");
-                attention();
-            }, 3000);
-        })
+            dontclick();
+        });
     }
     })
 
@@ -137,25 +129,17 @@ $(function () {
                     } else {
                         attention();
                         $("#attention").text("系统繁忙，请稍后再试");
-                        $("#successbox:first-child").show();
                         // console.log(data.info);
                     }
                 } else {
                     cover();
                     attention();
-                    $("#attention").text("覆盖成功");
+                    $("#successbox:first-child").show();
+                    $("#attention").text("修改信息成功");
                 }
             }
         }).always(function () {
-            //模拟请求延时 防止 按钮重复按
-            setTimeout(function () {
-                console.log("启用信息查询按钮");
-                $("#cover_user").removeAttr('disabled');
-            }, 40000);
-            setTimeout(function () {
-                $("#attention").text("要等一会才能再次查询");
-                attention();
-            }, 3000);
+            dontclick();
         })
     })
 
@@ -241,12 +225,12 @@ $(function () {
     function final_check() {
         console.log("prevent()");
         if (name_check() && dorm_check() && tel_check()) {
+            rest = true;
+        } else {
             $("attention").text("请再检查一下自己填的内容！");
             $("#attention").show();
             attention();
             rest = false;
-        } else {
-            rest = true;
         }
         return rest;
     }
@@ -332,14 +316,7 @@ $(function () {
             }
         }).always(function () {
             //模拟请求延时 防止 按钮重复按
-            setTimeout(function () {
-                console.log("启用报名按钮");
-                $("#sign_btn").removeAttr('disabled');
-            }, 40000);
-            setTimeout(function () {
-                $("#attention").text("要等一会才能再次报名");
-                attention();
-            }, 3000);
+            dontclick();
         });
     }
     // console.log("------260----signbtn上空 --------");
@@ -437,5 +414,17 @@ $(function () {
             }
         }
         return "";
+    }
+    //settimeout 禁用按钮
+    function dontclick(){
+        setTimeout(function () {
+            $("#attention").text("要等一会才能再次查询");
+            attention();
+        }, 1000);
+        setTimeout(function () {
+            console.log("启用信息查询按钮");
+            $("#check_btn").removeAttr('disabled');
+        }, 40000);
+
     }
 })
