@@ -30,7 +30,7 @@ name_check() 调用以上函数  调用attention()把提示信息写出来 focus
 
 name/dorm/tel_check()过滤通过时返回true
 
-##### -------line 214--------- 报名按钮 在注册页面
+##### -------line 214--------- 报名按钮 在注册页面  #sign_btn
 
 ### ------line 225------- final_check()终极检查   通过时返回true
 

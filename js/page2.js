@@ -423,8 +423,10 @@ $(function () {
             $("#attention").focus();
         }, 5000);
         setTimeout(function () {
-            console.log("启用信息查询按钮");
+            console.log("启用按钮");
             $("#check_btn").removeAttr('disabled');
+            $("#cover_user").removeAttr('disabled');
+            $("#sign_btn").removeAttr('disabled');
         }, 23333);
 
     }
