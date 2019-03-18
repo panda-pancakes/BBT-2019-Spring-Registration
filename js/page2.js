@@ -45,7 +45,9 @@ $(function () {
             tel,
         });
         console.log(info);
-
+        if (final_check()) {
+            check();
+        } else {
         $.post("./api/action.php?method=query", info, function (data, status) {
             console.log("到达ajax");
             if (status == "success") {
@@ -68,15 +70,24 @@ $(function () {
                     } else {
                         attention();
                         $("#attention").text("系统繁忙，请稍后再试");
-
                         console.log(data.info);
                     }
                 } else {
-                    console.log(data.status);
-                    attention();
-                    $("#attention").text("查询成功");
-                    //TO-DO:data里面存了返回的查询信息，跳转到另一页面，把该用户查询的信息给显示出来
-                    $("#cover_user").show(); //修改按钮
+                    console.log(data.info);
+                    setcookie(data.info.name);
+                    setcookie(data.info.tel);
+                    setCookie(data.info.dorm);
+                    setcookie(data.info.introduction);
+                    alert("感谢"+getCookie("name")+"同学的报名！");
+                    window.location.href="../signup.html";
+                    $("#name").val(getCookie("name"));
+                    $("#tel").val(getCookie("tel"));
+                    $("#dorm").val(getCookie("dorm"));
+                    $("#introduction").val(getCookie("intro"));
+                    // attention();
+                    // $("#attention").text("查询成功");
+                    // TO-DO:data里面存了返回的查询信息，跳转到另一页面，把该用户查询的信息给显示出来
+                    // $("#cover_user").show(); //修改按钮
                 }
             }
         }).always(function () {
@@ -90,6 +101,7 @@ $(function () {
                 attention();
             }, 3000);
         })
+    }
     })
 
     //覆盖
@@ -150,7 +162,7 @@ $(function () {
     //显示cover按钮和树
     function cover() {
         $("#check_box").hide();
-        $("#cover_user").show();
+        // $("#cover_user").show();
         $("#successbox:first-child").hide();
         $("#successbox").css({
             "visibility": "visible",
@@ -242,7 +254,7 @@ $(function () {
     function attention() {
         console.log($("#attention").text());
         $("#attention").show();
-        $("#cover_user").show();
+        // $("#cover_user").show();
         $("#attention").css({
             "display": "block",
         });
