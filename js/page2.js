@@ -21,14 +21,14 @@ $(function () {
     console.log("------14----js错误检查程序loading--------");
         //cook cookies
         function setCookie(cname,cvalue){
-            document.cookie=cname+"="+cvalue+";";
+            document.cookie=cname+":"+cvalue+",";
             if(document.cookie.length<=0){
                 return false;
             }
         }
         function getCookie(cname){
-            var a = cname+"=";
-            var ca = document.cookie.split(';');
+            var a = cname+":";
+            var ca = document.cookie.split(',');
             for(var i=0; i<ca.length; i++){
                 var c = ca[i].trim();
                 if (c.indexOf(name)==0){
@@ -97,7 +97,7 @@ $(function () {
                     setCookie(data.info.dorm);
                     setCookie(data.info.introduction);
                     alert("感谢"+getCookie("name")+"同学的报名！");
-                    window.location.href="../signup.html";
+                    window.location.href="signup.html";
                     $("#name").val(getCookie("name"));
                     $("#tel").val(getCookie("tel"));
                     $("#dorm").val(getCookie("dorm"));
