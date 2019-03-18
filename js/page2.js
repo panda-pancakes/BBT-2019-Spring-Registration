@@ -5,7 +5,7 @@ $(function () {
     $("#cover_user").hide();
     $("#bgimg1").hide();
     $("#successbox").hide();
-    //js混用
+    //前端过滤
     function oninput(){
         $("#name").bind('input propertychange', function() { 
             $("#name").val().replace(/[\'\"\\\/\b\f\n\r\t]/,'');
@@ -34,42 +34,16 @@ $(function () {
     }
     oninput();
     console.log("------14----js错误检查程序loading--------");
-    // console.log("------15----查询进度 页面 输入手机号和姓名 --------");
     //查询进度 页面 输入手机号和姓名 
     $("#check_user").click(function () {
         $("#bbt").hide();
         // $("#check_box").show();
         $("#check_box").css({
-            "margin-top": "35%",
-            // "display": "table",
-            "margin-left": "20%",
             "display": "block",
-            "vertical-align": " middle",
-            "text-align": "center",
-            // "padding-left": "10%",
-            // "padding-top": "25%",
-            "max-width": "200%",
         });
         $("#prev").css({
             "vertical-align": "middle"
         });
-        $("#check_btn").css({
-            "vertical-align": "middle",
-            "background": "none",
-        })
-        $(".text").css({
-            "appearance": "none",
-            "-moz-appearance": "none",
-            '-webkit-appearance': "none",
-            " width": "110%",
-            "margin-bottom": " 1%",
-            "padding": "2.3%",
-            "background-color": " #dee6a8",
-            "border-radius": "2em",
-            "border:1px solid": " #c8cccf",
-            "font-size": " 0.8em",
-
-        })
         $("#bgimg1").show();
     }) //显示查询页面
     // console.log("到达checkbtn函数上空");
@@ -77,6 +51,8 @@ $(function () {
     //真的查询
     $("#check_btn").click(function () {
         console.log("你点了信息查询按钮");
+        $("#check_btn").attr('disabled', 'disabled');
+        console.log("禁用信息查询按钮");
         var name = $('#name').val();
         var tel = $('#tel').val();
         var info = JSON.stringify({
@@ -111,20 +87,32 @@ $(function () {
                         console.log(data.info);
                     }
                 } else {
+                    console.log(data.status);
                     attention();
                     $("#attention").text("查询成功");
                     //TO-DO:data里面存了返回的查询信息，跳转到另一页面，把该用户查询的信息给显示出来
                     $("#cover_user").show(); //修改按钮
                 }
             }
+        }).always(function () {
+            //模拟请求延时 防止 按钮重复按
+            setTimeout(function () {
+                console.log("启用信息查询按钮");
+                $("#check_btn").removeAttr('disabled');
+            }, 40000);
+            setTimeout(function () {
+                $("#attention").text("要等一会才能再次查询");
+                attention();
+            }, 3000);
         })
-    
     })
 
     //覆盖
     // console.log("------96----路过覆盖函数上空 --------");
     $("#cover_user").click(function () {
         console.log("覆盖");
+        $("#cover_user").attr('disabled', 'disabled');
+        console.log("禁用覆盖按钮");
         var name = $('#name').val();
         var tel = $('#tel').val();
         var info = JSON.stringify({
@@ -160,12 +148,22 @@ $(function () {
                     $("#attention").text("覆盖成功");    
                 }
             }
+        }).always(function () {
+            //模拟请求延时 防止 按钮重复按
+            setTimeout(function () {
+                console.log("启用信息查询按钮");
+                $("#cover_user").removeAttr('disabled');
+            }, 40000);
+            setTimeout(function () {
+                $("#attention").text("要等一会才能再次查询");
+                attention();
+            }, 3000);
         })
-    
     })
-    // console.log("------138----路过覆盖css函数上空 --------");
 
+    //显示cover按钮和树
     function cover() {
+        $("#check_box").hide();
         $("#cover_user").show();
         $("#successbox:first-child").hide();
         $("#successbox").css({
@@ -173,7 +171,6 @@ $(function () {
         });
         console.log("正在显示cover按钮");
     }
-    // console.log("----152------前端检查字符函数上空 --------");
     //前端检查字符
     function isBlank(str) {
         return (!str || /^\s*$/.test(str));
@@ -195,15 +192,24 @@ $(function () {
         var rest = true;
         if (isBlank(name)) {
             $("#name").focus();
+            $("#attention").text("填名字！");
+            // $("#attention").append('<img src="../img/attention/6.jpg" />');
+            attention();
             rest = false;
-            if (!check_uni(name)) {
+            if (!check_num(name)) {
+                $("#attention").text("填名字！");
+                attention();    
                 $("#name").focus();
                 rest = false;
             }
         } else if (isBlank(dorm)) {
+            $("#attention").text("宿舍号！");
+            attention();
             rest = false;
         } else if (check_num(tel)) {
             $("#tel").focus();
+            $("#attention").text("11位手机号喔");
+            attention();
             rest = false;
         }
         if (rest) {
@@ -212,7 +218,6 @@ $(function () {
             return 1;
         }
     }
-    // console.log("-------172---oninput上空 --------");
 
     $("#sign_btn").click(function(){
         if(cc()==true){
@@ -224,6 +229,7 @@ $(function () {
         }
     })
 
+    //调用检查字符的各个函数 并在attention写入提示信息  返回布尔值 正确时允许按下按钮发送请求
     function cc(){
         var a=prevent();
         // console.log("------a="+a+"------------");
@@ -236,10 +242,9 @@ $(function () {
             return true;
         }
     }
-    // console.log("-------182---oninput上空 --------");
 
     function attention() {
-        console.log($("#attention").val());
+        console.log($("#attention").text());
         $("#attention").show();
         $("#cover_user").show();
         $("#attention").css({
@@ -249,6 +254,10 @@ $(function () {
     console.log("------194----check上空 --------");
     //注册
     function check() {
+        $("#sign_btn").attr('disabled', 'disabled');
+        console.log("禁用报名按钮");
+        $("#attention").text("请稍等……");
+        attention();
         var name = $('#name').val();
         var sex = $('input:radio[name="sex"]:checked').val();
         var college = $("select#college").get(0).selectedIndex;
@@ -298,7 +307,7 @@ $(function () {
                     } else if (introduction.test(data.errmsg)) {
                         attention();
                         $("#introduction").focus();
-                        $("#attention").text("哎呀个人简介不能超过50字哦");
+                        // $("#attention").append("<img src=" + URL("../img/attention/6.png") + "class="+"attention"+">" );
                     }else if (existed.test(data.errmsg)) {
                         attention();
                         $("#attention").text("您已经报名过，是否选择覆盖上次报名信息");
@@ -313,6 +322,16 @@ $(function () {
                 attention();
                 $("#attention").text("系统繁忙，请稍后再试");
             }
+        }).always(function () {
+            //模拟请求延时 防止 按钮重复按
+            setTimeout(function () {
+                console.log("启用报名按钮");
+                $("#sign_btn").removeAttr('disabled');
+            }, 40000);
+            setTimeout(function () {
+                $("#attention").text("要等一会才能再次查询");
+                attention();
+            }, 3000);
         });
     }
     // console.log("------260----signbtn上空 --------");

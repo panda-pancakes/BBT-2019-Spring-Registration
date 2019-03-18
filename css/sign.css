@@ -21,12 +21,12 @@ body{
     /* vertical-align: middle; */
 }
 #prev{
-    position:fixed;
+    position: absolute;;
     display: block;
     z-index: 10;
     margin-top: 0%;
     margin-left: 0%;
-    width: -webkit-fill-available ;
+    width: -webkit-fill-available;
     background: none;
 }
 #input{
@@ -36,7 +36,7 @@ body{
     /* padding-top: 45%; */
     max-width: 100%;
     /* margin-right: 50%; */
-    padding-top: 25%;
+    padding-top: 32%;
     margin-left: 25%;
     margin-right: 25%;
 }
