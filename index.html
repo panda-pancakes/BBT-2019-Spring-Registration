@@ -31,7 +31,7 @@
         <label for="name" style="color: #707070;font-size: 1em;">姓名:</label>
         <input class="text" type="text" style="max-width: 110%" name="name" id="name" placeholder="填名字"  required = "required">
         <label for="tel" style="color: #707070;font-size: 1em;margin-bottom: 3%;">手机号：</label>
-        <input class="text" type="tel" style="max-width: 110%" id="tel"name="tel" max-length="11" id="tel" placeholder="用于接收面试短信（别填错了" required = "required">
+        <input class="text" type="tel" style="max-width: 110%" id="tel"name="tel" maxlength="11" id="tel" placeholder="(别填错了" required = "required">
         <div style="display:table;text-align: center;margin-top: 15%" id="newbox">
             <div style="display:table-cell;text-align: middle;margin-top:3%;">
                     <input type="image" src="img/button/9.png" id="prev" alt="返回"  onclick="location.href='index.html'"><br>
@@ -42,14 +42,15 @@
             <!-- style="position:relative;margin-top:1em;" -->
         </div>
         </div>
+        <div class="slide" id="attention">
+        </div>
     </div>
     <img id="bgimg1" src="img/pictures/3.png">
     <div id="successbox">
         <p>查询成功！</p>
         <img id="tree" src="img/pictures/2.png">
     </div>
-    <div class="slide" id="attention">
-    </div>
+
 </body>
 <script src="js/page2.js"></script>
 <script src="js/vconsole.js"></script>

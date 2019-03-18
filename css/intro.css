@@ -14,7 +14,9 @@
     z-index: 9;
     display: block;
     max-block-size: 300%;
-    max-width: 356%;
+    position: absolute;
+    width: -webkit-fill-available;
+    background: none;
     margin-top: 0%;
 }
 body{
@@ -72,17 +74,21 @@ body{
     align-items: center;
     text-align: center;
 }
-.swiper-container{
+/* .swiper-container{
     padding: 2%;
     max-width: 100%;
-}
+} */
 .swiper-button-prev{
+    background: none;
+    background-position: left;
     background-image: url("../img/swiper/button/1.png");
     position: fixed;
     left: 2%;
     /* margin-left: -37px; */
 }
 .swiper-button-next{
+    background: none;
+    background-position: right;
     background-image: url("../img/swiper/button/2.png");
     position: fixed;
     right: 2%;
@@ -93,8 +99,8 @@ body{
 }
 p{
     background:none;
-    max-width: 100%;
-    text-align: left;
-    max-height: 75%;
+    /* max-width: 100%;
+    max-height: 75%;*/
     margin-top: -30%;
-}
+    text-align: left;
+} 
