@@ -92,10 +92,10 @@ $(function () {
                     }
                 } else {//查询成功
                     console.log(data.info);
-                    setcookie(data.info.name);
-                    setcookie(data.info.tel);
+                    setCookie(data.info.name);
+                    setCookie(data.info.tel);
                     setCookie(data.info.dorm);
-                    setcookie(data.info.introduction);
+                    setCookie(data.info.introduction);
                     alert("感谢"+getCookie("name")+"同学的报名！");
                     window.location.href="../signup.html";
                     $("#name").val(getCookie("name"));
@@ -428,7 +428,7 @@ $(function () {
             $("#check_btn").removeAttr('disabled');
             $("#cover_user").removeAttr('disabled');
             $("#sign_btn").removeAttr('disabled');
-        }, 23333);
+        }, 2333);
 
     }
 })
