@@ -135,8 +135,9 @@ if (!isset($_GET["method"])) {
 
 } elseif ($_GET["method"] == "admin_query") {
 	if (isset($_SESSION["permission"])) {
+		$ret->permission = $_SESSION['permission'];
 		$ret->data = admin_query($_SESSION["permission"]);
-		$ret->sum = count((array)$ret);
+		$ret->sum = count((array)$ret->data);
 	} else {
 		$ret->errcode = -1;
 		$ret->errmsg = "Please login first";
@@ -145,10 +146,12 @@ if (!isset($_GET["method"])) {
 }elseif($_GET['method'] == "change_department"){
 	if(!isset($_GET['value'])){
 		$ret->errmsg = "Please select the department.";
+	}elseif($_GET['value'] == 666){
+		$ret->data = admin_query($_SESSION["permission"]);
+		$ret->sum = count((array)$ret->data);
 	}else{
 		$ret->data = change_department($_GET['value']);
-		$ret->data = admin_query($_SESSION["permission"]);
-		$ret->sum = count((array)$ret);
+		$ret->sum = count((array)$ret->data);
 	}
 } else {
 	$ret->errcode = -1;

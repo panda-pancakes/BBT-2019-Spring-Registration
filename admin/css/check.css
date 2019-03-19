@@ -44,4 +44,10 @@
     border: 1px solid black;
     margin: auto;
 }
+.department{
+    margin-bottom:3ex;
+    background-color: initial;
+    border-color: navy;
+    display: none;
+}
 

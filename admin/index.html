@@ -19,6 +19,7 @@
     <h1 class="header">2019春招报名表</h1>
     <div style="text-align:center" id="Statistics"></div>
     <select id="department" style="margin-bottom:3ex;background-color: initial;border-color: navy;" onchange="isSelect(this)">
+        <option value="666">全部信息</option>
         <option value="0">技术部-代码组</option>
         <option value="1">技术部-设计组</option>
         <option value="2">技术部（北校专业）</option>
@@ -54,6 +55,7 @@
         <th style="width:5em;">是否服从调剂</th>
         <th style="width:30em;">个人简介</th>
     </tr>
+    <tbody id="body"></tbody>
     </table>
     </div>
     <script src='./js/showdata.js'></script>

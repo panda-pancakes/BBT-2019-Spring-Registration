@@ -95,7 +95,6 @@ function admin_query($permission) {
 			//$stmt->bind_param("s",$permission);
 		}
 		//$stmt->execute();
-		$ret = new stdClass();
 		$array = [];
 		//$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction,$ret->timestamp, $ret->information,$ret->note);
 		while($row = $dat->fetch_assoc()){
@@ -125,18 +124,26 @@ function change_department($value){
 	if($con->connect_error){
 		return -2;
 	}else{
-		if($value == 0){
-			$stmt = $con->prepare("select * from application");
-		}else{
-			$stmt = $con->prepare("select * from application where department = ?");
-			$stmt->bind_param("i",$value);
+
+			$dat = $con->query("select * from application where department = " . $value);
+		//	$stmt = $con->prepare("select * from application where department = ?");
+		//	$stmt->bind_param("i",$value);
+		$array = [];
+		//$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction,$ret->timestamp, $ret->information,$ret->note);
+		while($row = $dat->fetch_assoc()){
+			$array[]=[
+				"name" => $row["name"],
+				"sex" => $row["sex"],
+				"tel" =>$row["tel"],
+				"grade" => $row["grade"],
+				"college" => $row["college"],
+				"dorm" => $row["dorm"],
+				"department"=> $row["department"],
+				"alternative"=>$row["alternative"],
+				"adjustment"=>$row["adjustment"],
+				"introduction"=>$row["introduction"],
+			];
 		}
-		$stmt->execute();
-		$ret = new stdClass();
-		$stmt->bind_result($ret->name, $ret->sex, $ret->tel, $ret->grade, $ret->college, $ret->dorm, $ret->department, $ret->alternative, $ret->adjustment, $ret->introduction,$ret->timestamp, $ret->information,$ret->note);
-		$stmt->fetch();
-		$stmt->close();
-		$con->close();
 	}
-	return $ret;
+	return $array;
 }
