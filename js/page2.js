@@ -77,6 +77,7 @@ $(function () {
                     console.log(data.info);
                     alert("感谢"+data.info.name+"同学的报名！");
                     $("#hiddenbox").show();
+                    $("#introduction").show();
                     $("#name").val(data.info.name);
                     $("#tel").val(data.info.tel);
                     $("#dorm").val(data.info.dorm);

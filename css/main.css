@@ -140,10 +140,25 @@ select{
     -webkit-appearance:none;
     width: 110%;
     margin-bottom: 3%;
-    padding: 2.3%;
     background-color: #dee6a8;
     opacity: 0.8;
     border-radius:4px;
     border:1px solid #c8cccf;
     font-size: 0.8em;
+    display:block;
+    outline:0;
+    text-decoration:none;
+    max-width:65%;
+    padding-bottom: 3%
+}
+#introduction{
+    display: none;
+    padding-right: 25%;
+    padding-bottom: 15%;
+    background-color: #dee6a8;
+    opacity: 0.8;
+    font-size: 0.8em;
+    /* height: 2.2em; */
+    border-radius:4px;
+    border:1px solid #c8cccf;
 }
