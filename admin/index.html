@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -10,10 +11,12 @@
     <link rel="stylesheet" href="./css/check.css">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
 </head>
+
 <body>
     <h1 class="header">2019春招报名表</h1>
     <div style="text-align:center" id="Statistics"></div>
-    <select id="department" style="margin-bottom:3ex;background-color: initial;border-color: navy;" onchange="isSelect(this)">
+    <select id="department" style="margin-bottom:3ex;background-color: initial;border-color: navy;"
+        onchange="isSelect(this)">
         <option value="666">全部信息</option>
         <option value="0">技术部-代码组</option>
         <option value="1">技术部-设计组</option>
@@ -37,21 +40,22 @@
         <option value="19">综合管理部-摄影记者</option>
         <option value="20">产品运营部（北校专业）</option>
     </select>
-    <div><table class="table" id="table">
-        <tr class="show_title">
-        <th style="width:5em;">姓名</th>
-        <th style="width:3em;">性别</th>
-        <th style="width:10em;">学院</th>
-        <th style="width:5em;">年级</th>
-        <th style="width:10em;">手机号</th>
-        <th style="width:5em;">宿舍</th>
-        <th style="width:10em;">第一志愿</th>
-        <th style="width:10em;">第二志愿</th>
-        <th style="width:5em;">是否服从调剂</th>
-        <th style="width:30em;">个人简介</th>
-    </tr>
-    <tbody id="body"></tbody>
-    </table>
+    <div>
+        <table class="table" id="table">
+            <tr class="show_title">
+                <th style="width:5em;">姓名</th>
+                <th style="width:3em;">性别</th>
+                <th style="width:10em;">学院</th>
+                <th style="width:5em;">年级</th>
+                <th style="width:10em;">手机号</th>
+                <th style="width:5em;">宿舍</th>
+                <th style="width:10em;">第一志愿</th>
+                <th style="width:10em;">第二志愿</th>
+                <th style="width:5em;">是否服从调剂</th>
+                <th style="width:30em;">个人简介</th>
+            </tr>
+            <tbody id="body"></tbody>
+        </table>
     </div>
     <script src='./js/showdata.js'></script>
 </body>
