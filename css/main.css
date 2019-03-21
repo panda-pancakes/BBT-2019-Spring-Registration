@@ -28,6 +28,7 @@ body,div{
     max-width: 100%;
 }
 img{
+    margin-top: 12%;
     max-width: 108%;
 }
 #check_box{
@@ -46,6 +47,8 @@ img{
     background-position-y:bottom;  */
 }
 .button{
+    margin-top: -5.5%;
+    margin-left: -5%;
     text-align: center;
 }
 label{
@@ -74,6 +77,7 @@ input[type="text"],input[type="tel"]{
     outline:0;
     text-decoration:none;
     max-width:65%;
+    padding-bottom: 3%
 }
 .prev{
     position: absolute;
@@ -93,6 +97,7 @@ input[type="text"],input[type="tel"]{
     width: -webkit-fill-available;
     max-width: 100%;
     z-index: -1;
+    left: 4%；
 }
 input{
     background: none;
