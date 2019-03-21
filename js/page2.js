@@ -183,7 +183,7 @@ $(function () {
                         $("#attention").text("系统繁忙，请稍后再试");
                     }
                 } else {
-                    cover();
+                    success_cover();
                     attention();
                     
                     $("#successbox:first-child").show();
@@ -196,7 +196,7 @@ $(function () {
     })
 
     //显示cover按钮和树
-    function cover() {
+    function success_cover() {
         $("#check_box").hide();
         // $("#cover_user").show();
         $("#successbox:first-child").hide();
