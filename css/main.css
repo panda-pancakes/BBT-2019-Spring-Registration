@@ -138,18 +138,24 @@ select{
     appearance:none;
     -moz-appearance:none;
     -webkit-appearance:none;
-    width: 110%;
     margin-bottom: 3%;
-    background-color: #dee6a8;
     opacity: 0.8;
-    border-radius:4px;
     border:1px solid #c8cccf;
-    font-size: 0.8em;
     display:block;
     outline:0;
     text-decoration:none;
-    max-width:65%;
-    padding-bottom: 3%
+    padding-bottom: 3%;
+    display: block;
+    outline: 0;
+    text-decoration: none;
+    max-width: 65%;
+    padding-bottom: 3%;
+    width: 25em;
+    padding: 2.3%;
+    background-color: #dee6a8;
+    border-radius: 2em;
+    border: 1px solid#c8cccf;
+    font-size: 0.8em;
 }
 #introduction{
     display: none;
@@ -160,5 +166,6 @@ select{
     font-size: 0.8em;
     /* height: 2.2em; */
     border-radius:4px;
+    margin-right: 26%;
     border:1px solid #c8cccf;
 }
