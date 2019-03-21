@@ -32,14 +32,42 @@
         <input class="text" type="text" style="max-width: 110%" name="name" id="name" placeholder="填名字"  required = "required">
         <label for="tel" style="color: #707070;font-size: 1em;margin-bottom: 3%;">手机号：</label>
         <input class="text" type="tel" style="max-width: 110%" id="tel"name="tel" maxlength="11" id="tel" placeholder="(别填错了" required = "required">
-        <div style="display:table;text-align: center;margin-top: 15%" id="newbox">
-            <div style="display:table-cell;text-align: middle;margin-top:3%;">
+        <div style="text-align: center;margin-top: 15%" id="newbox">
+            <!-- style="position:relative;margin-top:1em;" -->
+            <div id="hiddenbox">
+                <div>
+                <label for="college">学院：</label>
+                <select required = "required" id="college" name="college"></select>        
+            </div>
+            <div>
+                    <label for="dorm">宿舍：</label>
+                    <input class="text" type="text" name="dorm" maxlength="7"  id="dorm" placeholder="例：C1-211" required = "required">
+            </div>
+            <div>
+                    <label>第一志愿：</label>
+                    <select required = "required" id="department" name="department">
+                    </select>
+                    <label>第二志愿：</label>
+                    <select id="alternative" name="alternative">
+                    </select>        
+                </div>
+                <div>
+                    <label for="adjustment">是否服从调配：</label>
+                    <input type="radio" name="adjustment" class="adjustment" value="1"   checked><span style="color: #707070">是</span>
+                    <input type="radio" name="adjustment" class="adjustment" value="0"  checked><span style="color: #707070">否</span>
+                </div>
+                <div>
+                    <label for="intro">个人简介（选填）</label>
+                    <textarea rows="10" cols="25" id="introduction" placeholder="不要超过50字哦" style="text-align:start">
+                    </textarea>
+                </div>
+            </div>
+            <div style="text-align: middle;margin-top:3%;">
                     <input type="image" src="img/button/9.png" id="prev" alt="返回"  onclick="location.href='index.html'"><br>
                     <input type="image" src="img/button/3.png" id="check_btn" alt="查看进度" ><br>
                     <input type="image" src="img/button/1.png" id="233" alt="直接报名吧" onclick="location.href='signup.html'"><br>
                     <input type="image" src="img/button/5.png" id="cover_user" alt="修改信息">            
             </div>
-            <!-- style="position:relative;margin-top:1em;" -->
         </div>
         </div>
         <div class="slide" id="attention">

@@ -5,6 +5,7 @@ $(function () {
     $("#cover_user").hide();
     $("#bgimg1").hide();
     $("#successbox").hide();
+    $("#hiddenbox").hide();
     //前端过滤
     function oninput() {
         $("#name").bind('input propertychange', function () {
@@ -19,24 +20,6 @@ $(function () {
     }
     oninput();
     console.log("------14----js错误检查程序loading--------");
-        //cook cookies
-        function setCookie(cname,cvalue){
-            document.cookie=cname+":"+cvalue+",";
-            if(document.cookie.length<=0){
-                return false;
-            }
-        }
-        function getCookie(cname){
-            var a = cname+":";
-            var ca = document.cookie.split(',');
-            for(var i=0; i<ca.length; i++){
-                var c = ca[i].trim();
-                if (c.indexOf(name)==0){
-                    return c.substring(a.length,c.length);
-                }
-            }
-            return "";
-        }
     //查询进度 页面 输入手机号和姓名 
     $("#check_user").click(function () {
         $("#bbt").hide();
@@ -92,16 +75,12 @@ $(function () {
                     }
                 } else {//查询成功
                     console.log(data.info);
-                    setCookie(data.info.name);
-                    setCookie(data.info.tel);
-                    setCookie(data.info.dorm);
-                    setCookie(data.info.introduction);
-                    alert("感谢"+getCookie("name")+"同学的报名！");
-                    window.location.href="signup.html";
-                    $("#name").val(getCookie("name"));
-                    $("#tel").val(getCookie("tel"));
-                    $("#dorm").val(getCookie("dorm"));
-                    $("#introduction").val(getCookie("intro"));
+                    alert("感谢"+data.info.name+"同学的报名！");
+                    $("#hiddenbox").show();
+                    $("#name").val(data.info.name);
+                    $("#tel").val(data.info.tel);
+                    $("#dorm").val(data.info.dorm);
+                    $("#introduction").val(data.info.introduction);
                     // TO-DO:data里面存了返回的查询信息，跳转到另一页面，把该用户查询的信息给显示出来
                     $("#sign_btn").hide();
                     $("#cover_user").show(); //修改按钮
@@ -422,13 +401,13 @@ $(function () {
             $("#attention").text("要等一会才能再次查询");
             attention();
             $("#attention").focus();
-        }, 5000);
+        }, 4000);
         setTimeout(function () {
             console.log("启用按钮");
             $("#check_btn").removeAttr('disabled');
             $("#cover_user").removeAttr('disabled');
             $("#sign_btn").removeAttr('disabled');
-        }, 2333);
+        }, 1200);
 
     }
 })
