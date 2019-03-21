@@ -336,6 +336,7 @@ $(function () {
                     var telephone = new RegExp('telephone');
                     var introduction = new RegExp('introduction');
                     attention();
+                    change_pic(data.errmsg);
                     if (missing.test(data.errmsg)) {
                         attention();
                         $("input").focus();
@@ -463,5 +464,25 @@ $(function () {
             $("#sign_btn").removeAttr('disabled');
         }, 1200);
 
+    }
+
+    //attention 图片 变换
+    function  change_pic(str){
+        var missing = new RegExp('Missing');
+        var existed = new RegExp('existed');
+        var special = new RegExp('special');
+        var tel = new RegExp('telephone');
+        var intro = new RegExp('introduction');
+        var img=document.getElementById("attention_pic");
+        console.log(img.src);
+        if(missing.test(str)){
+            img.src = "img/attention/2.png";
+        }
+        if(existed.test(str)){
+            img.src ="img/attention/x.png";/////等xy做这个
+        }
+        if(special.test(str)){
+            img.src="img/attention/3.png";
+        }
     }
 })
