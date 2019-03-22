@@ -31,14 +31,14 @@ function signup($info, $cover)
 	if ($con->connect_error) {
 		return -2;
 	}
+	//注释掉是因为如果用户改了名字或者手机号码的时候会有问题
+	//$data = query($info);
 
-	$data = query($info);
-
-	if ($data->name && $data->tel) {
+	if ($info["query_name"] && $info["query_tel"]) {
 		if ($cover) {
-			$sql = "update application set sex = ?, grade = ?, college = ?, dorm = ?, department = ?, alternative = ?, adjustment = ?, introduction = ? where name = ? && tel = ?";
+			$sql = "update application set name = ?, tel = ?, sex = ?, grade = ?, college = ?, dorm = ?, department = ?, alternative = ?, adjustment = ?, introduction = ? where name = ? && tel = ?";
 			$stmt = $con->prepare($sql);
-			$stmt->bind_param("ssssssssss", $info["sex"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"], $info["introduction"]);
+			$stmt->bind_param("ssssssssssss", $info["name"], $info["tel"], $info["sex"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"], $info["introduction"], $info["query_name"], $info["query_tel"]);
 			$stmt->execute();
 			$stmt->close();
 		} else {

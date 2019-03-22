@@ -45,6 +45,7 @@ label{
     margin-bottom: 1.8%;
     padding: 2%;
 }
+
 .text{
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -59,7 +60,7 @@ label{
     
 }
 #introduction{
-    padding-right: 25%;
+    padding-right: 37%;
     padding-bottom: 15%;
     background-color: #dee6a8;
     opacity: 0.8;
@@ -69,13 +70,13 @@ label{
     border:1px solid #c8cccf;
 }
 #sign_btn{
-    padding: 10%;
+    /* padding: 10%; */
+    margin-top: 10%;
     background: none;
 }
 label,.grade,.sex{
     color: #707070;
     background: none;
-
 }
 div{
     padding-bottom: 2%;
@@ -112,4 +113,9 @@ select{
     display: none;
     color: #707070;
     font-size: 0.93em;
+}
+input[type="radio"]{
+    appearance: none;
+    background-image: url("/img/button/no.png");
+    background-size: 100%;
 }

@@ -11,28 +11,37 @@ $data = json_decode($data, true);
 
 if (!isset($_GET["method"])) {
 	$ret->errmsg = "Missing parameter: method";
-} elseif ($_GET["method"] == "signup") {
-	if (!isset($data["name"])) {
+
+} elseif ($_GET["method"] == "signup") {	
+	if (empty($data["name"])) {
 		$ret->errmsg = "Missing parameter: name";
-	} elseif (!isset($data["sex"])) {
+
+	} elseif (empty($data["sex"])) {
 		$ret->errmsg = "Missing parameter: sex";
 		// check 
-	} elseif (!isset($data["tel"])) {
+
+	}elseif (empty($data["tel"])) {
 		$ret->errmsg = "Missing parameter: tel";
 		// check 
-	} elseif (!isset($data["grade"])) {
+
+	}elseif (empty($data["grade"])) {
 		$ret->errmsg = "Missing parameter: grade";
 		// check 
-	} elseif (!isset($data["college"])) {
+
+	}elseif (empty($data["college"])) {
 		$ret->errmsg = "Missing parameter: college";
 		// check 
-	} elseif (!isset($data["dorm"])) {
+
+	}elseif (empty($data["dorm"])) {
 		$ret->errmsg = "Missing parameter: dorm";
 		// check 
-	} elseif (!isset($data["department"])) {
+
+	}
+	 elseif (empty($data["department"])) {
 		$ret->errmsg = "Missing parameter: department";
 		// check 
-	} elseif (!isset($data["adjustment"])) {
+
+	} elseif (empty($data["adjustment"])) {
 		$ret->errmsg = "Missing parameter: adjustment";
 		// check 
 	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $data["name"])) {
@@ -41,8 +50,25 @@ if (!isset($_GET["method"])) {
 		$ret->errmsg = "wrong telephone information";
 	} elseif (!empty($data["introduction"]) && mb_strlen($data["introduction"]) >= 50) {
 		$ret->errmsg = "length of introduction limit exceeded";
-	} else {
-		$info = array(
+	
+	}else {
+		if(isset($data["cover"])){
+			$info = array(
+				"query_name" => $_SESSION["name"],
+				"query_tel" => $_SESSION["tel"],
+				"name" => $data["name"],
+				"sex" => $data["sex"],
+				"tel" => $data["tel"],
+				"grade" => $data["grade"],
+				"college" => $data["college"],
+				"dorm" => $data["dorm"],
+				"department" => $data["department"],
+				"alternative" => $data["alternative"],
+				"adjustment" => $data["adjustment"],
+				"introduction" => $data["introduction"],
+			);
+		}else{
+			$info = array(
 			"name" => $data["name"],
 			"sex" => $data["sex"],
 			"tel" => $data["tel"],
@@ -54,8 +80,8 @@ if (!isset($_GET["method"])) {
 			"adjustment" => $data["adjustment"],
 			"introduction" => $data["introduction"],
 		);
-		//var_dump($_POST["cover"]);
-		$sta = signup($info, isset($_POST["cover"]) ? $_POST["cover"] : false);
+		}
+		$sta = signup($info, isset($data["cover"]) ? $data["cover"] : false);
 
 		if ($sta == -1) {
 			$ret->errmsg = "existed";
@@ -76,7 +102,8 @@ if (!isset($_GET["method"])) {
 			"name" => $data["name"],
 			"tel" => $data["tel"],
 		);
-
+		$_SESSION["name"] = $data["name"];
+		$_SESSION["tel"] = $data["tel"];
 		$sta = query($info);
 
 		if ($sta === -2) {

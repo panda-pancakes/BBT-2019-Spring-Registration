@@ -28,6 +28,7 @@ body,div{
     max-width: 100%;
 }
 img{
+    margin-top: 12%;
     max-width: 108%;
 }
 #check_box{
@@ -46,6 +47,8 @@ img{
     background-position-y:bottom;  */
 }
 .button{
+    margin-top: -0.9%;
+    margin-left: -5%;
     text-align: center;
 }
 label{
@@ -74,6 +77,7 @@ input[type="text"],input[type="tel"]{
     outline:0;
     text-decoration:none;
     max-width:65%;
+    padding-bottom: 3%
 }
 .prev{
     position: absolute;
@@ -93,6 +97,7 @@ input[type="text"],input[type="tel"]{
     width: -webkit-fill-available;
     max-width: 100%;
     z-index: -1;
+    left: 4%；s
 }
 input{
     background: none;
@@ -120,4 +125,47 @@ input{
     color:  #707070;
     font-size: 1em;
     text-align: center;
+}
+#hiddenbox{
+    display: block;
+    background: none;
+}
+label,.grade,.sex{
+    color: #707070;
+    background: none;
+}
+select{
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    margin-bottom: 3%;
+    opacity: 0.8;
+    border:1px solid #c8cccf;
+    display:block;
+    outline:0;
+    text-decoration:none;
+    padding-bottom: 3%;
+    display: block;
+    outline: 0;
+    text-decoration: none;
+    max-width: 65%;
+    padding-bottom: 3%;
+    width: 25em;
+    padding: 2.3%;
+    background-color: #dee6a8;
+    border-radius: 2em;
+    border: 1px solid#c8cccf;
+    font-size: 0.8em;
+}
+#introduction{
+    display: none;
+    padding-right: 25%;
+    padding-bottom: 15%;
+    background-color: #dee6a8;
+    opacity: 0.8;
+    font-size: 0.8em;
+    /* height: 2.2em; */
+    border-radius:4px;
+    margin-right: 26%;
+    border:1px solid #c8cccf;
 }
