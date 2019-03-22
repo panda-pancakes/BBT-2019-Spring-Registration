@@ -183,7 +183,7 @@ $(function () {
                         $("#attention").text("系统繁忙，请稍后再试");
                     }
                 } else {
-                    success_cover();
+                    //success_cover();
                     attention();
                     
                     $("#successbox:first-child").show();
