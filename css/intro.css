@@ -37,6 +37,7 @@ body {
 }
 
 .showbox {
+    width: 100%;
     background-color: unset;
     margin-bottom: 1rem;
 }
@@ -49,10 +50,10 @@ body {
 .swiper-slide {
     background: unset;
     font-size: 18px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
+    /* display: -webkit-box; */
+    /* display: -ms-flexbox; */
+    /* display: -webkit-flex; */
+    /* display: flex; */
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     -webkit-justify-content: center;
@@ -96,6 +97,7 @@ body {
 }
 
 .title {
+    text-align: center;
     background-color: unset;
     animation-name: breath;
     animation-timing-function: ease-in-out;
