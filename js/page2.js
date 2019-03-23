@@ -81,7 +81,7 @@ $(function () {
                         } else {
                             var info_sex = "女";
                         }
-                        if (data.info.adjustment == "1") {
+                        if (data.info.adjustment == "true") {
                             var info_adjustment = "是";
                         } else {
                             var info_adjustment = "否";
@@ -134,12 +134,12 @@ $(function () {
         console.log("禁用覆盖按钮");
         var name = $('#name').val();
         var sex = $('input:radio[name="sex"]:checked').val();
-        var college = $("select#college").get(0).selectedIndex;
+        var college = $('#college').prop('selectedIndex');
         var grade = $('input:radio[name="grade"]:checked').val();
         var dorm = $("#dorm").val();
         var tel = $('#tel').val();
-        var department = $("select#department").get(0).selectedIndex;
-        var alternative = $("select#alternative").get(0).selectedIndex;
+        var department = $("#department").prop('selectedIndex');
+        var alternative = $("select#alternative").prop('selectedIndex');
         var adjustment = $('input:radio[name="adjustment"]:checked').val();
         var introduction = $('#introduction').val();
         var cover = "true";
@@ -170,7 +170,7 @@ $(function () {
                     if (missing.test(data.errmsg)) {
                         attention();
                         $("input").focus();
-                        $("#attention").text("你漏填了什么，请检查一下再提交哦");
+                        $("#attention").text("信息填写不完整，请将必填信息填完整之后再提交哦");
                     } else if (special.test(data.errmsg)) {
                         attention();
                         $("#name").focus();
@@ -178,7 +178,7 @@ $(function () {
                     } else if (telephone.test(data.errmsg)) {
                         attention();
                         $("#tel").focus();
-                        $("#attention").text("哎呀手机号填写不正确哦");
+                        $("#attention").text("哎呀手机号填写格式不正确哦");
                     } else if (same.test(data.errmsg)) {
                         attention();
                         $("#department").focus();
@@ -323,7 +323,7 @@ $(function () {
         var adjustment = $('input:radio[name="adjustment"]:checked').val();
         var introduction = $('#introduction').val();
         //打包给php 
-        console.log("正在执行check：");
+        console.log(adjustment);
         var info = JSON.stringify({
             name,
             sex,
@@ -350,7 +350,7 @@ $(function () {
                     if (missing.test(data.errmsg)) {
                         attention();
                         $("input").focus();
-                        $("#attention").text("你漏填了什么，请检查一下再提交哦");
+                        $("#attention").text("信息填写不完整，请将必填信息填完之后再提交哦");
                     } else if (special.test(data.errmsg)) {
                         attention();
                         $("#name").focus();
@@ -358,7 +358,7 @@ $(function () {
                     } else if (telephone.test(data.errmsg)) {
                         attention();
                         $("#tel").focus();
-                        $("#attention").text("哎呀手机号填写不正确哦");
+                        $("#attention").text("哎呀手机号填写格式不正确哦");
                     } else if (same.test(data.errmsg)) {
                         attention();
                         $("#department").focus();
@@ -370,7 +370,10 @@ $(function () {
                         // $("#attention").append("<img src=" + URL("../img/attention/6.png") + "class="+"attention"+">" );
                     } else if (existed.test(data.errmsg)) {
                         attention();
-                        $("#attention").text("哎呀您之前已经提交过报名信息了哦，不可重复提交哦");
+                        $("#attention").text("哎呀您之前已经提交过报名信息了哦，不可重复提交哦!如果想要修改信息，请从进度查询页面进行修改");
+                    } else {
+                        attention();
+                        $("#attention").text("系统繁忙，请稍后再试");
                     }
                 } else {
                     attention();

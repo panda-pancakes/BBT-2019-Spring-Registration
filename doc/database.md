@@ -10,7 +10,7 @@
 | dorm         | String  | 宿舍号         |
 | department   | Integer | 第一志愿(编号)  |
 | alternative  | Integer | 第二志愿(编号)  |
-| adjustment   | Boolean | 是否接受调剂    |
+| adjustment   | Text    | 是否接受调剂    |
 | introduction | String  | 自我介绍        | 
 | timestamp    | Time    | 报名时间        |
 | information  | String  | 返回给用户的信息 |
