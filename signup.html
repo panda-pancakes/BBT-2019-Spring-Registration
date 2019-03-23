@@ -1,80 +1,84 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>报名表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, 
-    minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" /> 
+    minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
     <meta name="description" content="百步梯2019春季招新">
     <meta name="revised" content="PandaPancakes">
     <script src="js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="css/sign.css">
     <script src="js/page2.js"></script>
 </head>
+
 <body>
     <div id="signbox">
-    <input type="image" src="img/navigation/1.png" id="prev" alt="回到主页" onclick="location.href='index.html'">
+        <input type="image" src="img/navigation/1.png" id="prev" alt="回到主页" onclick="location.href='index.html'">
 
-    <div id="input" class="sign">
-    <!-- <form action="api/database.php" method="POST"> -->
-    <div>
-        <label for="name">姓名：</label>
-        <input class="text" type="text" name="name" id="name" placeholder="填名字" required = "required" >
+        <div id="input" class="sign">
+            <!-- <form action="api/database.php" method="POST"> -->
+            <div>
+                <label for="name">姓名：</label>
+                <input class="text" type="text" name="name" id="name" placeholder="填名字" required="required">
+            </div>
+            <div>
+                <label for="sex">性别：</label>
+                <input type="radio" name="sex" class="sex" value="M" id="M"><span style="color: #707070">男</span>
+                <input type="radio" name="sex" class="sex" value="F" id="F"><span style="color: #707070">女</span>
+            </div>
+            <div>
+                <label for="grade">年级：</label>
+                <input type="radio" name="grade" class="grade" value="2018" id="2018"><span
+                    style="color: #707070">大一</span>
+                <input type="radio" name="grade" class="grade" value="2017" id="2017"><span
+                    style="color: #707070">大二</span>
+            </div>
+            <div>
+                <label for="college">学院：</label>
+                <select required="required" id="college" name="college">
+                </select>
+            </div>
+            <div>
+                <label for="dorm">宿舍：</label>
+                <input class="text" type="text" name="dorm" maxlength="7" id="dorm" placeholder="例：C1-211"
+                    required="required">
+            </div>
+            <div>
+                <label for="tel">联系电话：</label>
+                <input class="text" type="text" name="tel" maxlength="11" id="tel" placeholder="用于接收面试短信（别填错了"
+                    required="required">
+            </div>
+            <div>
+                <label>第一志愿：</label>
+                <select required="required" id="department" name="department">
+                </select>
+                <label>第二志愿：</label>
+                <select id="alternative" name="alternative">
+                </select>
+            </div>
+            <div>
+                <label for="adjustment">是否服从调配：</label>
+                <input type="radio" name="adjustment" class="adjustment" value="true"><span
+                    style="color: #707070">是</span>
+                <input type="radio" name="adjustment" class="adjustment" value="false"><span
+                    style="color: #707070">否</span>
+            </div>
+            <div>
+                <label for="intro">个人简介（选填）</label>
+                <textarea rows="10" cols="25" id="introduction" placeholder="不要超过50字哦"
+                    style="text-align:start"></textarea>
+            </div>
+            <div class="slide" id="attention">
+                <img id="attention_pic" src="img/attention/6.png">
+            </div>
+            <input type="image" src="img/button/6.png" id="sign_btn" alt="提交">
+            <input type="image" src="img/button/5.png" id="cover_user" alt="修改信息">
+            <!-- </form> -->
+        </div>
     </div>
-    <div>
-        <label for="sex">性别：</label>
-        <input type="radio" name="sex" class="sex" value="M" id="M" ><span style="color: #707070">男</span>
-        <input type="radio" name="sex" class="sex" value="F" id="F" ><span style="color: #707070">女</span>
-    </div>
-    <div>
-        <label for="grade">年级：</label>
-        <input type="radio" name="grade" class="grade" value="2018" id="2018" ><span style="color: #707070">大一</span>
-        <input type="radio" name="grade" class="grade" value="2017" id="2017" ><span style="color: #707070">大二</span>
-    </div>
-    <div>
-    <label for="college">学院：</label>
-    <select required = "required" id="college" name="college">
-    </select>
-    </div>
-    <div>
-        <label for="dorm">宿舍：</label>
-        <input class="text" type="text" name="dorm" maxlength="7"  id="dorm" placeholder="例：C1-211" required = "required">
-    </div>
-    <div>    
-        <label for="tel">联系电话：</label>
-        <input class="text" type="text" name="tel" maxlength="11"  id="tel" placeholder="用于接收面试短信（别填错了" required = "required" >
-    </div>
-    <div>
-        <label>第一志愿：</label>
-        <select required = "required" id="department" name="department">
-        </select>
-        <label>第二志愿：</label>
-        <select id="alternative" name="alternative">
-        </select>        
-    </div>
-    <div>
-        <label for="adjustment">是否服从调配：</label>
-        <input type="radio" name="adjustment" class="adjustment" value="true" ><span style="color: #707070">是</span>
-        <input type="radio" name="adjustment" class="adjustment" value="false" ><span style="color: #707070">否</span>
-    </div>
-    <div>
-        <label for="intro">个人简介（选填）</label>
-        <textarea rows="10" cols="25" id="introduction" placeholder="不要超过50字哦" style="text-align:start"></textarea>
-    </div>
-    <div class="slide" id="attention">
-        <img id="attention_pic" src="img/attention/6.png">
-    </div>
-    <input type="image" src="img/button/6.png" id="sign_btn" alt="提交" >
-    <input type="image" src="img/button/5.png" id="cover_user" alt="修改信息">
-<!-- </form> -->
-</div>
-<div id="successbox">
-    <p>报名成功！<br>百步梯期待你的加入</p>
-    <img id="tree" src="img/pictures/2.png">
-    <input type="image" src="img/button/9.png" id="prev" alt="返回"  onclick="location.href='index.html'"><br>
-</div>
-</div>
 </body>
 <!-- <script src="js/vconsole.js"></script>
  <script>

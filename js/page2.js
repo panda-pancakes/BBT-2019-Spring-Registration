@@ -4,7 +4,6 @@ $(function () {
     $("#233").hide();
     $("#cover_user").hide();
     $("#bgimg1").hide();
-    $("#successbox").hide();
     $("#hiddenbox").hide();
     $("#appear").hide();
     //前端过滤
@@ -75,6 +74,7 @@ $(function () {
                             console.log(data.info);
                         }
                     } else { //查询成功
+                        $("#appear_info").empty()
                         $("#query").hide();
                         if (data.info.sex == "M") {
                             var info_sex = "男";
@@ -269,8 +269,8 @@ $(function () {
         }
         return rest;
     }
-  
-    
+
+
     //报名按钮
     $("#sign_btn").click(function () {
         if (final_check()) {
@@ -337,6 +337,7 @@ $(function () {
             introduction,
         });
         $.post("./api/action.php?method=signup", info, function (data, status) {
+            window.event.returnValue = false
             if (status == "success") {
                 if (data.status == "failed") {
                     var missing = new RegExp('Missing');
@@ -378,6 +379,7 @@ $(function () {
                 } else {
                     attention();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
+                    window.location.href = 'success.html';
                 }
             } else {
                 attention();
