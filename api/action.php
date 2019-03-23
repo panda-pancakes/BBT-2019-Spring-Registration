@@ -46,9 +46,14 @@ if (!isset($_GET["method"])) {
 		// check 
 	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $data["name"])) {
 		$ret->errmsg = "special characters in name";
+
 	} elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || strlen($data["tel"]) != 11) {
 		$ret->errmsg = "wrong telephone information";
-	} elseif (!empty($data["introduction"]) && mb_strlen($data["introduction"]) >= 50) {
+
+	} elseif($data["department"] == $data["alternative"]){
+		$ret->errmsg = "department can't be the same as alternative";
+
+	}elseif (!empty($data["introduction"]) && mb_strlen($data["introduction"]) >= 50) {
 		$ret->errmsg = "length of introduction limit exceeded";
 	
 	}else {

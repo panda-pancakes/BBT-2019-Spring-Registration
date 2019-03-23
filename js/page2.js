@@ -18,7 +18,7 @@ $(function () {
         $("#tel").bind('input propertychange', function () {
             tel_check();
         })
-        
+
     }
     oninput();
     console.log("------14----js错误检查程序loading--------");
@@ -47,7 +47,6 @@ $(function () {
             name,
             tel,
         });
-        console.log(info);
         if (final_check() == false) { //真的在检查
         }
         if (final_check()) {
@@ -76,7 +75,6 @@ $(function () {
                             console.log(data.info);
                         }
                     } else { //查询成功
-                        
                         $("#query").hide();
                         if (data.info.sex == "M") {
                             var info_sex = "男";
@@ -99,16 +97,22 @@ $(function () {
                         $("#appear_info").append("第二志愿：" + depa[data.info.alternative] + "<br>");
                         $("#appear_info").append("是否服从调剂：" + info_adjustment + "<br>");
                         $("#appear_info").append("个人简介：" + data.info.introduction + "<br>");
-                        $("#edit").click(function () {//进入修改信息的页面
+                        $("#edit").click(function () { //进入修改信息的页面
                             $("#appear").hide();
                             $("#query").show();
                             $("#hiddenbox").show();
                             $("#introduction").show();
-                            console.log(data.info.name);
+
                             $("#name").val(data.info.name);
                             $("#tel").val(data.info.tel);
                             $("#dorm").val(data.info.dorm);
                             $("#introduction").val(data.info.introduction);
+                            $("input:radio[name='sex'][value=" + data.info.sex + "]").prop("checked", true);
+                            $("input:radio[name='grade'][value=" + data.info.grade + "]").prop("checked", true);
+                            $("input:radio[name='adjustment'][value=" + data.info.adjustment + "]").prop("checked", true);
+                            $("#college").val(data.info.college);
+                            $("#department").val(data.info.department);
+                            $("#alternative").val(data.info.alternative);
                             $("#cover_user").show();
                         });
                         $("#sign_btn").hide();
@@ -121,7 +125,7 @@ $(function () {
             });
         }
     })
-    
+
     //覆盖
     // console.log("------96----路过覆盖函数上空 --------");
     $("#cover_user").click(function () {
@@ -160,6 +164,7 @@ $(function () {
                     var missing = new RegExp('Missing');
                     var special = new RegExp('special');
                     var telephone = new RegExp('telephone');
+                    var same = new RegExp('same');
                     var introduction = new RegExp('introduction');
                     attention();
                     if (missing.test(data.errmsg)) {
@@ -174,6 +179,10 @@ $(function () {
                         attention();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写不正确哦");
+                    } else if (same.test(data.errmsg)) {
+                        attention();
+                        $("#department").focus();
+                        $("#attention").text("哎呀第一志愿和第二志愿不能相同哦");
                     } else if (introduction.test(data.errmsg)) {
                         attention();
                         $("#introduction").focus();
@@ -185,7 +194,7 @@ $(function () {
                 } else {
                     //success_cover();
                     attention();
-                    
+
                     $("#successbox:first-child").show();
                     $("#attention").text("修改信息成功");
                 }
@@ -260,8 +269,8 @@ $(function () {
         }
         return rest;
     }
-
-
+  
+    
     //报名按钮
     $("#sign_btn").click(function () {
         if (final_check()) {
@@ -304,12 +313,13 @@ $(function () {
         attention();
         var name = $('#name').val();
         var sex = $('input:radio[name="sex"]:checked').val();
-        var college = $("select#college").get(0).selectedIndex;
+        //var college = $("select#college").get(0).selectedIndex;
+        var college = $('#college').prop('selectedIndex');
         var grade = $('input:radio[name="grade"]:checked').val();
         var dorm = $("#dorm").val();
         var tel = $('#tel').val();
-        var department = $("select#department").get(0).selectedIndex;
-        var alternative = $("select#alternative").get(0).selectedIndex;
+        var department = $('#department').prop('selectedIndex');
+        var alternative = $('#alternative').prop('selectedIndex');
         var adjustment = $('input:radio[name="adjustment"]:checked').val();
         var introduction = $('#introduction').val();
         //打包给php 
@@ -326,7 +336,6 @@ $(function () {
             adjustment,
             introduction,
         });
-        console.log(info);
         $.post("./api/action.php?method=signup", info, function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
@@ -334,9 +343,10 @@ $(function () {
                     var existed = new RegExp('existed');
                     var special = new RegExp('special');
                     var telephone = new RegExp('telephone');
+                    var same = new RegExp('same');
                     var introduction = new RegExp('introduction');
                     attention();
-                    change_pic(data.errmsg);
+                    //change_pic(data.errmsg);
                     if (missing.test(data.errmsg)) {
                         attention();
                         $("input").focus();
@@ -349,6 +359,10 @@ $(function () {
                         attention();
                         $("#tel").focus();
                         $("#attention").text("哎呀手机号填写不正确哦");
+                    } else if (same.test(data.errmsg)) {
+                        attention();
+                        $("#department").focus();
+                        $("#attention").text("哎呀第一志愿和第二志愿不能相同哦");
                     } else if (introduction.test(data.errmsg)) {
                         attention();
                         $("#introduction").focus();
@@ -380,69 +394,76 @@ $(function () {
     addarray();
 
     function addarray() {
-        depa[0] = "技术部-代码组";
-        depa[1] = "技术部-设计组";
-        depa[2] = "技术部（北校专业）";
-        depa[3] = "策划推广部";
-        depa[4] = "编辑部-原创写手";
-        depa[5] = "编辑部-摄影";
-        depa[6] = "编辑部-可视化设计";
-        depa[7] = "视觉设计部";
-        depa[8] = "视频部-策划导演";
-        depa[9] = "视频部-摄影摄像";
-        depa[10] = "视频部-剪辑特效";
-        depa[11] = "外联部";
-        depa[12] = "节目部-国语组";
-        depa[13] = "节目部-英语组";
-        depa[14] = "节目部-粤语组";
-        depa[15] = "人力资源部";
-        depa[16] = "综合管理部-行政管理";
-        depa[17] = "综合管理部-物资财物";
-        depa[18] = "综合管理部-撰文记者";
-        depa[19] = "综合管理部-摄影记者";
-        depa[20] = "产品运营部（北校专业）";
+        depa[0] = "请选择部门";
+        depa[1] = "技术部-代码组";
+        depa[2] = "技术部-设计组";
+        depa[3] = "技术部（北校专业）";
+        depa[4] = "策划推广部";
+        depa[5] = "编辑部-原创写手";
+        depa[6] = "编辑部-摄影";
+        depa[7] = "编辑部-可视化设计";
+        depa[8] = "视觉设计部";
+        depa[9] = "视频部-策划导演";
+        depa[10] = "视频部-摄影摄像";
+        depa[11] = "视频部-剪辑特效";
+        depa[12] = "外联部";
+        depa[13] = "节目部-国语组";
+        depa[14] = "节目部-英语组";
+        depa[15] = "节目部-粤语组";
+        depa[16] = "人力资源部";
+        depa[17] = "综合管理部-行政管理";
+        depa[18] = "综合管理部-物资财物";
+        depa[19] = "综合管理部-撰文记者";
+        depa[20] = "综合管理部-摄影记者";
+        depa[21] = "产品运营部（北校专业）";
 
-        major[0] = "机械与汽车工程学院";
-        major[1] = "建筑学院";
-        major[2] = "土木与交通学院";
-        major[3] = "电子与信息学院";
-        major[4] = "材料科学与工程学院";
-        major[5] = "化学与化工学院";
-        major[6] = "轻工科学与工程学院";
-        major[7] = "食品科学与工程学院";
-        major[8] = "数学学院";
-        major[9] = "物理与光电学院";
-        major[10] = "经济与贸易学院";
-        major[11] = "自动化科学与工程学院";
-        major[12] = "计算机科学与工程学院";
-        major[13] = "电力学院";
-        major[14] = "生物科学与工程学院"
-        major[15] = "环境与能源学院";
-        major[16] = "软件学院";
-        major[17] = "工商管理学院";
-        major[18] = "公共管理学院";
-        major[19] = "马克思主义学院";
-        major[20] = "外国语学院";
-        major[21] = "法学院";
-        major[22] = "新闻与传播学院";
-        major[23] = "艺术学院";
-        major[24] = "体育学院";
-        major[25] = "设计学院";
-        major[26] = "医学院";
-        major[27] = "国际教育学院";
-
+        major[0] = "请选择学院";
+        major[1] = "机械与汽车工程学院";
+        major[2] = "建筑学院";
+        major[3] = "土木与交通学院";
+        major[4] = "电子与信息学院";
+        major[5] = "材料科学与工程学院";
+        major[6] = "化学与化工学院";
+        major[7] = "轻工科学与工程学院";
+        major[8] = "食品科学与工程学院";
+        major[9] = "数学学院";
+        major[10] = "物理与光电学院";
+        major[11] = "经济与贸易学院";
+        major[12] = "自动化科学与工程学院";
+        major[13] = "计算机科学与工程学院";
+        major[14] = "电力学院";
+        major[15] = "生物科学与工程学院";
+        major[16] = "环境与能源学院";
+        major[17] = "软件学院";
+        major[18] = "工商管理学院";
+        major[19] = "公共管理学院";
+        major[20] = "马克思主义学院";
+        major[21] = "外国语学院";
+        major[22] = "法学院";
+        major[23] = "新闻与传播学院";
+        major[24] = "艺术学院";
+        major[25] = "体育学院";
+        major[26] = "设计学院";
+        major[27] = "医学院";
+        major[28] = "国际教育学院";
 
     }
     //select的option value循环
+
+
     function selector() {
-        for (var i = 0; i <= 20; i++) {
+        for (var i = 0; i <= 21; i++) {
             $("#department").append("<option value=" + i + ">" + depa[i] + "</option>");
             $("#alternative").append("<option value=" + i + ">" + depa[i] + "</option>");
         }
-        for (var i = 0; i <= 20; i++) {
+        for (var i = 0; i <= 28; i++) {
             $("#college").append("<option value=" + i + ">" + major[i] + "</option>");
         }
+        // $("#department option[value=0]").attr("selected", true);
+        // $("#alternative option[value=0]").attr("selected", true);
+        // $("#college option[value=0]").attr("selected", true);
     }
+
     $("#department").change(selector());
     $("#alternative").change(selector());
     $("#college").change(selector());
@@ -467,22 +488,22 @@ $(function () {
     }
 
     //attention 图片 变换
-    function  change_pic(str){
+    function change_pic(str) {
         var missing = new RegExp('Missing');
         var existed = new RegExp('existed');
         var special = new RegExp('special');
         var tel = new RegExp('telephone');
         var intro = new RegExp('introduction');
-        var img=document.getElementById("attention_pic");
+        var img = document.getElementById("attention_pic");
         console.log(img.src);
-        if(missing.test(str)){
+        if (missing.test(str)) {
             img.src = "img/attention/2.png";
         }
-        if(existed.test(str)){
-            img.src ="img/attention/x.png";/////等xy做这个
+        if (existed.test(str)) {
+            img.src = "img/attention/x.png"; /////等xy做这个
         }
-        if(special.test(str)){
-            img.src="img/attention/3.png";
+        if (special.test(str)) {
+            img.src = "img/attention/3.png";
         }
     }
 })
