@@ -28,7 +28,7 @@ function process($method, $data) {
 		$parameterList = $functionRegistry[$_GET["method"]]["parameter"];
 		$targetFunction = $functionRegistry[$_GET["method"]]["function"];
 		$argument = array();
-		if (isset($parameterList["required"]) {
+		if (isset($parameterList["required"])) {
 			foreach ($parameterList["required"] as $parameter) {
 				if (!isset($data[$parameter])) {
 					$ret->errcode = 400;
@@ -38,7 +38,7 @@ function process($method, $data) {
 				}
 			}
 		}
-		if (isset($parameterList["optional"]) {
+		if (isset($parameterList["optional"])) {
 			foreach ($parameterList["optional"] as $parameter) {
 				if (isset($data[$parameter]) {
 					$argument[$parameter] = $data[$parameter];
