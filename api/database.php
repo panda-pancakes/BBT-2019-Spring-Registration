@@ -52,7 +52,7 @@ function signup($info, $cover) {
 		$stmt = $con->prepare($sql);
 		$stmt->bind_param("ssssssssss", $info["name"], $info["sex"], $info["tel"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"], $info["introduction"]);
 		if (!$stmt->execute()) {
-			return $stmt->error();
+			return $stmt->error;
 		}
 		$stmt->close();
 	}
