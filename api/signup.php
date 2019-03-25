@@ -12,6 +12,9 @@ function onSignup($arg) {
 	} elseif ($sta == -2) {
 		$ret->errcode = 500;
 		$ret->errmsg = "Database issue";
+	} elseif ($sta != 0) {
+		$ret->errcode = 500;
+		$ret->errmsg = $sta;
 	}
 	
 	return $ret;

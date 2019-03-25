@@ -51,7 +51,9 @@ function signup($info, $cover) {
 		$sql = "insert into application (name, sex, tel, grade, college, dorm, department, alternative, adjustment, introduction) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$stmt = $con->prepare($sql);
 		$stmt->bind_param("ssssssssss", $info["name"], $info["sex"], $info["tel"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"], $info["introduction"]);
-		$stmt->execute();
+		if (!$stmt->execute()) {
+			return $stmt->error();
+		}
 		$stmt->close();
 	}
 
