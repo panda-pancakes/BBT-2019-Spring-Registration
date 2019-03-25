@@ -140,7 +140,7 @@ select {
 input[type="image"]{
     width: 200px;
 }
-.prev{
+#prev{
     position: absolute;
     top:0%;
     top: 0%;
