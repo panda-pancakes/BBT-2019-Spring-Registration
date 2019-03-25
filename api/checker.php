@@ -1,6 +1,6 @@
 <?php
 registerChecker("name", function($var) {
-	return !preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $data["name"]);
+	return !preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $var);
 });
 
 registerChecker("tel", function($var) {

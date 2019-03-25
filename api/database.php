@@ -1,8 +1,7 @@
 <?php
 require_once("../config.php");
 
-function query($info)
-{
+function query($info) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	$con->set_charset('utf8mb4');
 
@@ -13,7 +12,7 @@ function query($info)
 	$sql = "select name, sex, tel, grade, college, dorm, department, alternative, adjustment, introduction, information from application where name = ? && tel = ?";
 
 	$ret = new StdClass();
-
+	
 	$stmt = $con->prepare($sql);
 	$stmt->bind_param("ss", $info["name"], $info["tel"]);
 	$stmt->execute();
@@ -21,11 +20,11 @@ function query($info)
 	$stmt->fetch();
 	$stmt->close();
 	$con->close();
+	
 	return $ret;
 }
 
-function signup($info, $cover)
-{
+function signup($info, $cover) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	$con->set_charset('utf8mb4');
 	if ($con->connect_error) {
@@ -62,8 +61,7 @@ function signup($info, $cover)
 	return 0;
 }
 
-function admin_login($username, $passwd)
-{
+function admin_login($username, $passwd) {
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	$con->set_charset('utf8mb4');
 	if ($con->connect_error) {
@@ -84,8 +82,7 @@ function admin_login($username, $passwd)
 //登录已完成
 
 
-function admin_query($permission)
-{
+function admin_query($permission) {
 	//var_dump($permission);
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	$con->set_charset('utf8mb4');
@@ -123,8 +120,7 @@ function admin_query($permission)
 
 	return $array;
 }
-function change_department($value)
-{
+function change_department($value) {
 
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 	$con->set_charset('utf8mb4');
@@ -155,8 +151,7 @@ function change_department($value)
 	return $array;
 }
 
-function NumToCollege($val)
-{
+function NumToCollege($val) {
 	switch ($val) {
 		case 0:
 			$val = "机械与汽车工程学院";
