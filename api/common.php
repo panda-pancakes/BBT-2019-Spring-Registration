@@ -16,6 +16,8 @@ function registerChecker($name, $func) {
 }
 
 function process($method, $data) {
+	global $functionRegistry, $checkerRegistry;
+	
 	$ret = new stdClass();
 	
 	if (!isset($_GET["method"])) {

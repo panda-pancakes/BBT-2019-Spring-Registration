@@ -4,7 +4,7 @@ require_once("database.php");
 function onSignup($arg) {
 	$ret = new stdClass();
 	
-	$sta = signup($arg);
+	$sta = signup($arg, isset($arg["cover"]) ? $arg["cover"] : false);
 	
 	if ($sta == -1) {
 		$ret->errcode = 300;
@@ -19,7 +19,7 @@ function onSignup($arg) {
 
 registerMethod("signup", "onSignup", array(
 	"required" => array("name", "sex", "tel", "grade", "college", "department", "dorm", "adjustment"),
-	"optional" => array("alternative", "introduction")
+	"optional" => array("alternative", "introduction", "cover")
 ));
 
 /*
