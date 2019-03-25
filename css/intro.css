@@ -2,6 +2,7 @@
     background-color: #B1C436;
     margin: 0%;
     padding: 0%;
+    font-family: STXihei;
     background-clip: padding-box;
 }
 
@@ -97,6 +98,9 @@ body {
 }
 
 .title {
+    font-family: fantasy;
+    font-weight: 500;
+    font-family: "STXihei";
     text-align: center;
     background-color: unset;
     animation-name: breath;
@@ -124,4 +128,5 @@ body {
 p {
     background: unset;
     text-align: left;
+    margin-top: 10px;
 }
