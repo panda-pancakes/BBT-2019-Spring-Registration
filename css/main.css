@@ -102,6 +102,7 @@ input[type="text"],input[type="tel"]{
 }
 input{
     background: none;
+    margin-left: -12.5%;
 
 }
 #attention{
