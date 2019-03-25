@@ -69,6 +69,7 @@ body {
     position: absolute;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 200px;
     background: unset;
     -webkit-box-pack: center;
     -ms-flex-pack: center;

@@ -184,3 +184,6 @@ input[type="radio"]{
 span{
     background: none;
 }
+#name,#tel{
+    max-width: 210px;
+}
