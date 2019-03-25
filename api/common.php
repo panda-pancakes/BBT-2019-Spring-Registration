@@ -40,7 +40,7 @@ function process($method, $data) {
 		}
 		if (isset($parameterList["optional"])) {
 			foreach ($parameterList["optional"] as $parameter) {
-				if (isset($data[$parameter]) {
+				if (isset($data[$parameter])) {
 					$argument[$parameter] = $data[$parameter];
 				}
 			}
