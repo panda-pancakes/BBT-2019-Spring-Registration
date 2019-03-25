@@ -16,7 +16,7 @@ function onQuery($arg) {
 	return $ret;
 }
 
-registerMethod("query", onQuery, array(
+registerMethod("query", $onQuery, array(
 	"required" => array("name", "tel")
 ));
 
