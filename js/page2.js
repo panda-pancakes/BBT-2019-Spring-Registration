@@ -4,7 +4,7 @@ $(function () {
     $("#233").hide();
     $("#cover_user").hide();
     $("#bgimg1").hide();
-    $("#successbox").hide();
+    // $("#successbox").hide();
     $("#hiddenbox").hide();
     $("#appear").hide();
     //前端过滤
@@ -478,11 +478,13 @@ $(function () {
     function dontclick() {
         setTimeout(function () {
             $("#attention").text("要等一会才能再次查询");
+            console.log("禁用按钮");
             attention();
             $("#attention").focus();
         }, 4000);
         setTimeout(function () {
             console.log("启用按钮");
+            $("#attention").hide();
             $("#check_btn").removeAttr('disabled');
             $("#cover_user").removeAttr('disabled');
             $("#sign_btn").removeAttr('disabled');
@@ -491,22 +493,22 @@ $(function () {
     }
 
     //attention 图片 变换
-    function change_pic(str) {
-        var missing = new RegExp('Missing');
-        var existed = new RegExp('existed');
-        var special = new RegExp('special');
-        var tel = new RegExp('telephone');
-        var intro = new RegExp('introduction');
-        var img = document.getElementById("attention_pic");
-        console.log(img.src);
-        if (missing.test(str)) {
-            img.src = "img/attention/2.png";
-        }
-        if (existed.test(str)) {
-            img.src = "img/attention/x.png"; /////等xy做这个
-        }
-        if (special.test(str)) {
-            img.src = "img/attention/3.png";
-        }
-    }
+//     function change_pic(str) {
+//         var missing = new RegExp('Missing');
+//         var existed = new RegExp('existed');
+//         var special = new RegExp('special');
+//         var tel = new RegExp('telephone');
+//         var intro = new RegExp('introduction');
+//         var img = document.getElementById("attention_pic");
+//         console.log(img.src);
+//         if (missing.test(str)) {
+//             img.src = "img/attention/2.png";
+//         }
+//         if (existed.test(str)) {
+//             img.src = "img/attention/x.png"; /////等xy做这个
+//         }
+//         if (special.test(str)) {
+//             img.src = "img/attention/3.png";
+//         }
+//     }
 })
