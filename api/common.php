@@ -3,6 +3,7 @@ $functionRegistry = array();
 $checkerRegistry = array();
 
 function registerMethod($method, $func, $para) {
+	global $functionRegistry;
 	$functionRegistry[$method] = array(
 		'parameter' => $para,
 		'function' => $func
@@ -10,6 +11,7 @@ function registerMethod($method, $func, $para) {
 }
 
 function registerChecker($name, $func) {
+	global $checkerRegistry;
 	$checkerRegistry[$name] = $func;
 }
 

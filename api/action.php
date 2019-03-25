@@ -7,10 +7,11 @@ $data = file_get_contents('php://input');
 $data = json_decode($data, true);
 
 require("common.php");
-include("checker.php");
-include("signup.php");
-include("query.php");
-include("admin.php");
+
+require("checker.php");
+require("signup.php");
+require("query.php");
+require("admin.php");
 
 echo json_encode(process($_GET["method"], $data));
 

@@ -17,7 +17,7 @@ function onSignup($arg) {
 	return $ret;
 }
 
-registerMethod("signup", $onSignup, array(
+registerMethod("signup", "onSignup", array(
 	"required" => array("name", "sex", "tel", "grade", "college", "department", "dorm", "adjustment"),
 	"optional" => array("alternative", "introduction")
 ));

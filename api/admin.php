@@ -37,11 +37,11 @@ function onAdminQuery($arg) {
 	return ret;
 }
 
-registerMethod("admin_login", $onAdminLogin, array(
+registerMethod("admin_login", "onAdminLogin", array(
 	"required" => array("department", "password")
 ));
 
-registerMethod("admin_query", $onAdminQuery, array(
+registerMethod("admin_query", "onAdminQuery", array(
 	"optional" => array("department")
 ));
 
