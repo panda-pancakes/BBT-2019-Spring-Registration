@@ -140,3 +140,15 @@ select {
 input[type="image"]{
     width: 200px;
 }
+.prev{
+    position: absolute;
+    top:0%;
+    top: 0%;
+    display: block;
+    /* margin-left: -11.5%; */
+    left: 0%;
+    width: -webkit-fill-available;
+    background: none;
+    padding: 0%;
+    background: none;
+}
