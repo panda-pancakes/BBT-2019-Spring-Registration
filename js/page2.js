@@ -337,7 +337,6 @@ $(function () {
             introduction,
         });
         $.post("./api/action.php?method=signup", info, function (data, status) {
-            window.event.returnValue = false
             if (status == "success") {
                 if (data.status == "failed") {
                     var missing = new RegExp('Missing');
