@@ -6,7 +6,7 @@ $.get("../api/action.php?method=admin_query", function (result) {
     }
     var Eachdata = ""
     if (result.errcode == -1) {
-        $("#Statistics").css("display", "block")
+        $("#Statistics").css("display", "cornflowerblue")
         document.getElementById('Statistics').innerText = result.errmsg, "json"
     } else {
         if (result.sum == 0) {
@@ -18,6 +18,7 @@ $.get("../api/action.php?method=admin_query", function (result) {
                     result.data[i].college + "</td><td>" + result.data[i].grade + "</td><td>" + result.data[i].tel + "</td><td>" + result.data[i].dorm + "</td><td>" + result.data[i].department + "</td><td>" +
                     result.data[i].alternative + "</td><td>" + result.data[i].adjustment + "</td><td>" + result.data[i].introduction + "</td></tr>"
                 $("#body").append(Eachdata),
+                $("#Statistics").css("color","cornflowerblue"),
                     $("#Statistics").text("恭喜！共有" + result.sum + "人报名噢！"), "json"
             }
         }
@@ -36,6 +37,7 @@ function isSelect(selectPress) {
             document.getElementById('Statistics').innerHTML = result.errmsg, "json"
         } else {
             if (result.sum == 0) {
+                $("#Statistics").css("color","cornflowerblue"),
                 $("#Statistics").text("暂无报名数据噢"), "json"
             } else {
                 console.log(result);
@@ -44,6 +46,7 @@ function isSelect(selectPress) {
                         result.data[i].college + "</td><td>" + result.data[i].grade + "</td><td>" + result.data[i].tel + "</td><td>" + result.data[i].dorm + "</td><td>" + result.data[i].department + "</td><td>" +
                         result.data[i].alternative + "</td><td>" + result.data[i].adjustment + "</td><td>" + result.data[i].introduction + "</td></tr>"
                     $("#body").append(Eachdata),
+                    $("#Statistics").css("color","cornflowerblue"),
                         $("#Statistics").text("恭喜！共有" + result.sum + "人报名噢！"), "json"
                 }
             }

@@ -6,6 +6,25 @@
 .header {
     text-shadow: 2px 2px cornflowerblue;
     text-align: center;
+    animation-name: breath;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 3s;
+}
+@keyframes breath {
+
+    from {
+        opacity: 0.1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.1;
+    }
+
 }
 
 .login_board {

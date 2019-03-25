@@ -1,27 +1,32 @@
-*{
+* {
     background-color: #B1C436;
     background-repeat: repeat;
     margin: 0%;
     padding: 0%;
 }
-::-moz-placeholder，span{
+
+::-moz-placeholder，span {
     color: #707070;
     font-size: 0.9em;
 }
-body{
+
+body {
     background-image: url("../img/pictures/1.png");
     background-repeat: no-repeat;
     background-position-x: -25px;
     background-position-y: bottom;
     background-size: 108%;
 }
-#signbox{
+
+#signbox {
     display: block;
     background: none;
     /* vertical-align: middle; */
 }
-#prev{
-    position: absolute;;
+
+#prev {
+    position: absolute;
+    ;
     display: block;
     z-index: 10;
     margin-top: 0%;
@@ -29,7 +34,8 @@ body{
     width: -webkit-fill-available;
     background: none;
 }
-#input{
+
+#input {
     display: block;
     background: none;
     /* margin-left: 50%; */
@@ -40,13 +46,14 @@ body{
     margin-left: 25%;
     margin-right: 25%;
 }
-label{
+
+label {
     display: block;
     margin-bottom: 1.8%;
     padding: 2%;
 }
 
-.text{
+.text {
     -moz-appearance: none;
     -webkit-appearance: none;
     width: 110%;
@@ -55,67 +62,77 @@ label{
     opacity: 0.8;
     font-size: 0.8em;
     height: 2.2em;
-    border-radius:4px;
-    border:1px solid #c8cccf;
-    
+    border-radius: 4px;
+    border: 1px solid #c8cccf;
+
 }
-#introduction{
+
+#introduction {
     padding-right: 37%;
     padding-bottom: 15%;
     background-color: #dee6a8;
     opacity: 0.8;
     font-size: 0.8em;
     /* height: 2.2em; */
-    border-radius:4px;
-    border:1px solid #c8cccf;
+    border-radius: 4px;
+    border: 1px solid #c8cccf;
 }
-#sign_btn{
+
+#sign_btn {
     /* padding: 10%; */
     margin-top: 10%;
     padding-left: 10px;
     background: none;
 }
-label,.grade,.sex{
+
+label,
+.grade,
+.sex {
     color: #707070;
     background: none;
 }
-div{
+
+div {
     padding-bottom: 2%;
     background: none;
 }
-select{
-    appearance:none;
-    -moz-appearance:none;
-    -webkit-appearance:none;
+
+select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
     width: 110%;
     margin-bottom: 3%;
     padding: 2.3%;
     background-color: #dee6a8;
     opacity: 0.8;
-    border-radius:4px;
-    border:1px solid #c8cccf;
+    border-radius: 4px;
+    border: 1px solid #c8cccf;
     font-size: 0.8em;
 }
-#attention{
+
+#attention {
     display: none;
     z-index: 10;
     background-color: #dee6a8;
-    border-radius:4px;
-    border:1px solid #c8cccf;
+    border-radius: 4px;
+    border: 1px solid #c8cccf;
     font-size: 0.8em;
     margin-top: 3%;
     padding: 3%;
     color: #707070;
     font-size: 1.1em;
     background-color: #dee6a8;
-    border-radius:0.3em；
+    border-radius: 0.3em；
 }
-#successs{
+
+#successs {
     display: none;
     color: #707070;
     font-size: 0.93em;
 }
-input[type="radio"]{
+
+input[type="radio"] {
     appearance: none;
     background-image: url("/img/button/no.png");
     background-size: 100%;
