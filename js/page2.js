@@ -4,10 +4,6 @@ $(function () {
     $("#233").hide();
     $("#cover_user").hide();
     $("#bgimg1").hide();
-<<<<<<< HEAD
-    // $("#successbox").hide();
-=======
->>>>>>> f81909322ceedad2c48cf53e17edb11df739a0de
     $("#hiddenbox").hide();
     $("#appear").hide();
     //前端过滤

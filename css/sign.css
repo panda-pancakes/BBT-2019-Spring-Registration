@@ -132,8 +132,8 @@ select {
     font-size: 0.93em;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
     appearance: none;
-    background-image: url("/img/button/no.png");
+    background-image: url("../img/button/no.png");
     background-size: 100%;
-}
+} */

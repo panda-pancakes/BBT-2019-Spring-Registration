@@ -169,3 +169,9 @@ select{
     margin-right: 26%;
     border:1px solid #c8cccf;
 }
+#appear_info{
+    color: #707070;
+    background: none;
+    text-align: start;
+    margin-bottom: 10%;
+}
