@@ -104,7 +104,7 @@ input{
     background: none;
     /* margin-left: -12.5%; */
     width: 200px;
-
+    margin-bottom: 12px;
 }
 #attention{
     display: none;
@@ -177,4 +177,10 @@ select{
     background: none;
     text-align: start;
     margin-bottom: 10%;
+}
+input[type="radio"]{
+    width: unset;
+}
+span{
+    background: none;
 }
