@@ -1,43 +1,28 @@
 <?php
-header("Content-Type: application/json");
+require_once("database.php");
 
-session_start();
-
-$data = file_get_contents('php://input');
-$data = json_decode($data, true);
-
-require("common.php");
-include("checker.php");
-include("signup.php");
-include("query.php");
-include("admin.php");
-
-echo json_encode(process($_GET["method"], $data));
-
-/*
-
-$functionRegistry = {
-	"onSignup": {
-		"required"
-		"name", "sex"
+function onSignup($arg) {
+	$ret = new stdClass();
+	
+	$sta = signup($arg);
+	
+	if ($sta == -1) {
+		$ret->errcode = 300;
+		$ret->errmsg = "Existed application";
+	} elseif ($sta == -2) {
+		$ret->errcode = 500;
+		$ret->errmsg = "Database issue";
 	}
 	
+	return $ret;
 }
 
-$parameterRegistry = {
-	
-}
+registerMethod("signup", onSignup, array(
+	"required" => array("name", "sex", "tel", "grade", "college", "department", "dorm", "adjustment"),
+	"optional" => array("alternative", "introduction")
+))
 
-if (!isset($_GET["method"])) {
-	$ret->errcode = 400;
-	$ret->errmsg = "Missing parameter: method";
-} elseif (!isset($functionRegistry[$_GET["method"]])) {
-	$ret->errcode = 401;
-	$ret->errmsg = "Unregistered method";	
-} else {
-	
-}
-
+/*
 } elseif ($_GET["method"] == "signup") {	
 	if (empty($data["name"])) {
 		$ret->errmsg = "Missing parameter: name";

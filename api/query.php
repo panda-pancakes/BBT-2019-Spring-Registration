@@ -1,21 +1,26 @@
 <?php
-header("Content-Type: application/json");
+require_once("database.php");
 
-session_start();
+function onQuery($arg) {
+	$ret = new stdClass();
+	
+	$sta = query($arg);
+	
+	if ($sta === -2) {
+		$ret->errcode = 500;
+		$ret->errmsg = "Database issue";
+	} elseif ($ret->exist = isset($sta->name)) {
+		$ret->info = $sta;
+	}
+	
+	return $ret;
+}
 
-$data = file_get_contents('php://input');
-$data = json_decode($data, true);
-
-require("common.php");
-include("checker.php");
-include("signup.php");
-include("query.php");
-include("admin.php");
-
-echo json_encode(process($_GET["method"], $data));
+registerMethod("query", onQuery, array(
+	"required" => array("name", "tel")
+));
 
 /*
-
 $functionRegistry = {
 	"onSignup": {
 		"required"
@@ -129,12 +134,15 @@ if (!isset($_GET["method"])) {
 	} elseif (!is_numeric($data["tel"]) || $data["tel"][0] != 1 || strlen($data["tel"]) != 11) {
 		$ret->errmsg = "wrong telephone information";
 	} else {
+		
 		$info = array(
 			"name" => $data["name"],
 			"tel" => $data["tel"],
 		);
+		
 		$_SESSION["name"] = $data["name"];
 		$_SESSION["tel"] = $data["tel"];
+		
 		$sta = query($info);
 
 		if ($sta === -2) {
