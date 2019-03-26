@@ -378,7 +378,9 @@ $(function () {
                 } else {
                     attention();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
-                    //window.location.href = 'success.html';
+                    setTimeout(function () {
+                    window.location.href = 'success.html';
+                    }, 1000);
                 }
             } else {
                 attention();
