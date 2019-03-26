@@ -10,3 +10,6 @@ registerChecker("tel", function($var) {
 registerChecker("sex", function($var) {
 	return $var === "M" or $var === "F";
 });
+registerChecker("dorm",function($var){
+	return $var[0] == 'C' && strlen($var) == 7;
+});
