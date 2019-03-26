@@ -187,3 +187,6 @@ span{
 #name,#tel{
     max-width: 210px;
 }
+#prev1{
+    width: unset;
+}
