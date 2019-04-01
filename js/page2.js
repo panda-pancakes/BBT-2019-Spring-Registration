@@ -78,11 +78,11 @@ $(function () {
                         console.log(data.info);
                         $("#appear_info").empty()
                         $("#query").hide();
-                        if (data.info.sex == "M") {
-                            var info_sex = "男";
-                        } else {
-                            var info_sex = "女";
-                        }
+                        // if (data.info.sex == "M") {
+                        //     var info_sex = "男";
+                        // } else {
+                        //     var info_sex = "女";
+                        // }
                         if (data.info.adjustment == "true") {
                             var info_adjustment = "是";
                         } else {
@@ -109,7 +109,7 @@ $(function () {
                             $("#tel").val(data.info.tel);
                             $("#dorm").val(data.info.dorm);
                             $("#introduction").val(data.info.introduction);
-                            $("input:radio[name='sex'][value=" + data.info.sex + "]").prop("checked", true);
+                            // $("input:radio[name='sex'][value=" + data.info.sex + "]").prop("checked", true);
                             $("input:radio[name='grade'][value=" + data.info.grade + "]").prop("checked", true);
                             $("input:radio[name='adjustment'][value=" + data.info.adjustment + "]").prop("checked", true);
                             $("#college").val(data.info.college);
@@ -135,7 +135,7 @@ $(function () {
         $("#cover_user").attr('disabled', 'disabled');
         console.log("禁用覆盖按钮");
         var name = $('#name').val();
-        var sex = $('input:radio[name="sex"]:checked').val();
+        // var sex = $('input:radio[name="sex"]:checked').val();
         var college = $('#college').prop('selectedIndex');
         var grade = $('input:radio[name="grade"]:checked').val();
         var dorm = $("#dorm").val();
@@ -147,7 +147,7 @@ $(function () {
         var cover = "true";
         var info = JSON.stringify({
             name,
-            sex,
+            // sex,
             tel,
             college,
             grade,
@@ -314,7 +314,7 @@ $(function () {
         $("#attention").text("请稍等……");
         attention();
         var name = $('#name').val();
-        var sex = $('input:radio[name="sex"]:checked').val();
+        // var sex = $('input:radio[name="sex"]:checked').val();
         //var college = $("select#college").get(0).selectedIndex;
         var college = $('#college').prop('selectedIndex');
         var grade = $('input:radio[name="grade"]:checked').val();
@@ -328,7 +328,7 @@ $(function () {
         console.log(adjustment);
         var info = JSON.stringify({
             name,
-            sex,
+            // sex,
             tel,
             college,
             grade,
