@@ -121,7 +121,7 @@ $(function () {
                         //修改按钮
                     }
                 }
-            }).always(function () {
+            ).always(function () {
                 //模拟请求延时 防止 按钮重复按
                 dontclick();
             });
