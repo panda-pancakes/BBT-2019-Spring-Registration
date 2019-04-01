@@ -51,6 +51,7 @@ $(function () {
         if (final_check()) {
             $.post("./api/action.php?method=query", info, function (data, status) {
                 console.log("到达ajax");
+                console.log(data.info);
                 if (status == "success") {
                     if (data.status == "failed") {
                         var missing = new RegExp('Missing');
