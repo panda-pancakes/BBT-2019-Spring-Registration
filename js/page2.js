@@ -51,6 +51,7 @@ $(function () {
         if (final_check()) {
             $.post("./api/action.php?method=query", info, function (data, status) {
                 console.log("到达ajax");
+                console.log(data.info);
                 if (status == "success") {
                     if (data.status == "failed") {
                         var missing = new RegExp('Missing');
@@ -80,7 +81,8 @@ $(function () {
                         //     var info_sex = "男";
                         // } else {
                         //     var info_sex = "女";
-                        // }
+                        console.log(data.info);
+                        }
                         if (data.info.adjustment == "true") {
                             var info_adjustment = "是";
                         } else {
@@ -159,6 +161,7 @@ $(function () {
         console.log(info);
         $.post("./api/action.php?method=signup", info, function (data, status) {
             console.log("ok");
+            console.log(data.info);
             if (status == "success") {
                 if (data.status == "failed") {
                     var missing = new RegExp('Missing');
