@@ -18,7 +18,7 @@ function onAdminLogin($arg) {
 		$ret->errmsg = "Either this account doesn't exist or the password is incorrect.";
 	}
 	
-	return ret;
+	return $ret;
 }
 
 function onAdminQuery($arg) {
@@ -34,7 +34,19 @@ function onAdminQuery($arg) {
 		$ret->errmsg = "Please login first";
 	}
 	
-	return ret;
+	return $ret;
+}
+
+function onChangeQuery($arg){
+	$ret = new stdClass();
+
+	if(isset($_GET["value"])){
+		$ret->data = change_department($_GET["value"]);
+		$ret->sum = count((array)$ret->data);
+	} else {
+		$ret->errcode = 403;
+		$ret->errmsg = "The department isn't exist.";
+	};
 }
 
 registerMethod("admin_login", "onAdminLogin", array(
@@ -42,6 +54,10 @@ registerMethod("admin_login", "onAdminLogin", array(
 ));
 
 registerMethod("admin_query", "onAdminQuery", array(
+	"optional" => array("department")
+));
+
+registerMethod("change_department", "onChangeQuery",array(
 	"optional" => array("department")
 ));
 

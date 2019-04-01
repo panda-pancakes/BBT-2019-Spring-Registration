@@ -137,49 +137,7 @@ registerMethod("signup", "onSignup", array(
 			}
 		}
 	}
-} elseif ($_GET["method"] == "admin_login") {
-	if (empty($_POST["department"])) {
-		$ret->errmsg = "Missing parameter: department";
-	} elseif (empty($_POST["password"])) {
-		$ret->errmsg = "Missing parameter: password";
-	} elseif (preg_match("/[\'.,:;*?~`!@#$%^&+=)(<>{}]|\]|\[|\/|\\\|\"|\|/", $_POST['department'])) {
-		$ret->errmsg = "It's not allowed to use special characters in username.";
-	} else {
-		$status = admin_login($_POST["department"], $_POST["password"]);
-		if ($status >= 0) {
-			$_SESSION["department"] = $_POST["department"];
-			$_SESSION["permission"] = $status;
-			$ret->errcode = 0;
-		} elseif ($status == -2) {
-			$ret->errmsg = "database issue";
-		} else {
-			$ret->errmsg = "Either this account doesn't exist or the password is incorrect.";
-		}
-	}
-} elseif ($_GET["method"] == "admin_query") {
-	if (isset($_SESSION["permission"])) {
-		$ret->permission = $_SESSION['permission'];
-		$ret->data = admin_query($_SESSION["permission"]);
-		$ret->sum = count((array)$ret->data);
-	} else {
-		$ret->errcode = -1;
-		$ret->errmsg = "Please login first";
-	}
-} elseif ($_GET['method'] == "change_department") {
-	if (!isset($_GET['value'])) {
-		$ret->errmsg = "Please select the department.";
-	} elseif ($_GET['value'] == 666) {
-		$ret->data = admin_query($_SESSION["permission"]);
-		$ret->sum = count((array)$ret->data);
-	} else {
-		$ret->data = change_department($_GET['value']);
-		$ret->sum = count((array)$ret->data);
-	}
-} else {
-	$ret->errcode = -1;
-	$ret->errmsg = "Unspecified Method";
-}
-
+} 
 $ret->status = isset($ret->errmsg) ? "failed" : "ok";
 
 echo json_encode($ret);
