@@ -74,6 +74,7 @@ $(function () {
                             console.log(data.info);
                         }
                     } else { //查询成功
+                        console.log(data.info);
                         $("#appear_info").empty()
                         $("#query").hide();
                         if (data.info.sex == "M") {
