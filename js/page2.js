@@ -142,7 +142,7 @@ $(function () {
         var tel = $('#tel').val();
         var department = $("#department").prop('selectedIndex');
         var alternative = $("select#alternative").prop('selectedIndex');
-        var adjustment = $('input:radio[name="adjustment"]:checked').val();
+        var adjustment = $('input:radio[name="adjustment"]:checked').val() == "true";
         var introduction = $('#introduction').val();
         var cover = "true";
         var info = JSON.stringify({
@@ -323,7 +323,7 @@ $(function () {
         var tel = $('#tel').val();
         var department = $('#department').prop('selectedIndex');
         var alternative = $('#alternative').prop('selectedIndex');
-        var adjustment = $('input:radio[name="adjustment"]:checked').val();
+        var adjustment = $('input:radio[name="adjustment"]:checked').val() == "true";
         var introduction = $('#introduction').val();
         //打包给php 
         console.log(adjustment);
