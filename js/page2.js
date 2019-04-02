@@ -77,10 +77,10 @@ $(function () {
                     } else { //查询成功
                         $("#appear_info").empty()
                         $("#query").hide();
-                        // if (data.info.sex == "M") {
-                        //     var info_sex = "男";
-                        // } else {
-                        //     var info_sex = "女";
+                        if (data.info.sex == "M") {
+                            var info_sex = "男";
+                        } else {
+                            var info_sex = "女";
                         console.log(data.info);
                         }
                         if (data.info.adjustment == "true") {
@@ -90,14 +90,14 @@ $(function () {
                         }
                         $("#appear").show();
                         $("#appear_info").append("姓名：" + data.info.name + "<br>");
-                        $("#appear_info").append("性别：" + info.sex + "<br>");
+                        $("#appear_info").append("性别：" + info_sex + "<br>");
                         $("#appear_info").append("年级：" + data.info.grade + "<br>");
                         $("#appear_info").append("学院：" + major[data.info.college] + "<br>");
                         $("#appear_info").append("宿舍：" + data.info.dorm + "<br>");
                         $("#appear_info").append("联系电话：" + data.info.tel + "<br>");
                         $("#appear_info").append("第一志愿：" + depa[data.info.department] + "<br>");
                         $("#appear_info").append("第二志愿：" + depa[data.info.alternative] + "<br>");
-                        $("#appear_info").append("是否服从调剂：" + info.adjustment + "<br>");
+                        $("#appear_info").append("是否服从调剂：" + info_adjustment + "<br>");
                         $("#appear_info").append("个人简介：" + data.info.introduction + "<br>");
                         $("#edit").click(function () { //进入修改信息的页面
                             $("#appear").hide();
