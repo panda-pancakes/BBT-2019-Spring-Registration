@@ -368,10 +368,10 @@ $(function () {
                 } else {
                     attention();
                     $("#attention").text("提交成功,后续以短信形式通知，敬请查收");
-                    // setTimeout(function () {
-                    // window.location.href = 'success.html';
-                    // }, 1000); 
-                    //注释掉看看signup报错
+                    setTimeout(function () {
+                    window.location.href = 'success.html';
+                    }, 1000); 
+                    注释掉看看signup报错
                 }
             } else {
                 attention();
