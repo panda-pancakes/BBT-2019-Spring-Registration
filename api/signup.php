@@ -6,13 +6,13 @@ function onSignup($arg) {
 	
 	$sta = signup($arg, isset($arg["cover"]) ? $arg["cover"] : false);
 	
-	if ($sta == -1) {
+	if ($sta === -1) {
 		$ret->errcode = 300;
 		$ret->errmsg = "Existed application";
-	} elseif ($sta == -2) {
+	} elseif ($sta === -2) {
 		$ret->errcode = 500;
 		$ret->errmsg = "Database issue";
-	} elseif ($sta != 0) {
+	} elseif ($sta !== 0) {
 		$ret->errcode = 500;
 		$ret->errmsg = $sta;
 	}
