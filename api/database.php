@@ -37,7 +37,7 @@ function signup($info, $cover) {
 		if ($cover) {
 			$sql = "update application set name = ?, tel = ?, sex = ?, grade = ?, college = ?, dorm = ?, department = ?, alternative = ?, adjustment = ?, introduction = ? where name = ? && tel = ?";
 			$stmt = $con->prepare($sql);
-			$stmt->bind_param("ssssssssssss", $info["name"], $info["tel"], $info["sex"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"] ? 1 : 0, $info["introduction"], $info["query_name"], $info["query_tel"]);
+			$stmt->bind_param("ssssssssisss", $info["name"], $info["tel"], $info["sex"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"], $info["introduction"], $info["query_name"], $info["query_tel"]);
 			$stmt->execute();
 			$stmt->close();
 		} else {
@@ -50,7 +50,7 @@ function signup($info, $cover) {
 	} else {
 		$sql = "insert into application (name, sex, tel, grade, college, dorm, department, alternative, adjustment, introduction) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$stmt = $con->prepare($sql);
-		$stmt->bind_param("ssssssssss", $info["name"], $info["sex"], $info["tel"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"] ? 1 : 0, $info["introduction"]);
+		$stmt->bind_param("ssssssssis", $info["name"], $info["sex"], $info["tel"], $info["grade"], $info["college"], $info["dorm"], $info["department"], $info["alternative"], $info["adjustment"], $info["introduction"]);
 		if (!$stmt->execute()) {
 			$err_msg = $stmt->error;
 			$stmt->close();
