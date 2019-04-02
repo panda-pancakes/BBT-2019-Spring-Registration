@@ -128,21 +128,23 @@ $(function () {
         }
     })
 
-    //覆盖
-    // console.log("------96----路过覆盖函数上空 --------");
-    $("#cover_user").click(function () {
-        console.log("覆盖");
-        $("#cover_user").attr('disabled', 'disabled');
-        console.log("禁用覆盖按钮");
+    //获取值
+    function getData(){
         var name = $('#name').val();
-        var sex = $('input:radio[name="sex"]:checked').val();
+        var sex = $('input.sex:checked').val();
         var college = $('#college').prop('selectedIndex');
         var grade = $('input:radio[name="grade"]:checked').val();
         var dorm = $("#dorm").val();
         var tel = $('#tel').val();
         var department = $("#department").prop('selectedIndex');
         var alternative = $("select#alternative").prop('selectedIndex');
-        var adjustment = $('input:radio[name="adjustment"]:checked').val();
+        var adjustment = $('input.adjustment:checked').val();
+        if(adjustment=="true"){
+            adjustment=Boolean;
+            adjustment=true;
+        }else{
+            adjustment=false;
+        }
         var introduction = $('#introduction').val();
         var cover = "true";
         var info = JSON.stringify({
@@ -159,6 +161,16 @@ $(function () {
             cover,
         });
         console.log(info);
+        return info;
+    }
+
+    //覆盖
+    // console.log("------96----路过覆盖函数上空 --------");
+    $("#cover_user").click(function () {
+        console.log("覆盖");
+        $("#cover_user").attr('disabled', 'disabled');
+        console.log("禁用覆盖按钮");
+        var info=getData();
         $.post("./api/action.php?method=signup", info, function (data, status) {
             console.log("ok");
             console.log(data.info);
@@ -314,31 +326,7 @@ $(function () {
         console.log("禁用报名按钮");
         $("#attention").text("请稍等……");
         attention();
-        var name = $('#name').val();
-        var sex = $('input:radio[name="sex"]:checked').val();
-        //var college = $("select#college").get(0).selectedIndex;
-        var college = $('#college').prop('selectedIndex');
-        var grade = $('input:radio[name="grade"]:checked').val();
-        var dorm = $("#dorm").val();
-        var tel = $('#tel').val();
-        var department = $('#department').prop('selectedIndex');
-        var alternative = $('#alternative').prop('selectedIndex');
-        var adjustment = $('input:radio[name="adjustment"]:checked').val();
-        var introduction = $('#introduction').val();
-        //打包给php 
-        console.log(adjustment);
-        var info = JSON.stringify({
-            name,
-            sex,
-            tel,
-            college,
-            grade,
-            dorm,
-            department,
-            alternative,
-            adjustment,
-            introduction,
-        });
+        var info=getData();
         $.post("./api/action.php?method=signup", info, function (data, status) {
             if (status == "success") {
                 if (data.status == "failed") {
